@@ -1,0 +1,8 @@
+Для запуска сайта, лучше всего рекомендуется
+браузер Google Chrome.
+---------------------------------
+To launch a website, it is best recommended
+Google Chrome.
+---------------------------------
+Сайт: https://gomelggaek.vercel.app/
+Site: https://gomelggaek.vercel.app/
