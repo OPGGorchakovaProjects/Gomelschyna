@@ -1,76 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="../img/image-removebg.png" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap" rel="stylesheet">
     <title>Больше информациии</title>
 </head>
+
 <body>
-    <script>
-        alert('Для просмотра данной страницы на мобильном устройстве, рекомендуется уменьшить маштаб страницы!');
-    </script>
     <div class="wrapper">
-        <header>
-            <div class="nav">
-                <img src="./img/burger menu.png" alt="" class="burger-menu" id="burger-menu">
-                <img src="./img/notice.png" alt="" class="notice">
-                <img src="./img/image-removebg-preview (22) 1.png" alt="" class="preview">
-                <a href="../Map/index.html">
-                    <img src="./img/image-PhotoRoom 1.png" alt="" class="carta" onclick="alert('Вы перенаправитесь на другую страницу!')">
-                </a>
-                <img src="./img/Интересный факт.png" alt="" class="interes-fact" id="btn1">
+
+        <div class="wrapper">
+
+            <header>
+                <nav class="nav" id="header">
+                    <div class="nav-container">
+                        <div class="burger-menu" id="burger-menu">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <h1 class="header-title">Гомельщина</h1>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="block-burger" id="block-burger">
+                <div class="burger-content">
+                    <img src="./img/close (1) 2.png" alt="Закрыть" class="close-modal2" id="close-modal2">
+                    <button class="button" id="button1">Энергетика</button>
+                    <button class="button" id="button2">Достопримечательности</button>
+                    <button class="button" id="button3">Культурные ценности</button>
+                    <button class="button" id="button4">Старейшие города</button>
+                    <button class="button" id="button5">Знаменитые люди</button>
+                    <button class="button" id="button6">Промышленность</button>
+                    <button class="button" id="button8">Реки</button>
+                    <button class="button" id="button9">Озёра</button>
+                    <a href="/index.html">
+                        <button class="button" id="button10">На главную</button>
+                    </a>
+                </div>
             </div>
-        </header>
-        <main role="main">
-           <p class="text-glav">Самые известные объекты
-            Гомельской Области</p>
+
+            <section class="banner">
+                <div class="banner-content">
+                    <h1>Добро пожаловать в Гомельскую область</h1>
+                    <p>Откройте для себя уникальные достопримечательности и культурные ценности региона</p>
+                    <button class="map-btn" onclick="/Map/index.html">
+                        <img src="./img/image-PhotoRoom 1.png" alt="Карта" class="map-img">
+                        Открыть карту
+                    </button>
+                </div>
+            </section>
+        </div>
+        <div role="main">
+            <p class="text-glav">Самые известные объекты
+                Гомельской Области</p>
             <!-- Block 1 -->
-            <div class="block-dost1">
+            <div class="block-dost">
                 <p class="text-dost">Самые известные достопримечательности</p>
-                <p class="text-name">Мемориальный комплекс «Ола»</p>
+                <h2 class="text-name">Мемориальный комплекс «Ола»</h2>
                 <p class="gorod">Светлогорск</p>
-                <img src="./img/Line 14.png" alt="" class="line">
-                <p class="text-content"> Ола  — бывшая деревня в Светлогорской районе Гомельской области. Была известна с конца 18 века, в 1926 году в ней проживало 79 человек, а перед войной уже 168 человек. Во время Великой Отечественной войны жители соседних деревень прятались в деревне Ола и в близлежащем лесу, спасаясь от фашистов.</p>
-                <img src="./img/КАРТИНКА.png" alt="" class="img-city">
-                <p class="text-content2">В 2020-м году был открыт мемориальный комплекс «Ола»</p>
-                <div class="btn1">
-                    <p class="text-btn">Читать ещё</p>
+                <img src="./img/Line 14.png" alt="line decoration" class="line">
+                <p class="text-content">Ола — бывшая деревня в Светлогорской районе Гомельской области. Была известна с
+                    конца 18 века, в 1926 году в ней проживало 79 человек, а перед войной уже 168 человек. Во время
+                    Великой Отечественной войны жители соседних деревень прятались в деревне Ола и в близлежащем лесу,
+                    спасаясь от фашистов.</p>
+                <img src="./img/КАРТИНКА.png" alt="city image" class="img-city">
+                <p class="text-content">В 2020 году был открыт мемориальный комплекс «Ола».</p>
+                <div class="button-container">
+                    <div class="btn1">
+                        <p class="text-btn">Читать ещё</p>
+                    </div>
+                    <div class="btn2">
+                        <p class="text-btn">Показать на карте</p>
+                    </div>
                 </div>
-                <div class="btn2">
-                    <p class="text-btn">Показать на карте</p>
-                </div>
-                <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
+                <img src="./img/free-icon-player-3192228 1.png" alt="audio player" class="player">
             </div>
+
             <!-- Block 2 -->
-            <div class="block-dost2">
+            <div class="block-dost">
                 <p class="text-dost">Самые известные достопримечательности</p>
-                <p class="text-name">Дворец Румянцевых и Паскевичей</p>
+                <h2 class="text-name">Дворец Румянцевых и Паскевичей</h2>
                 <p class="gorod">Гомель</p>
-                <img src="./img/Line 14.png" alt="" class="line">
-                <p class="text-content">Дворец Румянцевых и Паскевичей – это уникальное архитектурное сооружение в стиле классицизма в самом сердце Гомеля. Своё название он получил от фамилий владельцев, которые были известными государственными деятелями.</p>
-                <img src="./img/image 5.png" alt="" class="img-city">
-                <p class="text-content2">Строительство дворца началось в 1772 г.</p>
-                <div class="btn1">
-                    <p class="text-btn">Читать ещё</p>
+                <img src="./img/Line 14.png" alt="line decoration" class="line">
+                <p class="text-content">Дворец Румянцевых и Паскевичей – это уникальное архитектурное сооружение в стиле
+                    классицизма в самом сердце Гомеля. Своё название он получил от фамилий владельцев, которые были
+                    известными государственными деятелями.</p>
+                <img src="./img/image 5.png" alt="city image" class="img-city">
+                <p class="text-content">Строительство дворца началось в 1772 г.</p>
+                <div class="button-container">
+                    <div class="btn1">
+                        <p class="text-btn">Читать ещё</p>
+                    </div>
+                    <div class="btn2">
+                        <p class="text-btn">Показать на карте</p>
+                    </div>
                 </div>
-                <div class="btn2">
-                    <p class="text-btn">Показать на карте</p>
-                </div>
-                <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
+                <img src="./img/free-icon-player-3192228 1.png" alt="audio player" class="player">
             </div>
+
             <!-- Block 3 -->
-            <div class="block-dost3">
+            <div class="block-dost3 block-dost">
                 <p class="text-dost">Самые известные Культурные ценности</p>
                 <p class="text-name">Городище на «Замковой Горе»</p>
                 <p class="gorod">Мозырь</p>
                 <img src="./img/Line 14.png" alt="" class="line">
-                <p class="text-content">Городище на «Замковой Горе» в Мозыре – место, где начинался город и стоял грандиозный замок из дерева на радость местным жителям и приезжим гостям. Городище занимало такую же территорию, что и современное, и статно возвышалось над Припятью, омывавшей его подножие и надежно защищавшей от нежеланных гостей.</p>
+                <p class="text-content">Городище на «Замковой Горе» в Мозыре – место, где начинался город и стоял
+                    грандиозный замок из дерева на радость местным жителям и приезжим гостям. Городище занимало такую же
+                    территорию, что и современное, и статно возвышалось над Припятью, омывавшей его подножие и надежно
+                    защищавшей от нежеланных гостей.</p>
                 <img src="./img/image 6.png" alt="" class="img-city">
-                <!-- <p class="text-content2">Строительство дворца началось в 1772 г.</p> -->
+                <!-- <p class="text-content">Строительство дворца началось в 1772 г.</p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -80,14 +126,16 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 4 -->
-            <div class="block-dost4">
+            <div class="block-dost4 block-dost">
                 <p class="text-dost">Самые известные Культурные ценности</p>
                 <p class="text-name">Историко-этнографический музей</p>
                 <p class="gorod">Чечерск</p>
                 <img src="./img/Line 14.png" alt="" class="line">
-                <p class="text-content">Чечерский историко-этнографический музей располагается в самой главной достопримечательности города – ратуши. Построена она была из дерева сразу после получения городом права на самоуправление в 1511 году. Современный облик ратуша приобрела в 18 веке.</p>
+                <p class="text-content">Чечерский историко-этнографический музей располагается в самой главной
+                    достопримечательности города – ратуши. Построена она была из дерева сразу после получения городом
+                    права на самоуправление в 1511 году. Современный облик ратуша приобрела в 18 веке.</p>
                 <img src="./img/image 6 (1).png" alt="" class="img-city">
-                <!-- <p class="text-content2">Строительство дворца началось в 1772 г.</p> -->
+                <!-- <p class="text-content">Строительство дворца началось в 1772 г.</p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -97,13 +145,16 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 5 -->
-            <div class="block-dost5">
+            <div class="block-dost5 block-dost">
                 <p class="text-dost">Старейшие города</p>
                 <p class="text-name">980 год</p>
                 <p class="gorod">Туров</p>
-                <p class="text-content">Туров - древнейший город Гомельской области, впервые упоминается в "Повести временных лет" в 980 году.О том, что Туров - один из старейших центров письменности и летописания, свидетельствует найденный здесь в 1866 году фрагмент "Евангелия" XI века, самой древней книги на территории Беларуси.</p>
+                <p class="text-content">Туров - древнейший город Гомельской области, впервые упоминается в "Повести
+                    временных лет" в 980 году.О том, что Туров - один из старейших центров письменности и летописания,
+                    свидетельствует найденный здесь в 1866 году фрагмент "Евангелия" XI века, самой древней книги на
+                    территории Беларуси.</p>
                 <img src="./img/image 6 (2).png" alt="" class="img-city">
-                <!-- <p class="text-content2">Строительство дворца началось в 1772 г.</p> -->
+                <!-- <p class="text-content">Строительство дворца началось в 1772 г.</p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -113,13 +164,15 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 6 -->
-            <div class="block-dost6">
+            <div class="block-dost6 block-dost">
                 <p class="text-dost">Старейшие города</p>
                 <p class="text-name">1142 год</p>
                 <p class="gorod">Гомель</p>
-                <p class="text-content">Гомель также входит в число древнейших городов Беларуси. Впервые Гомий - таково древнее название Гомеля - упомянут в Ипатьевской летописи от 1142 года. Около 1335 года Гомель вошел в состав Великого княжества Литовского. </p>
+                <p class="text-content">Гомель также входит в число древнейших городов Беларуси. Впервые Гомий - таково
+                    древнее название Гомеля - упомянут в Ипатьевской летописи от 1142 года. Около 1335 года Гомель вошел
+                    в состав Великого княжества Литовского. </p>
                 <img src="./img/image 6 (3).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -129,13 +182,15 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 7 -->
-            <div class="block-dost7">
+            <div class="block-dost7 block-dost">
                 <p class="text-dost">Известные люди</p>
                 <p class="text-name">Александр Анатольевич Исачёв</p>
                 <p class="gorod">Калинковичский район</p>
-                <p class="text-content">Александр Исачев - один из самых необычных белорусских художников 20 века. В его картинах сплелись мифология, христианство и эротика. За свою жизнь А. Исачёв создал около 500 картин, большинство из которых были вывезены в Швецию, Германию, Францию, Израиль и США.</p>
+                <p class="text-content">Александр Исачев - один из самых необычных белорусских художников 20 века. В его
+                    картинах сплелись мифология, христианство и эротика. За свою жизнь А. Исачёв создал около 500
+                    картин, большинство из которых были вывезены в Швецию, Германию, Францию, Израиль и США.</p>
                 <img src="./img/image 6 (4).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -145,13 +200,15 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 8 -->
-            <div class="block-dost8">
+            <div class="block-dost8 block-dost">
                 <p class="text-dost">Известные люди</p>
                 <p class="text-name">Мележ Иван Павлович</p>
                 <p class="gorod">Хойникский район, Глинище</p>
-                <p class="text-content">Мележ Иван Павлович - Белорусский советский прозаик, драматург, публицист. Автор ряда литературно-критических статей, очерков. По произведениям И. Мележа поставлены спектакли, сняты художественные фильмы.</p>
+                <p class="text-content">Мележ Иван Павлович - Белорусский советский прозаик, драматург, публицист. Автор
+                    ряда литературно-критических статей, очерков. По произведениям И. Мележа поставлены спектакли, сняты
+                    художественные фильмы.</p>
                 <img src="./img/image 6 (5).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -161,13 +218,15 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 9 -->
-            <div class="block-dost9">
+            <div class="block-dost9 block-dost">
                 <p class="text-dost">Промышленность</p>
                 <p class="text-name" style="margin-top:-50px;">ОАО «Мозырский нефтеперерабатывающий завод»</p>
                 <p class="gorod">Мозырь</p>
-                <p class="text-content">«Мо́зырский нефтеперерабатывающий завод»  — одно из двух белорусских нефтеперерабатывающих предприятий. Завод расположен в промышленной зоне Мозыря в 15 км к югу от жилых массивов города, для связи завода с городом 1988 году была запущена трамвайная система.</p>
+                <p class="text-content">«Мо́зырский нефтеперерабатывающий завод» — одно из двух белорусских
+                    нефтеперерабатывающих предприятий. Завод расположен в промышленной зоне Мозыря в 15 км к югу от
+                    жилых массивов города, для связи завода с городом 1988 году была запущена трамвайная система.</p>
                 <img src="./img/image 6 (6).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -177,13 +236,14 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 10 -->
-            <div class="block-dost10">
+            <div class="block-dost1 block-dost0">
                 <p class="text-dost">Промышленность</p>
                 <p class="text-name" style="margin-top:-50px;">Белорусский металлургический завод(БМЗ)</p>
                 <p class="gorod">Жлобин</p>
-                <p class="text-content">Белорусский металлургический завод — предприятие чёрной металлургии в городе Жлобине в Республике Беларусь. Численность персонала составляет около 11 тысяч человек. </p>
+                <p class="text-content">Белорусский металлургический завод — предприятие чёрной металлургии в городе
+                    Жлобине в Республике Беларусь. Численность персонала составляет около 11 тысяч человек. </p>
                 <img src="./img/image 6 (7).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -193,13 +253,15 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 11    -->
-            <div class="block-dost11">
+            <div class="block-dost1 block-dost1">
                 <p class="text-dost">Промышленность</p>
                 <p class="text-name" style="margin-top:-50px;">Мемориал «Вечный огонь»</p>
                 <p class="gorod">Гомель</p>
-                <p class="text-content">От огня проходит аллея с мемориальными досками, на которых высечены имена павших героев. Здесь захоронены герои Советского союза Иван Антошкин и Иван Лапин. Мемориальный комплекс – традиционное место проведение праздничных мероприятий ко дню победы.</p>
+                <p class="text-content">От огня проходит аллея с мемориальными досками, на которых высечены имена павших
+                    героев. Здесь захоронены герои Советского союза Иван Антошкин и Иван Лапин. Мемориальный комплекс –
+                    традиционное место проведение праздничных мероприятий ко дню победы.</p>
                 <img src="./img/image 6 (8).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -209,14 +271,16 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 12 -->
-            <div class="block-dost12">
+            <div class="block-dost1 block-dost2">
                 <p class="text-dost">Промышленность</p>
                 <p class="text-name" style="margin-top:-50px;">Памятник В. И. Ленину</p>
                 <p class="gorod">Гомель</p>
-                <p class="text-content">Установку памятника Ленину в Гомеле приурочили к 40-летию Белорусской ССР. Скульптура находится на одноименной площади.
-                    Сам памятник отлили из бронзы, его высота – 6 метров. Перед памятником разместили белоснежные ящики-клумбы, а по бокам – две небольшие арки.</p>
+                <p class="text-content">Установку памятника Ленину в Гомеле приурочили к 40-летию Белорусской ССР.
+                    Скульптура находится на одноименной площади.
+                    Сам памятник отлили из бронзы, его высота – 6 метров. Перед памятником разместили белоснежные
+                    ящики-клумбы, а по бокам – две небольшие арки.</p>
                 <img src="./img/image 6 (9).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -226,13 +290,15 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 13 -->
-            <div class="block-dost13">
+            <div class="block-dost1 block-dost3">
                 <p class="text-dost">Озёра</p>
                 <p class="text-name" style="margin-top:-50px;">Белое озеро </p>
                 <p class="gorod">Житковичи</p>
-                <p class="text-content">Белое озеро расположено к северо-западу от города Житковичи. Это довольно большой водоем. Его длина – 2,6 км., а общая площадь – около 1,56 кв. км., а глубина в отдельных местах доходит до 9 м</p>
+                <p class="text-content">Белое озеро расположено к северо-западу от города Житковичи. Это довольно
+                    большой водоем. Его длина – 2,6 км., а общая площадь – около 1,56 кв. км., а глубина в отдельных
+                    местах доходит до 9 м</p>
                 <img src="./img/image 6 (10).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -242,13 +308,15 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 14 -->
-            <div class="block-dost14">
+            <div class="block-dost1 block-dost4">
                 <p class="text-dost">Озёра</p>
                 <p class="text-name" style="margin-top:-50px;">Крушиновское озеро</p>
                 <p class="gorod">Рогачевский р-н</p>
-                <p class="text-content">Окрестные леса богаты разнообразной ягодой и грибами. Озеро окружено (кроме востока и юга) широкой заболоченной поймой, к которой примыкают обширные, местами заболоченные луга, поросшие болотно-луговой растительностью и кустарником.</p>
+                <p class="text-content">Окрестные леса богаты разнообразной ягодой и грибами. Озеро окружено (кроме
+                    востока и юга) широкой заболоченной поймой, к которой примыкают обширные, местами заболоченные луга,
+                    поросшие болотно-луговой растительностью и кустарником.</p>
                 <img src="./img/image 6 (11).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -258,16 +326,18 @@
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
             <!-- Block 15 -->
-            <div class="block-dost15">
+            <div class="block-dost1 block-dost5">
                 <p class="text-dost">Реки</p>
                 <p class="text-name" style="margin-top:-50px;">Днепр</p>
                 <p class="gorod">Украина, Россия, Беларусь</p>
-                <p class="text-content">Днепр — четвёртая по длине река Европы после Волги, Дуная и Урала, имеет самое длинное русло в границах Украины.
+                <p class="text-content">Днепр — четвёртая по длине река Европы после Волги, Дуная и Урала, имеет самое
+                    длинное русло в границах Украины.
 
-<br>
-                    Протяженность на территории Беларуси - 700 км.</p>
+                    <br>
+                    Протяженность на территории Беларуси - 700 км.
+                </p>
                 <img src="./img/image 6 (12).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -276,16 +346,18 @@
                 </div>
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
-             <!-- Block 16 -->
-             <div class="block-dost16">
+            <!-- Block 16 -->
+            <div class="block-dost1 block-dost6">
                 <p class="text-dost">Реки</p>
                 <p class="text-name" style="margin-top:-50px;">Припять</p>
                 <p class="gorod">Украина, Беларусь</p>
-                <p class="text-content">При́пять  - Крупнейший по площади бассейна, длине и водности правый приток Днепра, впадает в Киевское водохранилище.
+                <p class="text-content">При́пять - Крупнейший по площади бассейна, длине и водности правый приток
+                    Днепра, впадает в Киевское водохранилище.
                     <br>
-                    Длина реки Припять составляет 761 км, из которых на территорию Беларуси приходится 500 км.</p>
+                    Длина реки Припять составляет 761 км, из которых на территорию Беларуси приходится 500 км.
+                </p>
                 <img src="./img/image 6 (13).png" alt="" class="img-city">
-                <!-- <p class="text-content2">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
+                <!-- <p class="text-content">В результате аварии на Чернобыльской АЭС серьезно пострадали 13 районов Гомельской области. </p> -->
                 <div class="btn1">
                     <p class="text-btn">Читать ещё</p>
                 </div>
@@ -294,113 +366,60 @@
                 </div>
                 <img src="./img/free-icon-player-3192228 1.png" alt="" class="player">
             </div>
-            <div class="block-modal" id="block-modal">
-                <img src="./img/close (1) 2.png" alt="" class="close-modal" id="close-modal">
-                <p class="text-modal">Интересный факт о Гомельской области</p>
-                <img src="./img/critical 1.png" alt="" class="critical">
-                <p class="content-modal">Знаете ли вы? <br>
-                    Единственный в Беларуси фарфоровый завод работает в Добруше</p>
-                    <iframe width="356" height="238" src="https://www.youtube.com/embed/ZaIaknnPD1U" title="Знаете ли вы?  Единственный в Беларуси фарфоровый завод работает в Добруше" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div class="block-burger" id="block-burger">
-                <img src="./img/close (1) 2.png" alt="" class="close-modal2" id="close-modal2">
-                <button class="button1 button" id="button1">Энергетика</button>
-                <button class="button2 button" id="button2">Достопримичательности</button>
-                <button class="button3 button" id="button3">Культурные ценности</button>
-                <button class="button4 button" id="button4">Старейшие города</button>
-                <button class="button5 button" id="button5">Знаменитые люди</button>
-                <button class="button6 button" id="button6">Промышленность</button>
-                <button class="button8 button" id="button8">Реки</button>
-                <button class="button9 button" id="button9">Озёра</button>
-                <a href="/index.html"><button class="button10 button" id="button10">На главную</button>                </a>
-
-            </div>
-        </main>
+        </div>
     </div>
     <script>
         const closeMod = document.getElementById('close-modal');
         const blockMod = document.getElementById('block-modal');
         const btn = document.getElementById('btn1');
-        btn.addEventListener('click',function(){
+
+        btn.addEventListener('click', function () {
             blockMod.classList.toggle('active');
-        })
-        closeMod.addEventListener('click',function(){
-            blockMod.classList.remove('active');
-        })
+        });
+
+        if (closeMod) {
+            closeMod.addEventListener('click', function () {
+                blockMod.classList.remove('active');
+            });
+        }
 
         const burgerMenu = document.getElementById('burger-menu');
         const closeMod1 = document.getElementById('close-modal2');
         const blockBurger = document.getElementById('block-burger');
-        burgerMenu.addEventListener('click',function(){
+
+        burgerMenu.addEventListener('click', function () {
             blockBurger.classList.toggle('active2');
-        })
-        closeMod1.addEventListener('click',function(){
-            blockBurger.classList.remove('active2');
-        })
-        
-        const btn1 = document.getElementById('button2')
-        btn1.addEventListener('click',function(){
-            window.scrollTo({
-            top:1100,
-            left:0,
-            behavior:'smooth',
-             })
-            blockBurger.classList.remove('active2');
-        })
-        const btn2 = document.getElementById('button3')
-        btn2.addEventListener('click',function(){
-            window.scrollTo({
-            top:3200,
-            left:0,
-            behavior:'smooth',
-             })
-            blockBurger.classList.remove('active2');
-        })
-        const btn3 = document.getElementById('button4')
-        btn3.addEventListener('click',function(){
-            window.scrollTo({
-            top:5200,
-            left:0,
-            behavior:'smooth',
-             })
-            blockBurger.classList.remove('active2');
-        })
-        const btn4 = document.getElementById('button5')
-        btn4.addEventListener('click',function(){
-            window.scrollTo({
-            top:7200,
-            left:0,
-            behavior:'smooth',
-             })
-            blockBurger.classList.remove('active2');
-        })
-        const btn5 = document.getElementById('button6')
-        btn5.addEventListener('click',function(){
-            window.scrollTo({
-            top:9150,
-            left:0,
-            behavior:'smooth',
-             })
-            blockBurger.classList.remove('active2');
-        })
-        const btn6 = document.getElementById('button9')
-        btn6.addEventListener('click',function(){
-            window.scrollTo({
-            top:13190,
-            left:0,
-            behavior:'smooth',
-             })
-            blockBurger.classList.remove('active2');
-        })
-        const btn7 = document.getElementById('button8')
-        btn7.addEventListener('click',function(){
-            window.scrollTo({
-            top:15190,
-            left:0,
-            behavior:'smooth',
-             })
-            blockBurger.classList.remove('active2');
-        })
+        });
+
+        if (closeMod1) {
+            closeMod1.addEventListener('click', function () {
+                blockBurger.classList.remove('active2');
+            });
+        }
+
+        const scrollToSections = [
+            { buttonId: 'button1', scrollTo: 1100 },
+            { buttonId: 'button2', scrollTo: 3200 },
+            { buttonId: 'button3', scrollTo: 5200 },
+            { buttonId: 'button4', scrollTo: 7200 },
+            { buttonId: 'button5', scrollTo: 9150 },
+            { buttonId: 'button6', scrollTo: 10000 },
+            { buttonId: 'button8', scrollTo: 15190 },
+            { buttonId: 'button9', scrollTo: 13190 },
+        ];
+
+        scrollToSections.forEach(section => {
+            const button = document.getElementById(section.buttonId);
+            button.addEventListener('click', function () {
+                window.scrollTo({
+                    top: section.scrollTo,
+                    left: 0,
+                    behavior: 'smooth',
+                });
+                blockBurger.classList.remove('active2');
+            });
+        });
     </script>
 </body>
+
 </html>
