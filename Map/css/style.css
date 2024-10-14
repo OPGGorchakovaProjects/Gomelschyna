@@ -24,20 +24,30 @@ a {
     transition: 0.5s all;
 }
 
-.button {
+.mobNav {
+    display: none;
+}
+
+.navButtons {
+    display: flex;
     position: absolute;
-    width: 161px;
-    height: 58px;
-    background-color: #F76C6C;
-    color: white;
     bottom: 20px;
     left: 20px;
     z-index: 999;
+    flex-direction: row;
+    gap: 10px
+}
+
+.button {
+    width: auto;
+    height: 60px;
+    padding: 5px 20px;
+    background-color: #F76C6C;
+    color: white;
     font-family: 'Montserrat Alternates';
     font-style: normal;
     font-weight: 900;
     font-size: 35px;
-    line-height: 61px;
     color: #FFFFFF;
     border: none;
     border-radius: 10px;
@@ -45,15 +55,6 @@ a {
     transition: 0.5s all;
 }
 
-.btn2 {
-    left: 13%;
-    width: 181px;
-}
-
-.btn3 {
-    left: 26%;
-    width: 215px;
-}
 
 label {
     font-family: 'Montserrat Alternates';
@@ -336,7 +337,6 @@ label {
     box-shadow: 0px 0px 10px 2px grey;
     display: none;
     overflow-y: scroll;
-    /* прокрутка по вертикали */
 }
 
 .active1_culture {
@@ -389,8 +389,6 @@ label {
     height: 650px;
 }
 
-
-
 @media (max-width:900px) {
     .info {
         top: 15px;
@@ -399,32 +397,54 @@ label {
         height: 45px;
     }
 
+    .navButtons {
+        display: none;
+    }
+
+    .mobNav {
+        background-color: rgba(229, 218, 214, 0.9); 
+        z-index: 999;
+        display: flex;
+        position: absolute;
+        width: 70%; 
+        bottom: 25px;
+        height: 80px; 
+        margin: 0 15%; 
+        border-radius: 20px; 
+        justify-content: space-around;
+        align-items: center; 
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
     .button {
+        width: 60px; 
+        height: 60px; 
+        border-radius: 50%;
+        background-color: #f4bbbb; 
         display: flex;
         justify-content: center;
         align-items: center;
-        left: 40px;
-        width: 141px;
-        height: 40px;
-        font-size: 20px;
-        padding-bottom: 0px 10px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
-    .btn2 {
-        left: 190px;
+    
+    .button img {
+        width: 24px;
+        height: 24px;
     }
 
     .btn3 {
-        left: 34%;
-        bottom: 92%;
-
+        width: 70px;
+        height: 70px;
     }
-
+    
     .close-filter {
-        margin-left: 88%;
+        margin-left: auto;
         width: 30px;
         height: 30px;
     }
+    
 
     .block-information {
         width: 350px;
@@ -432,7 +452,6 @@ label {
         left: 10px;
         bottom: 20px;
         overflow-y: scroll;
-        /* прокрутка по вертикали */
     }
 
     .form-inner {
@@ -441,7 +460,6 @@ label {
         left: 10px;
         bottom: 20px;
         overflow-y: scroll;
-        /* прокрутка по вертикали */
     }
 
     .markerImg {
