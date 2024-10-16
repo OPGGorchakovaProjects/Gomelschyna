@@ -1209,6 +1209,12 @@ cancelFilter.addEventListener('click', function () {
   hideMarkersRivers();
 })
 
+
+document.getElementById('myButton').onclick = route;
+function route() {
+  alert('Вы нажали на кнопку!');
+}
+
 //Функции модальных окон
 const btnFiltr = document.getElementById('filtr');
 const modal = document.getElementById('modal');
@@ -1217,6 +1223,8 @@ const closeBtn = document.getElementById('close');
 
 btnFiltr.addEventListener('click', function () {
   modal.classList.add('active');
+  console.log('pooow')
+
 })
 closeBtn.addEventListener('click', function () {
   modal.classList.remove('active');
@@ -1238,6 +1246,7 @@ close2.addEventListener('click', function () {
 const modalRoute = document.getElementById('block-route');
 const btnRoute = document.getElementById('btn-route').addEventListener('click', function () {
   modalRoute.classList.add('active2');
+  console.log('pooow')
 })
 const closeRoute = document.getElementById('close-route').addEventListener('click', function () {
   modalRoute.classList.remove('active2');
