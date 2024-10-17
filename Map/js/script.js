@@ -1210,49 +1210,85 @@ cancelFilter.addEventListener('click', function () {
 })
 
 
-document.getElementById('myButton').onclick = route;
-function route() {
-  alert('Вы нажали на кнопку!');
-}
+document.addEventListener('DOMContentLoaded', function () {
+  const btnFiltrDesktop = document.getElementById('filtr-desktop');
+  const btnFiltrMobile = document.getElementById('filtr-mobile');
+  const modal = document.getElementById('modal');
+  const closeBtn = document.getElementById('close');
 
-//Функции модальных окон
-const btnFiltr = document.getElementById('filtr');
-const modal = document.getElementById('modal');
-const closeBtn = document.getElementById('close');
+  if (btnFiltrDesktop) {
+    btnFiltrDesktop.addEventListener('click', function () {
+      modal.classList.add('active');
+      console.log('Фильтр открыт (десктоп)');
+    });
+  }
+
+  if (btnFiltrMobile) {
+    btnFiltrMobile.addEventListener('click', function () {
+      modal.classList.add('active');
+      console.log('Фильтр открыт (мобилке)');
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function () {
+      modal.classList.remove('active');
+      console.log('Фильтр закрыт');
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const btnRouteDesktop = document.getElementById('btn-route-desktop');
+  const btnRouteMobile = document.getElementById('btn-route-mobile');
+  const modalRoute = document.getElementById('block-route');
+
+  if (btnRouteDesktop) {
+    btnRouteDesktop.addEventListener('click', function () {
+      modalRoute.classList.add('active2');
+      console.log('Маршрут открыт (десктоп)');
+    });
+  }
+
+  if (btnRouteMobile) {
+    btnRouteMobile.addEventListener('click', function () {
+      modalRoute.classList.add('active2');
+      console.log('Маршрут открыт (мобилке)');
+    });
+  }
+
+  const closeRoute = document.getElementById('close-route');
+  if (closeRoute) {
+    closeRoute.addEventListener('click', function () {
+      modalRoute.classList.remove('active2');
+      console.log('Маршрут закрыт');
+    })
+  };
+
+  const submit = document.getElementById('submit');
+  if (submit) {
+    submit.addEventListener('click', function () {
+      var inputValueStartLat = parseFloat(document.getElementById('start-route-lat').value);
+      var inputValueStartLng = parseFloat(document.getElementById('start-route-lng').value);
+      var inputValueEndLat = parseFloat(document.getElementById('end-route-lat').value);
+      var inputValueEndLng = parseFloat(document.getElementById('end-route-lng').value);
+
+      var control = L.Routing.control({
+        waypoints: [
+          L.latLng(inputValueStartLat, inputValueStartLng),
+          L.latLng(inputValueEndLat, inputValueEndLng)
+        ]
+      }).addTo(mymap);
+
+      modalRoute.classList.remove('active2');
+    });
+  }
+});
 
 
-btnFiltr.addEventListener('click', function () {
-  modal.classList.add('active');
-  console.log('pooow')
 
-})
-closeBtn.addEventListener('click', function () {
-  modal.classList.remove('active');
-})
-
-const btnInfo = document.getElementById('info');
-const blockModalInfo = document.getElementById('block-info');
-const close2 = document.getElementById('close2');
-
-btnInfo.addEventListener('click', function () {
-  blockModalInfo.classList.add('active2');
-})
-close2.addEventListener('click', function () {
-  blockModalInfo.classList.remove('active2');
-})
-
-
-// Route
-const modalRoute = document.getElementById('block-route');
-const btnRoute = document.getElementById('btn-route').addEventListener('click', function () {
-  modalRoute.classList.add('active2');
-  console.log('pooow')
-})
-const closeRoute = document.getElementById('close-route').addEventListener('click', function () {
-  modalRoute.classList.remove('active2');
-})
-
-const sumbit = document.getElementById('submit').addEventListener('click', function () {
+const submit = document.getElementById('submit').addEventListener('click', function () {
   var inputValueStartLat = parseFloat(document.getElementById('start-route-lat').value);
   var inputValueStartLng = parseFloat(document.getElementById('start-route-lng').value);
   var inputValueEndLat = parseFloat(document.getElementById('end-route-lat').value);
@@ -1264,8 +1300,10 @@ const sumbit = document.getElementById('submit').addEventListener('click', funct
       L.latLng(inputValueEndLat, inputValueEndLng) // Координаты конечной точки
     ]
   }).addTo(mymap);
+
   modalRoute.classList.remove('active2');
-})
+});
+
 
 //Geolocation user
 function geolocationUser() {

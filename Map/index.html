@@ -26,26 +26,27 @@
         <img src="./img/info 1.png" alt="" class="info" id="info">
         <div class="navButtons">
             <a href="/index.html"><button class="button">Назад</button></a>
-            <button class="button btn2" id="filtr">Фильтр</button>
-            <button class="button btn3" id="btn-route">Маршрут</button>
+            <button class="button btn2" id="filtr-desktop">Фильтр</button>
+            <button class="button btn3" id="btn-route-desktop">Маршрут</button>
         </div>
         <div class="mobNav">
             <a href="/index.html" class="button">
                 <img src="./img/caret-left.svg" alt="">
             </a>
-            <button class="button btn3" onclick="route()" id="filtr">
+            <button class="button btn3" id="filtr-mobile">
                 <img src="./img/funnel.svg" alt="">
             </button>
-            <button class="button btn2" id="btn-route">
+            <button class="button btn2" id="btn-route-mobile">
                 <img src="./img/navigation-arrow.svg" alt="">
             </button>
-
         </div>
 
         <!-- Модальное окно - Фильтр -->
         <div class="modal-filter" id="modal">
             <div class="closeb">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close">
+                </div>
             </div>
             <div class="btns">
                 <a href="https://ggaekourmemory.vercel.app/">
@@ -101,7 +102,9 @@
         <!-- Построение маршрутов -->
         <div class="block-information route" id="block-route">
             <div class="form-inner">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close-route">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close-route">
+                </div>
                 <label for="start">Начало пути:</label><br>
                 <input type="text" placeholder="52.463628" name="start" id="start-route-lat" required
                     autocomplete="off">
@@ -120,7 +123,9 @@
         </div>
         <!-- Модальное окно - информация о метках -->
         <div class="block-information" id="block-info">
-            <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2">
+            <div class="close-container">
+                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2">
+            </div>
             <div class="markers">
                 <div class="marker1">
                     <img src="./img/marker/pink.png" alt="" class="markerImg">
@@ -160,7 +165,9 @@
         <!-- Информация о культ. ценноостях (ГОТОВО)-->
         <div class="block-modal-culture">
             <div class="block-modal1" id="block-modal1">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-culture">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-culture">
+                </div>
                 <p class="title-object">Гомельский областной музей славы</p>
                 <img src="./img/Culture/museySlavi/1.jpg" alt="" class="img-culture">
                 <p class="content-modal">Гомельский областной музей военной славы — музей, расположенный в центральной
@@ -172,7 +179,9 @@
                 </div>
             </div>
             <div class="block-modal1" id="block-modal2">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-culture">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-culture">
+                </div>
                 <p class="title-object">Дворец Румянцевых и Паскевичей </p>
                 <img src="./img/Culture/dvorezRumjan/1.jpg" alt="" class="img-culture">
                 <p class="content-modal">История этого дворца берёт начало в XVIII, после того как Гомель был подарен
@@ -186,7 +195,9 @@
 
             </div>
             <div class="block-modal1" id="block-modal3">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-culture">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-culture">
+                </div>
                 <p class="title-object" style="margin-left: 6%; width:90%;">Чечерский историко-этнографический музей</p>
                 <img src="./img/Culture/chechersk/Чечерская_ратуша.jpg" alt="" class="img-culture" height="200px">
                 <p class="content-modal">Музей начал свою работу с июля 1990 г. в небольшом помещении при районном
@@ -200,7 +211,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal4">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-culture">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-culture">
+                </div>
                 <p class="title-object" style="margin-left: 22%;">Городище на «Замковой Горе»</p>
                 <img src="./img/Culture/gorodiche/Без названия.jpg" alt="" class="img-culture">
                 <p class="content-modal">Городище «Замковая гора» высотой 14 метров и площадью два гектара является
@@ -213,7 +226,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal5">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-culture">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-culture">
+                </div>
                 <p class="title-object" style="margin-left: 10%; width:90%">Свято-Михайловская церковь в Лясковичах</p>
                 <img src="./img/Culture/svjatoslav/1cd784be45b0eacd46ec0405061d52cf.webp" alt="" class="img-culture"
                     height="200px">
@@ -228,7 +243,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal6">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-culture">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-culture">
+                </div>
                 <p class="title-object" style="margin-left: 10%; width:80%;text-align: center;">КАФЕДРАЛЬНЫЙ СОБОР
                     СВЯТИТЕЛЕЙ КИРИЛЛА И ЛАВРЕНТИЯ ТУРОВСКИХ</p>
                 <img src="./img/Culture/sabor/Без названия.jpg" alt="" class="img-culture" height="200px">
@@ -244,7 +261,9 @@
         <!-- Информация о музеях (ГОТОВО)-->
         <div class="block-modal-museums">
             <div class="block-modal1" id="block-modal1-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-museums">
+                </div>
                 <p class="title-object">Музей истории города Гомель</p>
                 <img src="./img/Museums/1.jpg" alt="" class="img-culture">
                 <p class="content-modal">Музей истории города Гомеля основан в 2009 году. Музей истории Гомеля –
@@ -258,7 +277,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal2-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-museums">
+                </div>
                 <p class="title-object">Музей Фотографии</p>
                 <img src="./img/Museums/2.jpg" alt="" class="img-culture">
                 <p class="content-modal">В 2009 году в государственном учреждении «Музей истории города Гомеля» было
@@ -272,7 +293,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal3-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-museums">
+                </div>
                 <p class="title-object">Картинная Галерея Г.Х. Ващенко</p>
                 <img src="./img/Museums/3.jpg" alt="" class="img-culture">
                 <p class="content-modal">Картинная галерея была открыта 5 февраля 2002 г. в знак признательности города
@@ -281,10 +304,13 @@
                     учеников Гавриила Харитоновича.
                     В настоящее время коллекция галереи постоянно пополняется работами выставляющихся художников и
                     насчитывает около 400 экспонатов. Помимо выставочной деятельности, на базе галереи постоянно
-                    проходят разнообразные культурно-массовые мероприятия для различных слоев населения. </p>
+                    проходят разнообразные культурно-массовые мероприятия для различных слоев населения.
+                </p>
             </div>
             <div class="block-modal1" id="block-modal4-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-museums">
+                </div>
                 <p class="title-object">Музей криминалистикИ</p>
                 <img src="./img/Museums/4.jpg" alt="" class="img-culture">
                 <p class="content-modal"> Музей был открыт в марте 2010 года. Без сомнения, в каждом силовом ведомстве
@@ -296,7 +322,9 @@
                     документы. </p>
             </div>
             <div class="block-modal1" id="block-modal5-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-museums">
+                </div>
                 <p class="title-object">Нулевой километр </p>
                 <img src="./img/Museums/5.jpg" alt="" class="img-culture">
                 <p class="content-modal"> Нулевой километр в Гомеле обозначает географический центр города и является
@@ -307,7 +335,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal6-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-museums">
+                </div>
                 <p class="title-object">Историко-краеведческий музей </p>
                 <img src="./img/Museums/6.jpg" alt="" class="img-culture">
                 <p class="content-modal"> 5 мая 1977 года состоялось торжественное открытие Музея боевой и трудовой
@@ -318,7 +348,9 @@
                     Гомельского района, который охватывает своими временными рамками конец XIX – 60-е гг. XX вв. </p>
             </div>
             <div class="block-modal1" id="block-modal7-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-museums">
+                </div>
                 <p class="title-object">Брагинский исторический музей</p>
                 <img src="./img/Museums/7.jpg" alt="" class="img-culture">
                 <p class="content-modal"> Брагинский исторический музей с картинной галереей основан и открыт для
@@ -329,8 +361,11 @@
                     Игнатенко, зала истории Брагина, "Полесского домика". </p>
             </div>
             <div class="block-modal1" id="block-modal8-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-museums">
-                <p class="title-object">Ветковский музей старообрядчества </p>
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-museums">
+                </div>
+                <p class="title-object">Ветковский музей старообрядчества
+                </p>
                 <img src="./img/Museums/8.jpg" alt="" class="img-culture">
                 <p class="content-modal"> Ветковский музей старообрядчества и белорусских традиций сегодня -
                     научно-исследовательский и просветительский центр региона в области традиционной культуры.
@@ -339,7 +374,9 @@
                     уникальным явлением в белорусской и старообрядческой культуре</p>
             </div>
             <div class="block-modal1" id="block-modal9-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-museums">
+                </div>
                 <p class="title-object">Дом-музей Деда Талаша </p>
                 <img src="./img/Museums/9.jpg" alt="" class="img-culture">
                 <p class="content-modal"> В 1989 году был открыт музей истории деятельности и жизни национального героя
@@ -354,7 +391,9 @@
                     сыновьями. </p>
             </div>
             <div class="block-modal1" id="block-modal10-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-museums">
+                </div>
                 <p class="title-object">Краеведческий музей г. Ельска </p>
                 <img src="./img/Museums/10.jpg" alt="" class="img-culture">
                 <p class="content-modal"> На базе ельского музея Народной Славы в 1976 году был открыт Ельский
@@ -369,7 +408,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal11-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-museums">
+                </div>
                 <p class="title-object">Кормянский мемориальный музей </p>
                 <img src="./img/Museums/11.jpg" alt="" class="img-culture">
                 <p class="content-modal"> На базе ельского музея Народной Славы в 1976 году был открыт Ельский
@@ -384,7 +425,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal12-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-museums">
+                </div>
                 <p class="title-object">Мозырский краеведческий музей</p>
                 <img src="./img/Museums/12.jpg" alt="" class="img-culture">
                 <p class="content-modal"> Посетителям Мозырский объединенный краеведческий музей был открыт в 1949 году,
@@ -397,7 +440,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal13-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-museums">
+                </div>
                 <p class="title-object">Музей битвы за Днепр</p>
                 <img src="./img/Museums/13.jpg" alt="" class="img-culture">
                 <p class="content-modal"> Лоевский музей «Битвы за Днепр» открылся посетителям в 1985 году. Он стал
@@ -411,7 +456,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal14-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-museums">
+                </div>
                 <p class="title-object">Рогачевский музей Народной славы</p>
                 <img src="./img/Museums/14.jpg" alt="" class="img-culture">
                 <p class="content-modal"> Год основания музея - 1962 году, экспозиция была обновлена и открыта в другом
@@ -424,7 +471,9 @@
                     А. Каплана. </p>
             </div>
             <div class="block-modal1" id="block-modal15-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-museums">
+                </div>
                 <p class="title-object">Музей народной славы пос. Октябрьский</p>
                 <img src="./img/Museums/15.jpg" alt="" class="img-culture">
                 <p class="content-modal"> Музей Народной славы открылся в 1995 году, но спустя короткое время был
@@ -440,7 +489,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal16-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close16-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close16-museums">
+                </div>
                 <p class="title-object">Наровлянский этнографический музей</p>
                 <img src="./img/Museums/16.jpg" alt="" class="img-culture">
                 <p class="content-modal">В 1995 году в небольшом городке Наровля был открыт Наровлянский этнографический
@@ -450,7 +501,9 @@
                     собрана из экспонатов исторической ценности, а также живописных произведений Юрия Фисюка. </p>
             </div>
             <div class="block-modal1" id="block-modal17-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close17-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close17-museums">
+                </div>
                 <p class="title-object">Речицкий краеведческий музей</p>
                 <img src="./img/Museums/17.jpg" alt="" class="img-culture">
                 <p class="content-modal">Хотите узнать прошлое Речицкого района и города Речица? Посетите Речицкий
@@ -463,7 +516,9 @@
                     сегодняшнему времени. </p>
             </div>
             <div class="block-modal1" id="block-modal18-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close18-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close18-museums">
+                </div>
                 <p class="title-object">Светлогорский музей истории города</p>
                 <img src="./img/Museums/18.jpg" alt="" class="img-culture">
                 <p class="content-modal">Музей истории города Светлогорска имеет статус государственного учреждения.
@@ -476,7 +531,9 @@
                     тематикам природы, этнографии, экологии и археологии. </p>
             </div>
             <div class="block-modal1" id="block-modal19-museums">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close19-museums">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close19-museums">
+                </div>
                 <p class="title-object">Туровский краеведческий музей</p>
                 <img src="./img/Museums/19.jpg" alt="" class="img-culture">
                 <p class="content-modal">Удивительно, но Туровский краеведческий музей был основан школьным кружком в
@@ -491,7 +548,9 @@
         <!-- Знаменитые люди (ГОТОВО)-->
         <div class="block-modal-people">
             <div class="block-modal1" id="block-modal1-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-people">
+                </div>
                 <p class="title-object">Румянцев-Задунайский Пётр Александрович</p>
                 <img src="./img/people/1.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Граф (c 1744) Пётр Алекса́ндрович
@@ -511,7 +570,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal2-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-people">
+                </div>
                 <p class="title-object">Паскевич Фёдор Иванович</p>
                 <img src="./img/people/2.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">За заслуги отца 6 октября 1831 года присвоен
@@ -530,7 +591,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal3-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-people">
+                </div>
                 <p class="title-object">Паскевич Ирина Ивановна </p>
                 <img src="./img/people/3.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Графиня Ирина Ивановна Воронцова-Дашкова, в
@@ -551,7 +614,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal4-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-people">
+                </div>
                 <p class="title-object">Штыхов Георгий Васильевич</p>
                 <img src="./img/people/4.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился 14 июля 1927 года в деревне Старая Белица
@@ -573,7 +638,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal5-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-people">
+                </div>
                 <p class="title-object">Бородин Тимофей Степанович</p>
                 <img src="./img/people/5.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Тимофей Бородин родился 1 (по новому стилю — 14)
@@ -588,7 +655,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal6-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-people">
+                </div>
                 <p class="title-object">Цариков Борис Андреевич</p>
                 <img src="./img/people/6.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился 31 октября 1925 года в городе Гомель
@@ -608,7 +677,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal7-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-people">
+                </div>
                 <p class="title-object">Каменщиков Владимир Григорьевич</p>
                 <img src="./img/people/7.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился в семье рабочего, русский. В 1931
@@ -635,7 +706,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal8-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-people">
+                </div>
                 <p class="title-object">Исаченко Владимир Григорьевич </p>
                 <img src="./img/people/8.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Исаченко Владимир Григорьевич родился в городе Гомель
@@ -659,7 +732,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal9-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-people">
+                </div>
                 <p class="title-object">Зайцев Иван Степанович </p>
                 <img src="./img/people/9.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился в 1926 году в деревне Чёнки в предместьях
@@ -687,7 +762,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal10-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-people">
+                </div>
                 <p class="title-object">Головачёв Павел Яковлевич </p>
                 <img src="./img/people/10.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился в деревне Кошелёво Буда-Кошелёвской
@@ -705,7 +782,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal11-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-people">
+                </div>
                 <p class="title-object">Мазуров Кирилл Трофимович </p>
                 <img src="./img/people/11.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился 23 марта (5 апреля) 1914 года в деревне
@@ -762,7 +841,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal12-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-people">
+                </div>
                 <p class="title-object">Зубарев Иосиф Егорович</p>
                 <img src="./img/people/12.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился 2 ноября 1907 года в деревне Лопатино.
@@ -791,7 +872,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal13-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-people">
+                </div>
                 <p class="title-object">Третьяков Яков Адамович</p>
                 <img src="./img/people/13.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился 10 (23) октября 1916 года в
@@ -826,7 +909,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal14-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-people">
+                </div>
                 <p class="title-object">Выходцев Пётр Созонтович</p>
                 <img src="./img/people/14.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился в 1923 году в селе Годичев Гомельской области
@@ -849,7 +934,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal15-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-people">
+                </div>
                 <p class="title-object">Окинчиц Евдоким Гаврилович</p>
                 <img src="./img/people/15.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился 30 июля 1911 года в крестьянской семье в селе
@@ -877,7 +964,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal16-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close16-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close16-people">
+                </div>
                 <p class="title-object">Сулейников Кирилл Филипович</p>
                 <img src="./img/people/16.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">С началом воины находился на прежней должности. В ходе
@@ -906,7 +995,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal17-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close17-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close17-people">
+                </div>
                 <p class="title-object">Галина Докутович Ивановна</p>
                 <img src="./img/people/17.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родилась 20 февраля 1921 года в Гомеле.
@@ -932,7 +1023,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal18-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close18-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close18-people">
+                </div>
                 <p class="title-object">Лизюков Евгений Ильич</p>
                 <img src="./img/people/18.png" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Родился в 1899 году в городе Гомеле в семье
@@ -959,7 +1052,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal19-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close19-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close19-people">
+                </div>
                 <p class="title-object">Лизюков Александр Ильич</p>
                 <img src="./img/people/19.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">Алекса́ндр Ильи́ч Лизюко́в (13 [26] марта 1900 — 23
@@ -979,7 +1074,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal20-people">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close20-people">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close20-people">
+                </div>
                 <p class="title-object">Лизюков Пётр Ильич</p>
                 <img src="./img/people/20.jpg" alt="" class="img-people">
                 <p class="content-modal" style="font-size: 17px;">22 июня 1941 года артиллерийский полк, в котором
@@ -1022,7 +1119,9 @@
         <!-- Заповедники (ГОТОВО)-->
         <div class="block-modal-reserve">
             <div class="block-modal1" id="block-modal1-reserve">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-reserve">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-reserve">
+                </div>
                 <p class="title-object">ПРИПЯТСКИЙ НАЦИОНАЛЬНЫЙ ПАРК</p>
                 <img src="./img/Reserve/1.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Припятский национальный парк (белор. Прыпяцкi
@@ -1035,7 +1134,9 @@
                     85 841 га. Администрация национального парка находится в агрогородке Лясковичи.</p>
             </div>
             <div class="block-modal1" id="block-modal2-reserve">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-reserve">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-reserve">
+                </div>
                 <p class="title-object">Республиканский биологический заказник «Днепро-Сожский»</p>
                 <img src="./img/Reserve/2.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Республиканский биологический заказник
@@ -1048,7 +1149,9 @@
                     лесами, она является ареалом 140 видов птиц, в заказнике произрастает более 660 видов растений. </p>
             </div>
             <div class="block-modal1" id="block-modal3-reserve">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-reserve">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-reserve">
+                </div>
                 <p class="title-object" style="font-size: 18px;">Полесский государственный радиационно-экологический
                     заповедник</p>
                 <img src="./img/Reserve/3.jpg" alt="" class="img-culture">
@@ -1067,7 +1170,9 @@
         <!-- Реки и озера (ГОТОВО)-->
         <div class="block-modal-rivers">
             <div class="block-modal1" id="block-modal1-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-rivers">
+                </div>
                 <p class="title-object">р. Днепр</p>
                 <img src="./img/Rivers/1.jpeg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Река Днепр – одна из самых больших рек Европы, впадает
@@ -1082,7 +1187,9 @@
                     Славутичем</p>
             </div>
             <div class="block-modal1" id="block-modal2-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-rivers">
+                </div>
                 <p class="title-object">р. Припять</p>
                 <img src="./img/Rivers/2.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">История реки и ее названияПервое название Припеть.
@@ -1097,7 +1204,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal3-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-rivers">
+                </div>
                 <p class="title-object">р. Сож</p>
                 <img src="./img/Rivers/3.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Река Сож — второй по величине и водности левый приток
@@ -1109,7 +1218,9 @@
                     растут хвойные и лиственные леса.</p>
             </div>
             <div class="block-modal1" id="block-modal4-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-rivers">
+                </div>
                 <p class="title-object">р. Березина</p>
                 <img src="./img/Rivers/4.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Березина – единственная река в Беларуси, которая
@@ -1123,7 +1234,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal5-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-rivers">
+                </div>
                 <p class="title-object">Любенское озеро</p>
                 <img src="./img/Rivers/5.jpg" alt="" class="img-culture">
                 <p class="content-modal">Озеро Любенское относится к бассейну реки Сож (левый приток Днепра). Является
@@ -1131,7 +1244,9 @@
                     метров, его глубина от 3 до 6 метров.</p>
             </div>
             <div class="block-modal1" id="block-modal6-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-rivers">
+                </div>
                 <p class="title-object">Белое озеро</p>
                 <img src="./img/Rivers/6.jpg" alt="" class="img-culture">
                 <p class="content-modal">Озеро Белое находится в Житковичском районе Гомельской области и относится к
@@ -1141,7 +1256,9 @@
                     53.7664° северной широты и 24.1992° восточной долготы.</p>
             </div>
             <div class="block-modal1" id="block-modal7-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-rivers">
+                </div>
                 <p class="title-object">Озеро Гадынь</p>
                 <img src="./img/Rivers/7.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 15px;">Озеро Гадынь находится в Речицком районе Гомельской
@@ -1158,7 +1275,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal8-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-rivers">
+                </div>
                 <p class="title-object">Озеро Ревучее</p>
                 <img src="./img/Rivers/8.jpg" alt="" class="img-culture">
                 <p class="content-modal">Озеро Ревучее находится в Добрушском районе Гомельской области. Расположено в
@@ -1167,7 +1286,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal9-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-rivers">
+                </div>
                 <p class="title-object">Озеро Святое</p>
                 <img src="./img/Rivers/9.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 16px;">Озеро Святое находится в Речицком районе Гомельской
@@ -1182,7 +1303,9 @@
                     наибольшая ширина — 0,6 км. Длина береговой линии — 2,03 км.</p>
             </div>
             <div class="block-modal1" id="block-modal10-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-rivers">
+                </div>
                 <p class="title-object">Озеро Старик</p>
                 <img src="./img/Rivers/10.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 16px;">Озеро Старик находится в Речицком районе Гомельской
@@ -1194,7 +1317,9 @@
                     (рыбалка, сбор ягод и грибов, фрукты и овщи с огорода и др.). Площадь:  0,4 км².</p>
             </div>
             <div class="block-modal1" id="block-modal11-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-rivers">
+                </div>
                 <p class="title-object">Озеро Старое</p>
                 <img src="./img/Rivers/11.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Озеро Старое располагается в 9 км южнее города
@@ -1204,7 +1329,9 @@
                     Площадь водосбора — 18,8 км². </p>
             </div>
             <div class="block-modal1" id="block-modal12-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-rivers">
+                </div>
                 <p class="title-object">Озеро Старуха</p>
                 <img src="./img/Rivers/12.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Старуха-озеро в Наровлянском районе Гомельской области
@@ -1215,7 +1342,9 @@
                     низкие, высотой 0,2 м. протоками соединено с озером березовый старикашка и рекой Припять. </p>
             </div>
             <div class="block-modal1" id="block-modal13-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-rivers">
+                </div>
                 <p class="title-object">Озеро Стоячее</p>
                 <img src="./img/Rivers/13.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Озеро Стоячее располагается в 5 км к югу от города
@@ -1225,7 +1354,9 @@
                     3,76 м. Объём воды в озере — 1,58 млн м³. Площадь водосбора — 5,25 км². </p>
             </div>
             <div class="block-modal1" id="block-modal14-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-rivers">
+                </div>
                 <p class="title-object">Озеро Буснежье</p>
                 <img src="./img/Rivers/14.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Бусне́жье (белор. Буснежжа) — небольшое пойменное
@@ -1235,7 +1366,9 @@
                     озером Долгое.</p>
             </div>
             <div class="block-modal1" id="block-modal15-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-rivers">
+                </div>
                 <p class="title-object">Озеро Шапор</p>
                 <img src="./img/Rivers/15.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Пойменное озеро на левом берегу реки Сож в восточной
@@ -1245,7 +1378,9 @@
                     в Сож расположен пляж с соответствую­щей инфраструктурой. </p>
             </div>
             <div class="block-modal1" id="block-modal16-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close16-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close16-rivers">
+                </div>
                 <p class="title-object">Озеро Дедно</p>
                 <img src="./img/Rivers/16.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 16px;">Старичное озеро в 450 метрах к северу от озера
@@ -1260,7 +1395,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal17-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close17-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close17-rivers">
+                </div>
                 <p class="title-object">Озеро Роповское</p>
                 <img src="./img/Rivers/17.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Озеро пойменного типа, связано с рекой Сож двумя
@@ -1269,7 +1406,9 @@
                     озера расположена лодочная станция, гребная база и два пляжа с соответствующей инфраструктурой. </p>
             </div>
             <div class="block-modal1" id="block-modal18-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close18-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close18-rivers">
+                </div>
                 <p class="title-object">Озеро Осинник</p>
                 <img src="./img/Rivers/18.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Озеро Осинное находится в Чечерском
@@ -1279,7 +1418,9 @@
                     болотистая, поросшая кустарником и редколесьем. </p>
             </div>
             <div class="block-modal1" id="block-modal19-rivers">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close19-rivers">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close19-rivers">
+                </div>
                 <p class="title-object">Волотовское озеро</p>
                 <img src="./img/Rivers/19.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Озеро Волотовское — самое крупное озеро Волотовского
@@ -1292,7 +1433,9 @@
         <!-- Промышленность (ГОТОВО)-->
         <div class="block-modal-industry">
             <div class="block-modal1" id="block-modal1-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-industry">
+                </div>
                 <p class="title-object">Мозырский нефтеперерабатывающий завод</p>
                 <img src="./img/Industry/1.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">В Гомельской области лишь одно предприятие,
@@ -1304,7 +1447,9 @@
                     нужды людей. </p>
             </div>
             <div class="block-modal1" id="block-modal2-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-industry">
+                </div>
                 <p class="title-object">Белоруснефть-Промсервис</p>
                 <img src="./img/Industry/2.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">«Белоруснефть» занимается бурением нефтегазовых
@@ -1316,7 +1461,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal3-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-industry">
+                </div>
                 <p class="title-object">Гомельтранснефть Дружба</p>
                 <img src="./img/Industry/3.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Гомельтранснефть Дружба» — государственное
@@ -1327,8 +1474,11 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal4-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-industry">
-                <p class="title-object">Белорусский металлургический завод </p>
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-industry">
+                </div>
+                <p class="title-object">Белорусский металлургический завод
+                </p>
                 <img src="./img/Industry/4.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Белорусский металлургический завод — производит
                     металлопрокат, сталеплавильную продукцию, метизы и трубы. В нем оборудованы соответствующие цеха и
@@ -1341,7 +1491,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal5-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-industry">
+                </div>
                 <p class="title-object">Гомсельмаш</p>
                 <img src="./img/Industry/5.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">«Гомсельмаш» отвечает за производство инструментов,
@@ -1351,7 +1503,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal6-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-industry">
+                </div>
                 <p class="title-object">Гомельский химический завод </p>
                 <img src="./img/Industry/6.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Химическая промышленность — это отрасль
@@ -1363,7 +1517,9 @@
                     удобрений, серной кислоты.</p>
             </div>
             <div class="block-modal1" id="block-modal7-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-industry">
+                </div>
                 <p class="title-object">Речицадрев </p>
                 <img src="./img/Industry/7.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">«Речицадрев». Современное предприятие,
@@ -1374,7 +1530,9 @@
                     керамические изделия. Располагается по адресу г. Гомель, Пр-т Октября, 48.</p>
             </div>
             <div class="block-modal1" id="block-modal8-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-industry">
+                </div>
                 <p class="title-object">Спартак </p>
                 <img src="./img/Industry/8.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">«Спартак», Основными видами продукции, выпускаемой
@@ -1387,7 +1545,9 @@
                     производства.</p>
             </div>
             <div class="block-modal1" id="block-modal9-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-industry">
+                </div>
                 <p class="title-object">Милкавита </p>
                 <img src="./img/Industry/9.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 17px;">«Милкавита» занимается производством молочных
@@ -1402,7 +1562,9 @@
                     спектрдесертной группы. </p>
             </div>
             <div class="block-modal1" id="block-modal10-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-industry">
+                </div>
                 <p class="title-object">ГомельОблАгроСервис </p>
                 <img src="./img/Industry/10.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 17px;">«ГомельОблАгроСервис» в области сельского хозяйства
@@ -1415,7 +1577,9 @@
                     том числе нашей.</p>
             </div>
             <div class="block-modal1" id="block-modal11-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-industry">
+                </div>
                 <p class="title-object">ГОМЕЛЬДРЕВ </p>
                 <img src="./img/Industry/11.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 17px;">
@@ -1483,7 +1647,9 @@
                     г. начал свое функционирование завод по производству плит МДФ и ХДФ.</p>
             </div>
             <div class="block-modal1" id="block-modal12-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-industry">
+                </div>
                 <p class="title-object">ЗАО Гомельский ВСЗ</p>
                 <img src="./img/Industry/12.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 17px;">Завод является одним из старейших промышленных
@@ -1570,7 +1736,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal13-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-industry">
+                </div>
                 <p class="title-object">ОАО «Гомельский завод литья и нормалей»</p>
                 <img src="./img/Industry/13.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 17px;">9 октября 1979г., согласно приказу №272 Министерства
@@ -1637,7 +1805,9 @@
                     достаточно высоким потенциалом, имеющую сложное оборудо­вание и квалифицированные кадры.</p>
             </div>
             <div class="block-modal1" id="block-modal14-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-industry">
+                </div>
                 <p class="title-object">ОАО «Гомельский ликеро-водочный завод «Радамир»</p>
                 <img src="./img/Industry/14.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 17px;">История винокурения на славянской земле занимает много
@@ -1701,7 +1871,9 @@
                     «Радамир», после чего началась активная реконструкция предприятия.</p>
             </div>
             <div class="block-modal1" id="block-modal15-industry">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-industry">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-industry">
+                </div>
                 <p class="title-object">ОАО «Гомельская мебельная фабрика «Прогресс»</p>
                 <img src="./img/Industry/15.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 17px;">Основанная в 1963 году мебельная фабрика – сегодня в
@@ -1731,7 +1903,9 @@
         <!-- Старейшие города (ГОТОВО)-->
         <div class="block-modal-starCity">
             <div class="block-modal1" id="block-modal1-city">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-city">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-city">
+                </div>
                 <p class="title-object">МОЗЫРЬ</p>
                 <p class="content-modal" style="font-size: 17px;">Мозырь - один из самых древних городов Белорусского
                     Полесья. В письменных источниках впервые упоминается под 1155 годом в связи с его передачей великим
@@ -1853,7 +2027,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal2-city">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-city">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-city">
+                </div>
                 <p class="title-object">Туров</p>
                 <img src="./img/StarCity/11.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 17px;">Туров — один из древнейших городов на территории
@@ -2019,7 +2195,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal3-city">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-city">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-city">
+                </div>
                 <p class="title-object">Гомель</p>
                 <p class="content-modal" style="font-size: 17px;">Первое упоминание о Гомеле в Ипатьевской летописи
                     значится в 1142 году как владение черниговского князя Игоря Олеговича. Первое письменное упоминание
@@ -2131,7 +2309,9 @@
                     медицинской помощи.</p>
             </div>
             <div class="block-modal1" id="block-modal4-city">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-city">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-city">
+                </div>
                 <p class="title-object">Речица</p>
                 <p class="content-modal" style="font-size: 17px;">Непосредственными предками современных жителей
                     Речицкого района являются славянские племена дреговичей. Город Речица возник и вырос на месте их
@@ -2230,7 +2410,9 @@
         <!-- ПАМЯТНИКИ  -->
         <div class="block-modal-monuments">
             <div class="block-modal1" id="block-modal1-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close1-monuments">
+                </div>
                 <p class="title-object">
                     Памятник погибшим рабочим вагоноремонтного завода
                 </p>
@@ -2243,7 +2425,9 @@
                     Вечный огонь.</p>
             </div>
             <div class="block-modal1" id="block-modal2-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close2-monuments">
+                </div>
                 <p class="title-object">Курган Славы в парке Фестивальном</p>
                 <img src="./img/Monuments/2.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">В этом мемориальном комплексе присутствуют сразу два
@@ -2253,7 +2437,9 @@
                     капсулу времени для потомков. Она была вскрыта в 2017 году.</p>
             </div>
             <div class="block-modal1" id="block-modal3-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close3-monuments">
+                </div>
                 <p class="title-object">Памятник Кириллу Туровскому около Областного театра</p>
                 <img src="./img/Monuments/3.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Выдающийся деятель культуры и религии жил в древнем
@@ -2263,7 +2449,9 @@
                     сквер, где расположен монумент.</p>
             </div>
             <div class="block-modal1" id="block-modal4-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close4-monuments">
+                </div>
                 <p class="title-object">Памятник в Ветке: резные ворота в прошлое</p>
                 <img src="./img/Monuments/4.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Ветковский музей старообрядчества и белорусских
@@ -2272,7 +2460,9 @@
                     двадцатого века, сегодня превратился в центр исследования белорусской культуры.</p>
             </div>
             <div class="block-modal1" id="block-modal5-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close5-monuments">
+                </div>
                 <p class="title-object">Обелиск в лощине «Долина смерти»</p>
                 <img src="./img/Monuments/5.jpg" alt="" class="img-culture"><br>
                 <p class="content-modal" style="font-size: 18px;">
@@ -2292,7 +2482,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal6-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close6-monuments">
+                </div>
                 <p class="title-object">Мемориальный комплекс «Битва за Днепр»</p>
                 <img src="./img/Monuments/6.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Центральная площадь Лоева для местных жителей — святое
@@ -2302,7 +2494,9 @@
                     величие подвигов солдат-освободителей.</p>
             </div>
             <!-- <div class="block-modal1" id="block-modal7-monuments">
+                <div class="close-container">
                 <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close7-monuments">
+                </div>
                 <p class="title-object">Мемориал "Операция Багратион"</p>
                 <img src="./img/Monuments/7.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Высота памятного знака составляет 7 м. Основными
@@ -2316,7 +2510,9 @@
                     ходе наступления советских войск.</p>
             </div> -->
             <div class="block-modal1" id="block-modal8-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close8-monuments">
+                </div>
                 <p class="title-object">Памятник детям-жертвам Великой Отечественной войны</p>
                 <img src="./img/Monuments/8.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Памятник-мемориал спроектирован творческой мастерской
@@ -2331,7 +2527,9 @@
                 </p>
             </div>
             <div class="block-modal1" id="block-modal9-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close9-monuments">
+                </div>
                 <p class="title-object">Мемориальная доска оперативной группе штаба 1-го Белорусского фронта</p>
                 <img src="./img/Monuments/9.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">
@@ -2342,7 +2540,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal10-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close10-monuments">
+                </div>
                 <p class="title-object">Партизанская криничка</p>
                 <img src="./img/Monuments/10.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Мемориальный комплекс «Партизанская криничка» возведен
@@ -2354,7 +2554,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal11-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close11-monuments">
+                </div>
                 <p class="title-object">Памятник ополченцам-защитникам</p>
                 <img src="./img/Monuments/11.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Представляет собой горизонтальный чугунный блок
@@ -2369,7 +2571,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal12-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close12-monuments">
+                </div>
                 <p class="title-object">Доска почета г.Гомеля</p>
                 <img src="./img/Monuments/12.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Доска почёта города Гомель - это символическое
@@ -2380,7 +2584,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal13-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close13-monuments">
+                </div>
                 <p class="title-object">Дулаг 121 и Площадь Восстания</p>
                 <img src="./img/Monuments/23.jpg" alt="" class="img-culture"><br>
                 <p class="content-modal" style="font-size: 18px;">
@@ -2407,7 +2613,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal14-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close14-monuments">
+                </div>
                 <p class="title-object">Памятник братьям Лизюковым</p>
                 <br><img src="./img/Monuments/14.jpg" alt="" class="img-culture"><br>
                 <p class="content-modal" style="font-size: 18px;">Памятник братьям Лизюковым был установлен в городе
@@ -2434,7 +2642,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal15-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close15-monuments">
+                </div>
                 <p class="title-object">Мемориальный комплекс узникам Озаричского лагеря смерти</p>
                 <img src="./img/Monuments/15.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;"> Озаричи - комплекс немецких концентрационных лагерей,
@@ -2447,7 +2657,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal16-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close16-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close16-monuments">
+                </div>
                 <p class="title-object">Братская могила д.Дуброва</p>
                 <img src="./img/Monuments/16.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;"> Братская могила находится в деревне Дуброва, на
@@ -2459,7 +2671,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal17-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close17-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close17-monuments">
+                </div>
                 <p class="title-object">Мемориал "Операция Багратион"</p>
                 <img src="./img/Monuments/17.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;"> 21 июня 2014-года в районе деревень Раковичи и
@@ -2480,7 +2694,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal18-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close18-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close18-monuments">
+                </div>
                 <p class="title-object">Мемориальный комплекс "ОЛА"</p>
                 <img src="./img/Monuments/18.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">
@@ -2501,7 +2717,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal19-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close19-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close19-monuments">
+                </div>
                 <p class="title-object">Памятник комсомольцам</p>
                 <img src="./img/Monuments/19.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Памятник — четырехгранный обелиск на прямоугольном
@@ -2514,7 +2732,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal20-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close20-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close20-monuments">
+                </div>
                 <p class="title-object">Мемориал «Вечный огонь» на площади Труда</p>
                 <img src="./img/Monuments/20.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">
@@ -2532,7 +2752,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal21-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close21-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close21-monuments">
+                </div>
                 <p class="title-object">Памятник жертвам фашизма</p>
                 <img src="./img/Monuments/21.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Мемориальная доска жертвам фашизма (ист.). Ул.
@@ -2547,7 +2769,9 @@
             </div>
             <!-- yes -->
             <div class="block-modal1" id="block-modal22-monuments">
-                <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close22-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close22-monuments">
+                </div>
                 <p class="title-object">Мемориальная доска подпольщикам</p>
                 <img src="./img/Monuments/22.jpg" alt="" class="img-culture">
                 <p class="content-modal" style="font-size: 18px;">Здесь в 1941-1942 г.г. действовала подпольная

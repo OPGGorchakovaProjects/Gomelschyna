@@ -103,7 +103,7 @@ label {
     align-items: center;
     width: 40%;
     height: 75%;
-    bottom: 5%;
+    bottom: 12%;
     left: 30%;
     z-index: 999;
     background-image: url('../img/bg1.png');
@@ -144,9 +144,19 @@ label {
     align-items: center;
 }
 
-.close-filter {
+.close-container {
+    position: relative;
+    margin-bottom: 100px;
+    width: 100%;
     display: flex;
-    margin: 20px;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.close-filter {
+    position: fixed;
+    display: flex;
+    margin: 15px;
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -327,12 +337,12 @@ label {
 
 .block-modal1 {
     position: absolute;
-    width: 700px;
-    height: 740px;
+    width: fit-content;
+    max-width: 50%;
+    height: 70%;
     background-color: #FFFFFF;
     border-radius: 15px;
-    bottom: 1%;
-    left: 32%;
+    left: 25%;
     z-index: 999;
     box-shadow: 0px 0px 10px 2px grey;
     display: none;
@@ -340,13 +350,17 @@ label {
 }
 
 .active1_culture {
-    display: block;
+    display: flex;
     bottom: 15%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .title-object {
     width: 442px;
-    margin-left: 17%;
+    /* margin-left: 17%; */
     margin-top: -50px;
     font-family: 'Montserrat Alternates';
     font-style: normal;
@@ -359,7 +373,7 @@ label {
 
 .img-culture {
     width: 350px;
-    margin-left: 22%;
+    margin: 20px 0;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 1px gray;
 }
@@ -373,8 +387,8 @@ label {
     color: #000000;
     text-align: justify;
     width: 95%;
-    margin-left: 2%;
-    margin-top: 1%;
+    /* margin-left: 2%;
+    margin-top: 1%; */
     text-indent: 40px;
 }
 
@@ -447,19 +461,22 @@ label {
     
 
     .block-information {
-        width: 350px;
-        height: 300px;
-        left: 10px;
-        bottom: 20px;
+        width: 80%;
+        height:fit-content;
+        max-height: 60%;
+        left: 10%;
+        top: 10%;
         overflow-y: scroll;
     }
 
     .form-inner {
-        width: 350px;
-        height: 300px;
+        height: 100%; 
         left: 10px;
-        bottom: 20px;
         overflow-y: scroll;
+    }
+
+    .img-culture {
+        margin: 10px 0;
     }
 
     .markerImg {
@@ -489,14 +506,12 @@ label {
     }
 
     .block-modal1 {
-        width: 95%;
-        height: 90%;
-        left: 2.5%;
-    }
-
-    .img-culture {
-        width: 200px;
-        height: 100px;
+        margin: 0;
+        width: 90%;
+        max-width: 80%;
+        height: 80%;
+        top: 10%;
+        left: 10%;
     }
 
     .img-people {
@@ -505,10 +520,11 @@ label {
     }
 
     .title-object {
-        font-size: 12px;
-        /* margin-left: -10%; */
+        margin: 0;
+        margin-top: -30px;
+        font-size: 20px;
         text-align: center;
-        width: 70%;
+        width: 80%;
     }
 
     .content-modal {
