@@ -1238,6 +1238,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+const btnInfo = document.getElementById('info');
+const blockModalInfo = document.getElementById('block-info');
+const close2 = document.getElementById('close2');
+
+btnInfo.addEventListener('click', function () {
+  blockModalInfo.classList.add('active2');
+})
+close2.addEventListener('click', function () {
+  blockModalInfo.classList.remove('active2');
+})
+
 document.addEventListener('DOMContentLoaded', function () {
 
   const btnRouteDesktop = document.getElementById('btn-route-desktop');
