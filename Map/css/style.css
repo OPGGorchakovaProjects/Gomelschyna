@@ -195,7 +195,8 @@ label {
 .block-information {
     position: absolute;
     width: 40%;
-    height: 33%;
+    height: fit-content;
+    padding: 10px 20px;
     background-color: #FFFFFF;
     border-radius: 15px;
     bottom: 33%;
