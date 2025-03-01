@@ -159,6 +159,7 @@ const closeMuseums19 = document.getElementById('close19-museums').addEventListen
   blockModalMuseums19.classList.remove('active1_culture');
 })
 
+
 // Заповедники (ГОТОВО)
 const blockModalReserve1 = document.getElementById('block-modal1-reserve');
 const closeReserve1 = document.getElementById('close1-reserve').addEventListener('click', function () {
@@ -516,6 +517,10 @@ const blockModalMonuments22 = document.getElementById('block-modal22-monuments')
 const closeMonuments22 = document.getElementById('close22-monuments').addEventListener('click', function () {
   blockModalMonuments22.classList.remove('active1_culture');
 })
+const blockModalMonuments23 = document.getElementById('block-modal23-monuments');
+const closeMonuments23 = document.getElementById('close23-monuments').addEventListener('click', function () {
+  blockModalMonuments23.classList.remove('active1_culture');
+})
 
 
 
@@ -629,7 +634,7 @@ function createMarkersCelebrity() {
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
-  var marker1 = L.marker([52.42416, 31.014281], { icon: fiolIcon }).addTo(mymap);
+  var marker1 = L.marker([52.42256548245395, 31.016335487365726], { icon: fiolIcon }).addTo(mymap);
   marker1.on('click', function () {
     blockModalPeople1.classList.add('active1_culture')
   });
@@ -826,12 +831,16 @@ function createMarkersMonuments() {
   marker22.on('click', function () {
     blockModalMonuments22.classList.add('active1_culture');
   });
+  var marker23 = L.marker([52.4241422688481, 31.015316247940067], { icon: fiolIcon }).addTo(mymap);
+  marker23.on('click', function () {
+    blockModalMonuments23.classList.add('active1_culture');
+  });
 
 
   markersMonuments.push(marker1, marker2, marker3, marker4,
     marker5, marker6, marker8, marker9, marker10,
     marker11, marker12, marker13, marker14, marker15, marker16,
-    marker17, marker18, marker19, marker20, marker21, marker22);
+    marker17, marker18, marker19, marker20, marker21, marker22, marker23);
 }
 
 monuments.addEventListener('click', function () {

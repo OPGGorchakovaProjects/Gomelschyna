@@ -5,7 +5,12 @@
 :root {
     --blue: #1e90ff;
     --white: #ffffff;
-  }
+  --black: #000;
+  --primary-color: #3498db;
+  --hover-color: #2980b9;
+  --button-bg: #2ecc71; 
+  --button-hover-bg: #27ae60; 
+}
 
 body {
     font-family: 'Montserrat Alternates', sans-serif;
@@ -18,13 +23,8 @@ body {
 header {
     position: fixed;
     justify-self: center;
-    max-width: 1200px;
-    width: 100%;
-    border: 20px solid white;
-    border-bottom: 0;
+    width:  100%;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000; 
     background-color: var(--white);
     /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
@@ -117,19 +117,11 @@ a {
     margin-right: 10px; 
 }
 
-:root {
-    --black: #000;
-    --primary-color: #3498db; /* Основной цвет */
-    --hover-color: #2980b9; /* Цвет при наведении */
-    --button-bg: #2ecc71; /* Цвет кнопки */
-    --button-hover-bg: #27ae60; /* Цвет кнопки при наведении */
-}
-
 .wrapper {
     position: relative;
 }
 
-.nav {
+nav {
     background-color: var(--primary-color);
     padding: 10px;
 }
@@ -141,6 +133,8 @@ a {
 }
 
 .burger-menu {
+    z-index: 1000;
+    margin: 20px;
     padding: 10px;
     cursor: pointer;
     display: flex;
@@ -153,6 +147,7 @@ a {
 }
 
 .line {
+    pointer-events: none;
     height: 4px;
     width: 100%;
     background-color: var(--white);
@@ -204,7 +199,7 @@ a {
 }
 
 .back {
-    background-color: #27ae60;
+    background-color: var(--button-hover-bg);
 }
 
 .button:hover {
@@ -270,7 +265,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color:rgba(0, 0, 0, 0.5); 
     z-index: 1000; 
     justify-content: center;
     align-items: center;
@@ -284,7 +279,7 @@ a {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--black)+10;
 }
 
 .boxWithButtons {
@@ -380,11 +375,11 @@ a {
 }
 
 .btn2 {
-    background-color: rgb(73, 158, 73);
+    background-color: var(--button-bg);
 }
 
 .btn1:hover, .btn2:hover {
-    background-color: #2841ff;
+    background-color: var(--blue);
 }
 
 .text-btn {

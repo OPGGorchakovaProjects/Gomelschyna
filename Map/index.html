@@ -2778,12 +2778,108 @@
                     патриотическая группа рабочих возглавляемая коммунистами Героем Советского Союза Т.С. Бородиным и
                     Р.И. </p>
             </div>
+            <div class="block-modal1" id="block-modal23-monuments">
+                <div class="close-container">
+                    <img src="./img/close (1) 2.png" alt="" class="close-filter" id="close23-monuments">
+                </div>
+                <p class="title-object">Памятник В. И. Ленину</p>
+                <img src="./img/monuments/23.jpg" alt="" class="img-culture">
+                <p class="content-modal">Установку памятника Ленину в Гомеле приурочили к 40-летию
+                    Белорусской
+                    ССР.
+                    Скульптура находится на одноименной площади.
+                    Сам памятник отлили из бронзы, его высота – 6 метров. Перед памятником разместили
+                    белоснежные
+                    ящики-клумбы, а по бокам – две небольшие арки.
+            </div>
         </div>
     </div>
     <button id="MyGeolocation" title="Определить моё местоположение!"></button>
     </div>
     <script src="./js/script.js"></script>
 
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                marker: params.get('marker')
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const { marker } = getQueryParams();
+
+            if (marker) {
+                showMarker(marker);
+            }
+        });
+
+        function showMarker(markerId) { //Ориентироваться на script.js + информацию выше
+            const markers = {
+                ola: {
+                    coords: [52.73603397001518, 29.679724403375054],
+                    modalId: 'block-modal18-monuments' // Комплекс "Ола"
+                },
+                palace: {
+                    coords: [52.422281, 31.01690862691909],
+                    modalId: 'block-modal2' //Дворец румянцевых Паскевичей 
+                },
+                zamkovaya_gora: {
+                    coords: [52.0524, 29.2448],
+                    modalId: 'block-modal4' //Замковая гора 
+                },
+                chechersk_museum: {
+                    coords: [52.9195, 30.9162],
+                    modalId: 'block-modal3' //Чечерский музей 
+                },
+                turov: {
+                    coords: [52.066329, 27.740578],
+                    modalId: 'block-modal2-city' //Туров
+                },
+                gomel: {
+                    coords: [52.049019, 29.267301],
+                    modalId: 'block-modal1-city' //Гомель   
+                },
+                mozyr_oil_refinery: {
+                    coords: [52.4244, 30.9847],
+                    modalId: 'block-dost9' //Мозырская нефтеперерабатывающая фабрика
+                },
+                eternal_flame: {
+                    coords: [52.42601785918843, 31.01041071258157],
+                    modalId: 'block-0-monuments' //Мемориал «Вечный огонь» на площади Труда
+                },
+                lenin_statue: {
+                    coords: [52.4241422688481, 31.015316247940067],
+                    modalId: 'block-modal23-monuments' //Памятник В. И. Ленину
+                },
+
+                // не готово:
+                beloe_lake: {
+                    coords: [52.4241422688481, 31.015316247940067],
+                    modalId: 'block-modal5' //Белое озеро   
+                }
+
+
+            };
+
+            if (markers[markerId]) {
+                const { coords, modalId } = markers[markerId];
+                const customIcon = L.icon({
+                    iconUrl: '../Map/img/marker/map-marker-icon.png',
+                    iconSize: [60, 60],
+                    iconAnchor: [19, 38],
+                    popupAnchor: [0, -38]
+                });
+
+                const marker = L.marker(coords, { icon: customIcon }).addTo(mymap);
+                mymap.setView(coords, 13);
+
+                marker.on('click', function () {
+                    document.getElementById(modalId).classList.add('active1_culture');
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>
