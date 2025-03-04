@@ -1,43 +1,27 @@
 import React, { useEffect, useState, JSX } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import L from 'leaflet';
+import { NavMenu, Typography } from '@components';
 
-// Fix for default marker icons
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import { example } from '@assets';
+
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
-  iconSize: [25, 41], // Size of the icon
-  iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
+  iconSize: [20, 33],
+  iconAnchor: [10, 33],
 });
-
 L.Marker.prototype.options.icon = DefaultIcon;
 
-// Map Component
 const MapComponent = () => {
   const [data, setData] = useState<Data | null>(null);
-  const position: [number, number] = [52.4242, 31.014]; // Gomel coordinates
 
-  // Fetch data from data.json
-  useEffect(() => {
-    fetch('/data.json') // Correct the path
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        setData(data);
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  const position: [number, number] = [52.4242, 31.014];
 
-  // Function to render markers for a specific category
   interface Item {
     name: string;
     description: string;
@@ -54,6 +38,22 @@ const MapComponent = () => {
     };
   }
 
+  useEffect(() => {
+    fetch('/data.json') // Убедись, что путь правильный
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(json => {
+        setData(json);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  }, []);
+
   const renderMarkers = (category: string): JSX.Element[] | null => {
     if (!data || !data.categories[category]) return null;
 
@@ -62,33 +62,32 @@ const MapComponent = () => {
         ? (item.coordinates
             .split(',')
             .map(coord => parseFloat(coord.trim())) as [number, number])
-        : [52.4242, 31.014]; // Default coordinates if none provided
+        : [52.4242, 31.014];
 
       return (
         <Marker key={index} position={coordinates}>
-          {/* Add Tooltip to show the name above the marker */}
           <Popup>
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
+            <h3 style={styles.title}>{item.name}</h3>
+            <Typography
+              style={styles.description}
+              text={item.description}
+              limit={400}
+            />
+            <Typography style={styles.link} text="Читать дальше " />
             {item.image && (
-              <img
-                src={item.image}
-                alt={item.name}
-                style={{ width: '100%', height: 'auto' }}
-              />
+              <img src={example} alt={item.name} style={styles.image} />
             )}
             {item.links?.read_more && (
               <a
                 href={item.links.read_more}
                 target="_blank"
                 rel="noopener noreferrer"
+                style={styles.link}
               >
-                Read More
+                Больше информации
               </a>
             )}
           </Popup>
-
-          {/* Tooltip will display the name above the marker */}
           <Tooltip>{item.name}</Tooltip>
         </Marker>
       );
@@ -96,18 +95,8 @@ const MapComponent = () => {
   };
 
   return (
-    <MapContainer
-      center={position}
-      zoom={7}
-      style={{ height: '100vh', width: '100%' }}
-    >
-      {/* Add a tile layer (map background) */}
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-
-      {/* Render markers for each category */}
+    <MapContainer center={position} zoom={7} style={styles.mapContainer}>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {data && (
         <>
           {renderMarkers('museums')}
@@ -122,91 +111,55 @@ const MapComponent = () => {
     </MapContainer>
   );
 };
-// Left Menu Component
-const LeftMenu = () => {
-  return (
-    <div style={styles.leftMenu}>
-      <h2>Menu</h2>
-      <nav>
-        <ul style={styles.navList}>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/museums">Museums</Link>
-          </li>
-          <li>
-            <Link to="/cultural-values">Cultural Values</Link>
-          </li>
-          <li>
-            <Link to="/ancient-cities">Ancient Cities</Link>
-          </li>
-          <li>
-            <Link to="/famous-people">Famous People</Link>
-          </li>
-          <li>
-            <Link to="/industry">Industry</Link>
-          </li>
-          <li>
-            <Link to="/lakes">Lakes</Link>
-          </li>
-          <li>
-            <Link to="/rivers">Rivers</Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  );
-};
 
-// Main Layout Component
 export const Map = () => {
+  type menuType = 'left' | 'top';
+  const menuType: menuType = 'top';
+
   return (
     <div style={styles.container}>
-      <LeftMenu />
-      <div style={styles.mapContainer}>
+      <NavMenu type={menuType} />
+      <div style={styles.mapWrapper}>
         <MapComponent />
       </div>
     </div>
   );
 };
 
-// App Component with Routing
-const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Map />} />
-        <Route path="/museums" element={<Map />} />
-        <Route path="/cultural-values" element={<Map />} />
-        <Route path="/ancient-cities" element={<Map />} />
-        <Route path="/famous-people" element={<Map />} />
-        <Route path="/industry" element={<Map />} />
-        <Route path="/lakes" element={<Map />} />
-        <Route path="/rivers" element={<Map />} />
-      </Routes>
-    </Router>
-  );
-};
+import { CSSProperties } from 'react';
 
-// Styles
-const styles = {
+const styles: { [key: string]: CSSProperties } = {
   container: {
     display: 'flex',
+    flexDirection: 'column',
     height: '100vh',
+    width: '100vw',
   },
-  leftMenu: {
-    width: '10%',
-    backgroundColor: '#f4f4f4',
-    padding: '10px',
-    boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)',
-  },
-  navList: {
-    listStyle: 'none',
-    padding: 0,
+  mapWrapper: {
+    flex: 1,
+    width: '100%',
   },
   mapContainer: {
-    width: '90%',
-    height: '100vh',
+    height: '100%',
+    width: '100%',
+  },
+  title: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  description: {
+    textAlign: 'justify',
+    textIndent: '1.5em',
+    fontSize: 15,
+  },
+  link: {
+    color: 'blue',
+    fontSize: 14,
+    textDecoration: 'underline',
+  },
+  image: {
+    width: '100%',
+    height: 'auto',
   },
 };
