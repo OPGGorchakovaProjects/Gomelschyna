@@ -1,20 +1,36 @@
-.navContainer {
+:root {
+    --primary-color: #3498db;
+    --primary-dark: #1e90ff;
+    --secondary: #2ecc71;
+    --white: #ffffff;
+    --black: #333333;
+    --hover-color: #2980b9;
+    --button-bg: #27ae60;
+    --button-hover-bg: #2ecc71;
+    --blue: #3498db;
+    --button-hover-bg: #2ecc71;
+  }
+  
+  .navContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-.headerTitle {
-    color: var(--white); 
-    font-size: 24px; 
-    text-align: center; 
-    flex-grow: 1; 
-}
-
-.burgerMenu {
+  }
+  
+  .headerTitle {
+    color: var(--white);
+    font-size: 28px;
+    text-align: center;
+    flex-grow: 1;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  .burgerMenu {
     z-index: 1000;
     margin: 20px;
     padding: 10px;
@@ -26,21 +42,21 @@
     height: 50px;
     background-color: transparent;
     border: none;
-}
-
-.line {
+  }
+  
+  .line {
     pointer-events: none;
     height: 4px;
     width: 100%;
     background-color: var(--white);
     transition: all 0.3s ease;
-}
-
-.burgerMenu:hover {
+  }
+  
+  .burgerMenu:hover {
     transform: scale(1.1);
-}
-
-.blockBurger {
+  }
+  
+  .blockBurger {
     z-index: 999;
     display: none;
     position: fixed;
@@ -50,13 +66,13 @@
     height: 100%;
     justify-content: flex-start;
     align-items: flex-start;
-}
-
-.blockBurger.active2 {
+  }
+  
+  .blockBurger.active2 {
     display: flex;
-}
-
-.burgerContent {
+  }
+  
+  .burgerContent {
     background: var(--white);
     padding: 20px;
     border-radius: 10px;
@@ -64,10 +80,10 @@
     width: 100%;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.button {
-    background-color: var(--hover-color);
+  }
+  
+  .button {
+    background-color: var(--primary-color);
     display: flex;
     width: 100%;
     border: none;
@@ -78,31 +94,31 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.back {
-    background-color: var(--button-hover-bg);
-}
-
-.button:hover {
-    background-color: var(--button-hover-bg);
+  }
+  
+  .back {
+    background-color: var(--secondary);
+  }
+  
+  .button:hover {
+    background-color: var(--primary-dark);
     transform: scale(1.05);
-}
-
-@media (max-width: 900px) {
+  }
+  
+  @media (max-width: 900px) {
     .navContainer {
-        flex-direction: row; 
-        align-items: flex-start; 
+      flex-direction: row;
+      align-items: flex-start;
     }
-
+  
     .headerTitle {
-        margin-top: 10px; 
+      margin-top: 10px;
     }
-}
-
-.banner {
-    position: relative; 
-    background: require('../img/image-PhotoRoom 1.png') no-repeat center center/cover;
+  }
+  
+  .banner {
+    position: relative;
+    background: url('../img/image-PhotoRoom 1.png') no-repeat center center/cover;
     height: 800px;
     display: flex;
     justify-content: center;
@@ -110,33 +126,37 @@
     color: var(--white);
     text-align: center;
     padding: 20px;
-}
-
-.bannerContent {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+  }
+  
+  .bannerContent {
     position: relative;
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    z-index: 2; 
-}
-
-.bannerContent h1 {
+    align-items: center;
+    z-index: 2;
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .bannerContent h1 {
     font-size: 48px;
     margin: 0 0 20px;
     font-weight: 700;
-    color: var(--blue);
-}
-
-.bannerContent p {
+    color: var(--primary-color);
+  }
+  
+  .bannerContent p {
     font-size: 20px;
     margin: 0 0 20px;
-    color: var(--blue);;
-}
-
-.mapBtn {
+    color: var(--white);
+  }
+  
+  .mapBtn {
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); 
+    background-color: rgba(255, 255, 255, 0.8);
     width: 200px;
     color: var(--blue);
     padding: 10px 20px;
@@ -144,24 +164,24 @@
     border-radius: 50px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Добавляем эффект тени */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
-}
-
-.mapBtn:hover {
-    background-color: var(--blue);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mapBtn:hover {
+    background-color: var(--primary-color);
     color: var(--white);
     transform: scale(1.05);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); 
-}
-
-.mapImg {
-    width: 30px; 
-    height: auto; 
-    margin-right: 10px; 
-}
-
-.boxWithButtons {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .mapImg {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .boxWithButtons {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
@@ -169,119 +189,112 @@
     width: 100%;
     height: 100px;
     gap: 20px;
-}
-
-@media (max-width: 900px) {
+  }
+  
+  @media (max-width: 900px) {
     .bannerContent h1 {
-        font-size: 36px; 
+      font-size: 36px;
     }
-
+  
     .bannerContent p {
-        font-size: 18px; 
+      font-size: 18px;
     }
-
+  
     .boxWithButtons {
-        flex-direction: column;
+      flex-direction: column;
     }
-}
-
-.modalBack {
+  }
+  
+  .modalBack {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color:rgba(0, 0, 0, 0.5); 
-    z-index: 1000; 
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
     justify-content: center;
     align-items: center;
-}
-
-.modalBack.active2 {
-    display: flex; 
-}
-
-.blockModal {
-    background-color: white;
+  }
+  
+  .modalBack.active2 {
+    display: flex;
+  }
+  
+  .blockModal {
+    background-color: var(--white);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px var(--black)+10;
-}
-
-.contentModal {
+    box-shadow: 0 4px 10px var(--black);
+  }
+  
+  .contentModal {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 15px;
-}
-
-.blockDost {
+  }
+  
+  .blockDost {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 30px;
     position: relative;
-}
-
-.textDost {
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .textDost {
     font-size: 24px;
     font-weight: bold;
-    color: var(--blue);
+    color: var(--primary-color);
     margin-bottom: 10px;
-}
-
-.textName {
+  }
+  
+  .textName {
     font-size: 28px;
     font-weight: bold;
     color: #333;
-}
-
-.gorod {
+  }
+  
+  .gorod {
     font-size: 20px;
     color: #888;
     margin-bottom: 10px;
-}
-
-.divider {
+  }
+  
+  .divider {
     width: 100%;
     height: 4px;
     margin: 20px 0;
-    background-color: var(--blue); 
-}
-
-.content {
+    background-color: var(--primary-color);
+  }
+  
+  .content {
     text-align: center;
-}
-
-.imgCity {
+  }
+  
+  .imgCity {
     width: 45%;
     border-radius: 15px;
     margin: 0 20px;
-}
-
-.buttonContainer {
+  }
+  
+  .buttonContainer {
     display: flex;
     flex-direction: row;
     gap: 20px;
-}
-
-.btn1 > a, .btn2 > a {
-    color: var(--white);
-    width: 100%;
-    height: 100%;
+  }
+  
+  .btn1, .btn2 {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.btn1, .btn2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--blue);
+    background-color: var(--primary-color);
     width: 100%;
     color: #fff;
     text-align: center;
@@ -291,55 +304,57 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 10px;
-}
-
-.btn2 {
-    background-color: var(--button-bg);
-}
-
-.btn1:hover, .btn2:hover {
-    background-color: var(--blue);
-}
-
-.textBtn {
+  }
+  
+  .btn2 {
+    background-color: var(--secondary);
+  }
+  
+  .btn1:hover, .btn2:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .textBtn {
     font-size: 14px;
-}
-
-@media (max-width: 900px) {
-    .blockDost:nth-child(even) .content, .blockDost:nth-child(odd) .content {
-        flex-direction: column;
-    } 
-
+  }
+  
+  @media (max-width: 900px) {
+    .blockDost:nth-child(even) .content,
+    .blockDost:nth-child(odd) .content {
+      flex-direction: column;
+    }
+  
     .imgCity {
-        width: 100%;
-        margin: 10px 0; 
+      width: 100%;
+      margin: 10px 0;
     }
-
+  
     .buttonContainer {
-        flex-direction: column;
-        gap: 5px;
+      flex-direction: column;
+      gap: 5px;
     }
-
+  
     .btn1, .btn2 {
-        display: flex;
-        height: 40px;
-        border-radius: 8px;
+      display: flex;
+      height: 40px;
+      border-radius: 8px;
     }
-
+  
     .textDost {
-        font-size: 18px; 
+      font-size: 18px;
     }
-
+  
     .textName {
-        font-size: 22px; 
+      font-size: 22px;
     }
-
+  
     .gorod {
-        font-size: 18px; 
+      font-size: 18px;
     }
-
+  
     .textContent {
-        font-size: 16px; 
-        width: 100%;
+      font-size: 16px;
+      width: 100%;
     }
-}
+  }
+  

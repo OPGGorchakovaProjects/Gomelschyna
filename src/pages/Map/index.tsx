@@ -17,26 +17,26 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
+interface Item {
+  name: string;
+  description: string;
+  coordinates?: string;
+  image?: string;
+  links?: {
+    read_more?: string;
+  };
+}
+
+interface Data {
+  categories: {
+    [key: string]: Item[];
+  };
+}
+
 const MapComponent = () => {
   const [data, setData] = useState<Data | null>(null);
 
   const position: [number, number] = [52.4242, 31.014];
-
-  interface Item {
-    name: string;
-    description: string;
-    coordinates?: string;
-    image?: string;
-    links?: {
-      read_more?: string;
-    };
-  }
-
-  interface Data {
-    categories: {
-      [key: string]: Item[];
-    };
-  }
 
   useEffect(() => {
     fetch('/data.json') // Убедись, что путь правильный
@@ -95,8 +95,14 @@ const MapComponent = () => {
   };
 
   return (
-    <MapContainer center={position} zoom={7} style={styles.mapContainer}>
+    <MapContainer
+      center={position}
+      zoom={8}
+      style={styles.mapContainer}
+      attributionControl={false}
+    >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
       {data && (
         <>
           {renderMarkers('museums')}
@@ -130,13 +136,12 @@ import { CSSProperties } from 'react';
 
 const styles: { [key: string]: CSSProperties } = {
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    position: 'relative',
     height: '100vh',
     width: '100vw',
   },
   mapWrapper: {
-    flex: 1,
+    height: '100%',
     width: '100%',
   },
   mapContainer: {

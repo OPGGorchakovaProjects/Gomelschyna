@@ -39,7 +39,12 @@ export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
   };
 
   return (
-    <div style={type === 'left' ? styles.leftMenu : styles.topMenu}>
+    <div
+      style={{
+        ...styles.navMenu,
+        ...(type === 'left' ? styles.leftMenu : styles.topMenu),
+      }}
+    >
       {Buttons.map((buttonName, index) => (
         <button
           key={categories[index]}
@@ -47,11 +52,11 @@ export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
           style={{
             ...styles.button,
             backgroundColor: activeCategories.includes(categories[index])
-              ? '#ccc'
-              : '#007bff',
+              ? '#007bff'
+              : '#ccc',
             color: activeCategories.includes(categories[index])
-              ? '#000'
-              : '#fff',
+              ? '#fff'
+              : '#000',
           }}
         >
           {buttonName}
@@ -62,6 +67,13 @@ export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
 };
 
 const styles: { [key: string]: CSSProperties } = {
+  navMenu: {
+    position: 'absolute',
+    top: 10,
+    left: 0,
+    width: '100%',
+    zIndex: 1000,
+  },
   leftMenu: {
     width: '10%',
     height: '100vh',
@@ -82,8 +94,8 @@ const styles: { [key: string]: CSSProperties } = {
   button: {
     margin: '5px',
     padding: '10px 20px',
-    border: 'none',
-    borderRadius: '5px',
+    // border: 'none',
+    borderRadius: '10px',
     cursor: 'pointer',
     fontSize: '16px',
     transition: 'background-color 0.3s',
