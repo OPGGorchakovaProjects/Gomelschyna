@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CSSProperties } from 'react';
+import { Link } from 'react-router-dom';
 
 type MenuType = 'left' | 'top';
 
 interface IMenuProps {
   type: MenuType;
+  activeCategories: string[];
+  setActiveCategories: (categories: string[]) => void;
 }
 
-export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
+export const NavMenu: React.FC<IMenuProps> = ({
+  type,
+  activeCategories,
+  setActiveCategories,
+}) => {
   const categories = [
     'museums',
+    'monuments',
     'cultural_values',
     'ancient_cities',
-    'famous_people',
     'industry',
     'reserve',
     'lakes',
@@ -21,23 +28,25 @@ export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
 
   const Buttons = [
     'Музеи',
+    'Монументы',
     'Культурные ценности',
     'Древние города',
-    'Известные личности',
     'Промышленность',
     'Заповедники',
     'Озера',
     'Реки',
   ];
 
-  const [activeCategories, setActiveCategories] = useState<string[]>([]);
-
   const handleButtonClick = (category: string) => {
-    setActiveCategories(prev =>
-      prev.includes(category)
-        ? prev.filter(cat => cat !== category)
-        : [...prev, category],
+    setActiveCategories(
+      activeCategories.includes(category)
+        ? activeCategories.filter((cat: string) => cat !== category)
+        : [...activeCategories, category],
     );
+  };
+
+  const handleClearClick = () => {
+    setActiveCategories([]);
   };
 
   return (
@@ -47,6 +56,9 @@ export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
         ...(type === 'left' ? styles.leftMenu : styles.topMenu),
       }}
     >
+      <Link to="/" style={styles.backButton}>
+        Назад
+      </Link>
       {Buttons.map((buttonName, index) => (
         <button
           key={categories[index]}
@@ -64,6 +76,11 @@ export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
           {buttonName}
         </button>
       ))}
+      {activeCategories.length > 0 && (
+        <button onClick={handleClearClick} style={styles.clearButton}>
+          X
+        </button>
+      )}
     </div>
   );
 };
@@ -96,10 +113,31 @@ const styles: { [key: string]: CSSProperties } = {
   button: {
     margin: '5px',
     padding: '10px 20px',
-    // border: 'none',
     borderRadius: '10px',
     cursor: 'pointer',
     fontSize: '16px',
+    transition: 'background-color 0.3s',
+  },
+  backButton: {
+    margin: '5px',
+    padding: '10px 20px',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    textDecoration: 'none',
+    color: '#000',
+    backgroundColor: '#ccc',
+    transition: 'background-color 0.3s',
+    width: 'auto',
+  },
+  clearButton: {
+    margin: '5px',
+    padding: '10px 20px',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    backgroundColor: '#ff0000',
+    color: '#fff',
     transition: 'background-color 0.3s',
   },
 };

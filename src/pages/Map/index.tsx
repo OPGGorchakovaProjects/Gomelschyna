@@ -1,12 +1,12 @@
 import React, { useEffect, useState, JSX } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
-import { NavMenu, Typography } from '@components';
-
+import { Typography } from '@components';
+import { NavMenu, Navigation } from '@modules';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { Link } from 'react-router-dom';
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -32,13 +32,13 @@ interface Data {
   };
 }
 
-const MapComponent = () => {
+const MapComponent = ({ activeCategories }: { activeCategories: string[] }) => {
   const [data, setData] = useState<Data | null>(null);
 
   const position: [number, number] = [52.4242, 31.014];
 
   useEffect(() => {
-    fetch('/data.json') // Убедись, что путь правильный
+    fetch('/data.json')
       .then(response => {
         if (!response.ok) {
           throw new Error(`Ошибка HTTP: ${response.status}`);
@@ -54,7 +54,12 @@ const MapComponent = () => {
   }, []);
 
   const renderMarkers = (category: string): JSX.Element[] | null => {
-    if (!data || !data.categories[category]) return null;
+    if (
+      !data ||
+      !data.categories[category] ||
+      !activeCategories.includes(category)
+    )
+      return null;
 
     return data.categories[category].map((item: Item, index: number) => {
       const coordinates: [number, number] = item.coordinates
@@ -152,20 +157,25 @@ const BackButton = () => {
 export const Map = () => {
   type menuType = 'left' | 'top';
   const menuType: menuType = 'top';
+  const [activeCategories, setActiveCategories] = useState<string[]>([]);
 
   return (
     <div style={styles.container}>
-      <NavMenu type={menuType} />
+      <NavMenu
+        type={menuType}
+        activeCategories={activeCategories}
+        setActiveCategories={setActiveCategories}
+      />
       <div style={styles.mapWrapper}>
-        <MapComponent />
+        <MapComponent activeCategories={activeCategories} />
       </div>
-      <BackButton />
+      {/* <Navigation /> */}
+      {/* <BackButton /> */}
     </div>
   );
 };
 
 import { CSSProperties } from 'react';
-import { Link } from 'react-router-dom';
 
 const styles: { [key: string]: CSSProperties } = {
   container: {
