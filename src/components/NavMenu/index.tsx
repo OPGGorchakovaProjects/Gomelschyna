@@ -14,6 +14,7 @@ export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
     'ancient_cities',
     'famous_people',
     'industry',
+    'reserve',
     'lakes',
     'rivers',
   ];
@@ -24,6 +25,7 @@ export const NavMenu: React.FC<IMenuProps> = ({ type }) => {
     'Древние города',
     'Известные личности',
     'Промышленность',
+    'Заповедники',
     'Озера',
     'Реки',
   ];

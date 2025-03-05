@@ -4,7 +4,6 @@ import { NavMenu, Typography } from '@components';
 
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { example } from '@assets';
 
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -75,7 +74,7 @@ const MapComponent = () => {
             />
             <Typography style={styles.link} text="Читать дальше " />
             {item.image && (
-              <img src={example} alt={item.name} style={styles.image} />
+              <img src={item.image} alt={item.name} style={styles.image} />
             )}
             {item.links?.read_more && (
               <a
@@ -97,14 +96,27 @@ const MapComponent = () => {
   return (
     <MapContainer
       center={position}
-      zoom={8}
       style={styles.mapContainer}
       attributionControl={false}
+      maxBounds={[
+        [50.5, 26.5],
+        [54.0, 32.0],
+      ]}
+      minZoom={5}
+      zoom={8}
+      zoomAnimation={true}
+      fadeAnimation={true}
+      zoomSnap={0.1}
+      zoomDelta={0.1}
+      trackResize={true}
+      preferCanvas={true}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
       {data && (
         <>
+          {renderMarkers('reserve')}
+          {renderMarkers('monuments')}
           {renderMarkers('museums')}
           {renderMarkers('cultural_values')}
           {renderMarkers('ancient_cities')}
@@ -118,6 +130,25 @@ const MapComponent = () => {
   );
 };
 
+const BackButton = () => {
+  return (
+    <Link
+      style={{
+        zIndex: 999,
+        position: 'absolute',
+        bottom: 20,
+        left: 20,
+        color: 'white',
+        padding: 20,
+        backgroundColor: 'blue',
+      }}
+      to="/"
+    >
+      Назад
+    </Link>
+  );
+};
+
 export const Map = () => {
   type menuType = 'left' | 'top';
   const menuType: menuType = 'top';
@@ -128,17 +159,21 @@ export const Map = () => {
       <div style={styles.mapWrapper}>
         <MapComponent />
       </div>
+      <BackButton />
     </div>
   );
 };
 
 import { CSSProperties } from 'react';
+import { Link } from 'react-router-dom';
 
 const styles: { [key: string]: CSSProperties } = {
   container: {
     position: 'relative',
     height: '100vh',
     width: '100vw',
+    overflowX: 'hidden',
+    overflowY: 'hidden',
   },
   mapWrapper: {
     height: '100%',
