@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tabler/icons": "^3.31.0",
+    "@tabler/icons-react": "^3.31.0",
     "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
     "leaflet.markercluster": "^1.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

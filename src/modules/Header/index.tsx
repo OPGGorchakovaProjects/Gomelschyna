@@ -1,47 +1,73 @@
-import React from 'react';
-import { CSSProperties } from 'react';
+import { FC, JSX } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  IconTree,
+  IconBuildingMonument,
+  IconBuildings,
+  IconBuildingChurch,
+  IconBuildingCastle,
+  IconBuildingFactory,
+  IconDroplet,
+  IconRipple,
+  IconArrowLeft,
+} from '@tabler/icons-react';
+import styles from './style.module.scss';
 
 interface HeaderProps {
   activeCategories: string[];
   setActiveCategories: (categories: string[]) => void;
-  onCategorySelect?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({
+interface CategoryInfo {
+  name: string;
+  icon: JSX.Element;
+}
+
+const categoryInfo: { [key: string]: CategoryInfo } = {
+  museums: {
+    name: 'Музеи',
+    icon: <IconBuildings size={24} stroke={2} />,
+  },
+  monuments: {
+    name: 'Монументы',
+    icon: <IconBuildingMonument size={24} stroke={2} />,
+  },
+  cultural_values: {
+    name: 'Культурные ценности',
+    icon: <IconBuildingChurch size={24} stroke={2} />,
+  },
+  ancient_cities: {
+    name: 'Древние города',
+    icon: <IconBuildingCastle size={24} stroke={2} />,
+  },
+  industry: {
+    name: 'Промышленность',
+    icon: <IconBuildingFactory size={24} stroke={2} />,
+  },
+  reserve: {
+    name: 'Заповедники',
+    icon: <IconTree size={24} stroke={2} />,
+  },
+  lakes: {
+    name: 'Озёра',
+    icon: <IconDroplet size={24} stroke={2} />,
+  },
+  rivers: {
+    name: 'Реки',
+    icon: <IconRipple size={24} stroke={2} />,
+  },
+};
+
+export const Header: FC<HeaderProps> = ({
   activeCategories,
   setActiveCategories,
-  onCategorySelect,
 }) => {
-  const categories = [
-    'museums',
-    'monuments',
-    'cultural_values',
-    'ancient_cities',
-    'industry',
-    'reserve',
-    'lakes',
-    'rivers',
-  ];
-
-  const Buttons = [
-    'Музеи',
-    'Монументы',
-    'Культурные ценности',
-    'Древние города',
-    'Промышленность',
-    'Заповедники',
-    'Озера',
-    'Реки',
-  ];
-
-  const handleButtonClick = (category: string) => {
-    setActiveCategories(
-      activeCategories.includes(category)
-        ? activeCategories.filter((cat: string) => cat !== category)
-        : [...activeCategories, category],
-    );
-    onCategorySelect?.();
+  const toggleCategory = (category: string) => {
+    if (activeCategories.includes(category)) {
+      setActiveCategories(activeCategories.filter(c => c !== category));
+    } else {
+      setActiveCategories([...activeCategories, category]);
+    }
   };
 
   const handleClearClick = () => {
@@ -49,79 +75,38 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <div style={{ ...styles.navMenu, ...styles.topMenu }}>
-      <Link to="/" style={styles.backButton}>
-        Назад
-      </Link>
-      {Buttons.map((buttonName, index) => (
-        <button
-          key={categories[index]}
-          onClick={() => handleButtonClick(categories[index])}
-          style={{
-            ...styles.button,
-            backgroundColor: activeCategories.includes(categories[index])
-              ? '#007bff'
-              : '#ccc',
-            color: activeCategories.includes(categories[index])
-              ? '#fff'
-              : '#000',
-          }}
-        >
-          {buttonName}
-        </button>
-      ))}
-      {activeCategories.length > 0 && (
-        <button onClick={handleClearClick} style={styles.clearButton}>
-          X
-        </button>
-      )}
-    </div>
-  );
-};
+    <header className={styles.header}>
+      <div className={styles.leftContainer}>
+        <Link to="/" className={styles.backButton}>
+          <IconArrowLeft size={20} />
+          <span>Назад</span>
+        </Link>
+      </div>
 
-const styles: { [key: string]: CSSProperties } = {
-  navMenu: {
-    position: 'absolute',
-    top: 10,
-    left: 0,
-    width: '100%',
-    zIndex: 1000,
-  },
-  topMenu: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-  button: {
-    margin: '5px',
-    padding: '10px 20px',
-    borderRadius: '10px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    transition: 'background-color 0.3s',
-  },
-  backButton: {
-    margin: '5px',
-    padding: '10px 20px',
-    borderRadius: '10px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    textDecoration: 'none',
-    color: '#000',
-    backgroundColor: '#ccc',
-    transition: 'background-color 0.3s',
-    width: 'auto',
-    border: 1,
-  },
-  clearButton: {
-    margin: '5px',
-    padding: '10px 20px',
-    borderRadius: '10px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    backgroundColor: '#ff0000',
-    color: '#fff',
-    transition: 'background-color 0.3s',
-  },
+      <div className={styles.midContaienr}>
+        <div className={styles.categories}>
+          {Object.entries(categoryInfo).map(([key, info]) => (
+            <button
+              key={key}
+              className={`${styles.categoryButton} ${
+                activeCategories.includes(key) ? styles.active : ''
+              }`}
+              onClick={() => toggleCategory(key)}
+            >
+              <span className={styles.icon}>{info.icon}</span>
+              <span className={styles.text}>{info.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.rightContainer}>
+        {activeCategories.length > 0 && (
+          <button onClick={handleClearClick} className={styles.clearButton}>
+            Очистить
+          </button>
+        )}
+      </div>
+    </header>
+  );
 };
