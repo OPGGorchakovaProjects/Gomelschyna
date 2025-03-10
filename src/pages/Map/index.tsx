@@ -7,7 +7,7 @@ import L from 'leaflet';
 import { useSearchParams } from 'react-router-dom';
 
 import { Typography } from '@components';
-import { NavMenu } from '@modules';
+import { Header } from '@modules';
 import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
 
@@ -168,7 +168,7 @@ export const Map = () => {
 
   return (
     <div className={styles.container}>
-      <NavMenu
+      <Header
         activeCategories={activeCategories}
         setActiveCategories={setActiveCategories}
         onCategorySelect={() => setSelectedPoint(null)}

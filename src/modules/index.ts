@@ -1,2 +1,2 @@
-export { NavMenu } from './NavMenu'
+export { Header } from './Header'
 export { Navigation } from './Navigation'

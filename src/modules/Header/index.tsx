@@ -2,13 +2,13 @@ import React from 'react';
 import { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 
-interface NavMenuProps {
+interface HeaderProps {
   activeCategories: string[];
   setActiveCategories: (categories: string[]) => void;
   onCategorySelect?: () => void;
 }
 
-export const NavMenu: React.FC<NavMenuProps> = ({
+export const Header: React.FC<HeaderProps> = ({
   activeCategories,
   setActiveCategories,
   onCategorySelect,
@@ -41,6 +41,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
         ? activeCategories.filter((cat: string) => cat !== category)
         : [...activeCategories, category],
     );
+    onCategorySelect?.();
   };
 
   const handleClearClick = () => {
