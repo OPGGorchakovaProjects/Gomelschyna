@@ -1,11 +1,5 @@
+import { ITypographyProps } from '@utils';
 import styles from './style.module.scss';
-
-interface ITypographyProps {
-  text: string;
-  style?: React.CSSProperties;
-  className?: string;
-  limit?: number;
-}
 
 export const Typography = ({
   text = 'button',

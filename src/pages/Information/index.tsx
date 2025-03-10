@@ -2,11 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import style from './style.module.scss';
 import { Link } from 'react-router-dom';
-
-interface IBurgerMenuProps {
-  isOpen: boolean;
-  toggleMenu: () => void;
-}
+import { IBurgerMenuProps } from '@utils';
 
 const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

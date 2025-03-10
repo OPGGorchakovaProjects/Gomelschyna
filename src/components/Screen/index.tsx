@@ -1,11 +1,6 @@
 import { ReactNode } from 'react';
-
 import styles from './style.module.scss';
-
-interface IScreenProps {
-  children: ReactNode;
-  className?: string;
-}
+import { IScreenProps } from '@utils';
 
 export const Screen: React.FC<IScreenProps> = ({ children, className }) => {
   return (

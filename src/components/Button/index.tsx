@@ -1,21 +1,7 @@
 import React from 'react';
 import { Typography } from '../Typography';
 import styles from './style.module.scss';
-
-type ButtonSize = 'small' | 'medium' | 'large';
-type ButtonColor = 'primary' | 'secondary' | 'danger' | 'warning' | 'success';
-type ButtonType = 'solid' | 'outline' | 'ghost';
-
-interface IButtonProps {
-  onClick: () => void;
-  label: string;
-  size?: ButtonSize;
-  color?: ButtonColor;
-  buttonStyle?: string;
-  textStyles?: string;
-  type?: ButtonType;
-  disabled?: boolean;
-}
+import { IButtonProps } from '@utils';
 
 export const Button: React.FC<IButtonProps> = ({
   onClick,

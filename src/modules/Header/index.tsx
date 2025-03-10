@@ -1,4 +1,4 @@
-import { FC, JSX } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import {
   IconTree,
@@ -12,16 +12,7 @@ import {
   IconArrowLeft,
 } from '@tabler/icons-react';
 import styles from './style.module.scss';
-
-interface HeaderProps {
-  activeCategories: string[];
-  setActiveCategories: (categories: string[]) => void;
-}
-
-interface CategoryInfo {
-  name: string;
-  icon: JSX.Element;
-}
+import { CategoryInfo, HeaderProps } from '@utils';
 
 const categoryInfo: { [key: string]: CategoryInfo } = {
   museums: {

@@ -2,7 +2,6 @@ import { useEffect, useState, JSX, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet/dist/leaflet.css';
-// import 'react-leaflet-markercluster/dist/styles.min.css';
 import L from 'leaflet';
 import { useSearchParams } from 'react-router-dom';
 
@@ -10,6 +9,7 @@ import { Typography } from '@components';
 import { Header } from '@modules';
 import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
+import { Data, Item } from '@utils';
 
 const categoryColors: { [key: string]: string } = {
   reserve: 'green',
@@ -33,23 +33,6 @@ const getIcon = (category: string) => {
     tooltipAnchor: [10, -10],
   });
 };
-
-interface Item {
-  name: string;
-  description: string;
-  coordinates?: string;
-  image?: string;
-  links?: {
-    read_more?: string;
-  };
-  map_marker: string;
-}
-
-interface Data {
-  categories: {
-    [key: string]: Item[];
-  };
-}
 
 const createClusterCustomIcon = function (cluster: any) {
   const count = cluster.getChildCount();
@@ -171,7 +154,6 @@ export const Map = () => {
       <Header
         activeCategories={activeCategories}
         setActiveCategories={setActiveCategories}
-        onCategorySelect={() => setSelectedPoint(null)}
       />
       <div className={styles.mapWrapper}>
         <MapContainer

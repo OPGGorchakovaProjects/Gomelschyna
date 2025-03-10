@@ -30,7 +30,7 @@
       "@assets": ["src/assets"], 
       "@pages": ["./src/pages"], 
       "@theme": ["./src/theme"],
-      "@data": ["./src/data"], 
+      "@utils": ["./src/utils"], 
     }
   },
   "include": ["src", "src/assets"]
