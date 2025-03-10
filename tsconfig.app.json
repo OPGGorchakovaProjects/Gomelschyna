@@ -27,11 +27,11 @@
     "paths": {
       "@components": ["./src/components"],
       "@modules": ["./src/modules"],
-      "@assets": ["./src/assets"], 
+      "@assets": ["src/assets"], 
       "@pages": ["./src/pages"], 
       "@theme": ["./src/theme"],
       "@data": ["./src/data"], 
     }
   },
-  "include": ["src"]
+  "include": ["src", "src/assets"]
 }

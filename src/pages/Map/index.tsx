@@ -1,20 +1,35 @@
-import React, { useEffect, useState, JSX } from 'react';
+import { useEffect, useState, JSX, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
-import { Typography } from '@components';
-import { NavMenu, Navigation } from '@modules';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { useSearchParams } from 'react-router-dom';
+
+import { Typography } from '@components';
+import { NavMenu } from '@modules';
 import { Link } from 'react-router-dom';
 
-let DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
-  iconSize: [20, 33],
-  iconAnchor: [10, 33],
-});
-L.Marker.prototype.options.icon = DefaultIcon;
+const categoryColors: { [key: string]: string } = {
+  reserve: 'green',
+  monuments: 'blue',
+  museums: 'purple',
+  cultural_values: 'orange',
+  ancient_cities: 'brown',
+  famous_people: 'pink',
+  industry: 'gray',
+  lakes: 'cyan',
+  rivers: 'navy',
+};
+
+const getIcon = (category: string) => {
+  return L.divIcon({
+    html: `<div style="background-color: ${categoryColors[category]}; width: 20px; height: 20px; border-radius: 50%; border: 2px solid white;"></div>`,
+    className: '',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10],
+    popupAnchor: [0, -10],
+    tooltipAnchor: [10, -10],
+  });
+};
 
 interface Item {
   name: string;
@@ -24,6 +39,7 @@ interface Item {
   links?: {
     read_more?: string;
   };
+  map_marker: string;
 }
 
 interface Data {
@@ -32,145 +48,128 @@ interface Data {
   };
 }
 
-const MapComponent = ({ activeCategories }: { activeCategories: string[] }) => {
+export const Map = () => {
   const [data, setData] = useState<Data | null>(null);
+  const [activeCategories, setActiveCategories] = useState<string[]>([]);
+  const [searchParams] = useSearchParams();
+  const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
+  const mapRef = useRef<any>(null);
 
-  const position: [number, number] = [52.4242, 31.014];
+  useEffect(() => {
+    const markerFromUrl = searchParams.get('marker');
+    setSelectedPoint(markerFromUrl);
+  }, [searchParams]);
 
   useEffect(() => {
     fetch('/data.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Ошибка HTTP: ${response.status}`);
+      .then(response => response.json())
+      .then(jsonData => {
+        setData(jsonData);
+
+        if (selectedPoint) {
+          for (const [category, items] of Object.entries(
+            jsonData.categories as Record<string, Item[]>,
+          )) {
+            if (items.some(item => item.map_marker === selectedPoint)) {
+              setActiveCategories([category]);
+
+              const item = items.find(i => i.map_marker === selectedPoint);
+              if (item?.coordinates && mapRef.current) {
+                const [lat, lng] = item.coordinates
+                  .split(',')
+                  .map(coord => parseFloat(coord.trim()));
+                mapRef.current.setView([lat, lng], 13);
+              }
+              break;
+            }
+          }
         }
-        return response.json();
       })
-      .then(json => {
-        setData(json);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  }, []);
+      .catch(error => console.error('Error:', error));
+  }, [selectedPoint]);
 
   const renderMarkers = (category: string): JSX.Element[] | null => {
-    if (
-      !data ||
-      !data.categories[category] ||
-      !activeCategories.includes(category)
-    )
+    if (!data?.categories[category] || !activeCategories.includes(category)) {
       return null;
+    }
 
-    return data.categories[category].map((item: Item, index: number) => {
-      const coordinates: [number, number] = item.coordinates
-        ? (item.coordinates
-            .split(',')
-            .map(coord => parseFloat(coord.trim())) as [number, number])
-        : [52.4242, 31.014];
+    return data.categories[category]
+      .filter((item: Item) => {
+        if (selectedPoint) {
+          return item.map_marker === selectedPoint;
+        }
+        return true;
+      })
+      .map((item: Item, index: number) => {
+        const coordinates: [number, number] = item.coordinates
+          ? (item.coordinates
+              .split(',')
+              .map(coord => parseFloat(coord.trim())) as [number, number])
+          : [52.4242, 31.014];
 
-      return (
-        <Marker key={index} position={coordinates}>
-          <Popup>
-            <h3 style={styles.title}>{item.name}</h3>
-            <Typography
-              style={styles.description}
-              text={item.description}
-              limit={400}
-            />
-            <Typography style={styles.link} text="Читать дальше " />
-            {item.image && (
-              <img src={item.image} alt={item.name} style={styles.image} />
-            )}
-            {item.links?.read_more && (
-              <a
-                href={item.links.read_more}
-                target="_blank"
-                rel="noopener noreferrer"
+        return (
+          <Marker key={index} position={coordinates} icon={getIcon(category)}>
+            <Popup>
+              <h3 style={styles.title}>{item.name}</h3>
+              <Typography
+                style={styles.description}
+                text={item.description}
+                limit={400}
+              />
+              <Link
                 style={styles.link}
+                to={`/information?category=${category}&item=${item.map_marker}#${item.map_marker}`}
               >
-                Больше информации
-              </a>
-            )}
-          </Popup>
-          <Tooltip>{item.name}</Tooltip>
-        </Marker>
-      );
-    });
+                Читать дальше
+              </Link>
+              {item.image && (
+                <img src={item.image} alt={item.name} style={styles.image} />
+              )}
+              {item.links?.read_more && (
+                <a
+                  href={item.links.read_more}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={styles.link}
+                >
+                  Больше информации
+                </a>
+              )}
+            </Popup>
+            <Tooltip>{item.name}</Tooltip>
+          </Marker>
+        );
+      });
   };
-
-  return (
-    <MapContainer
-      center={position}
-      style={styles.mapContainer}
-      attributionControl={false}
-      maxBounds={[
-        [50.5, 26.5],
-        [54.0, 32.0],
-      ]}
-      minZoom={5}
-      zoom={8}
-      zoomAnimation={true}
-      fadeAnimation={true}
-      zoomSnap={0.1}
-      zoomDelta={0.1}
-      trackResize={true}
-      preferCanvas={true}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-      {data && (
-        <>
-          {renderMarkers('reserve')}
-          {renderMarkers('monuments')}
-          {renderMarkers('museums')}
-          {renderMarkers('cultural_values')}
-          {renderMarkers('ancient_cities')}
-          {renderMarkers('famous_people')}
-          {renderMarkers('industry')}
-          {renderMarkers('lakes')}
-          {renderMarkers('rivers')}
-        </>
-      )}
-    </MapContainer>
-  );
-};
-
-const BackButton = () => {
-  return (
-    <Link
-      style={{
-        zIndex: 999,
-        position: 'absolute',
-        bottom: 20,
-        left: 20,
-        color: 'white',
-        padding: 20,
-        backgroundColor: 'blue',
-      }}
-      to="/"
-    >
-      Назад
-    </Link>
-  );
-};
-
-export const Map = () => {
-  type menuType = 'left' | 'top';
-  const menuType: menuType = 'top';
-  const [activeCategories, setActiveCategories] = useState<string[]>([]);
 
   return (
     <div style={styles.container}>
       <NavMenu
-        type={menuType}
         activeCategories={activeCategories}
         setActiveCategories={setActiveCategories}
+        onCategorySelect={() => setSelectedPoint(null)}
       />
       <div style={styles.mapWrapper}>
-        <MapComponent activeCategories={activeCategories} />
+        <MapContainer
+          ref={mapRef}
+          center={[52.4242, 31.014]}
+          zoom={8}
+          style={styles.mapContainer}
+          attributionControl={false}
+          zoomControl={false}
+          maxBounds={[
+            [50.5, 26.5],
+            [54.0, 32.0],
+          ]}
+          minZoom={5}
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          {data &&
+            Object.keys(categoryColors).map(category =>
+              renderMarkers(category),
+            )}
+        </MapContainer>
       </div>
-      {/* <Navigation /> */}
-      {/* <BackButton /> */}
     </div>
   );
 };
@@ -196,20 +195,48 @@ const styles: { [key: string]: CSSProperties } = {
   title: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 20,
+    marginBottom: '10px',
+    color: '#333',
   },
   description: {
     textAlign: 'justify',
-    textIndent: '1.5em',
     fontSize: 15,
-  },
-  link: {
-    color: 'blue',
-    fontSize: 14,
-    textDecoration: 'underline',
+    color: '#555',
+    marginBottom: '10px',
+    hyphens: 'auto',
+    wordWrap: 'normal',
+    textJustify: 'auto',
+    textIndent: '1.5em',
+    lineHeight: 1.4,
+    textAlignLast: 'left',
+    maxWidth: '100%',
   },
   image: {
     width: '100%',
     height: 'auto',
+    borderRadius: '8px',
+    marginBottom: '10px',
+  },
+  popup: {
+    padding: '10px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#fff',
+  },
+  link: {
+    display: 'flex',
+    flex: 1,
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    padding: '10px 20px',
+    fontSize: '16px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  },
+  buttonHover: {
+    backgroundColor: '#0056b3',
   },
 };
