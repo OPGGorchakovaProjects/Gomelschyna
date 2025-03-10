@@ -9,7 +9,7 @@
         "image": "./img/Culture/4.jpg",
         "links": {
           "read_more": "https://gomel.gov.by/ru/content/gomel/otkroy-gomel/pamyatnik-v-i-leninu/",
-          "map": "../Map/index.html?marker=lenin_statue"
+          "map": "../Map?marker=lenin_statue"
         },
         "coordinates": "52.424209, 31.015329",
         "map_marker": "lenin_statue"
@@ -21,7 +21,7 @@
         "image": "./img/Monuments/1.jpg",
         "links": {
           "read_more": "https://street.gomelhistory.by/pamyatniki-memorialnye-doski-skulptury-gomelya/pamyatniki-memorialy-bratskie-mogily/pamjatnik-pogibshim-rabochim-vagonoremontnogo-zavoda/",
-          "map": "../Map/index.html?marker=pogibshim-rabochim-zavoda"
+          "map": "../Map?marker=pogibshim-rabochim-zavoda"
         },
         "coordinates": "52.414362, 30.948214",
         "map_marker": "pogibshim-rabochim-zavoda"
@@ -33,7 +33,7 @@
         "image": "./img/Monuments/2.jpg",
         "links": {
           "read_more": "https://gomelstreet.by/kurgan-slavy",
-          "map": "../Map/index.html?marker=kurgan-slavy"
+          "map": "../Map?marker=kurgan-slavy"
         },
         "coordinates": "52.408459, 30.942470",
         "map_marker": "kurgan-slavy"
@@ -45,7 +45,7 @@
         "image": "./img/Monuments/3.jpg",
         "links": {
           "read_more": "https://probelarus.by/belarus/sight/pamyatniki-izvestnym-lyudyam/1502272797.html",
-          "map": "../Map/index.html?marker=kirill-turovsky"
+          "map": "../Map?marker=kirill-turovsky"
         },
         "coordinates": "52.425202, 31.014094",
         "map_marker": "kirill-turovsky"
@@ -57,7 +57,7 @@
         "image": "./img/Monuments/4.jpg",
         "links": {
           "read_more": "https://kamengrad.by/pamjatniki-v-vetke-reznye-vorota-v-proshloe.html",
-          "map": "../Map/index.html?marker=vetka-museum"
+          "map": "../Map?marker=vetka-museum"
         },
         "coordinates": "52.562101, 31.187572",
         "map_marker": "vetka-museum"
@@ -69,7 +69,7 @@
         "image": "./img/Monuments/5.jpg",
         "links": {
           "read_more": "https://savehistory.by/karta/obelisk-v-loshchine-dolina-smerti-rogachev/",
-          "map": "../Map/index.html?marker=dolina-smerti"
+          "map": "../Map?marker=dolina-smerti"
         },
         "coordinates": "53.078917, 30.057127",
         "map_marker": "dolina-smerti"
@@ -81,7 +81,7 @@
         "image": "./img/Monuments/6.jpg",
         "links": {
           "read_more": "https://loev.gov.by/ru/bitvazadnepr/",
-          "map": "../Map/index.html?marker=bitva-za-dnepr"
+          "map": "../Map?marker=bitva-za-dnepr"
         },
         "coordinates": "51.939604, 30.805693",
         "map_marker": "bitva-za-dnepr"
@@ -93,7 +93,7 @@
         "image": "./img/Monuments/8.jpg",
         "links": {
           "read_more": "https://monument.goub.by/?p=615",
-          "map": "../Map/index.html?marker=detyam-zhertvam"
+          "map": "../Map?marker=detyam-zhertvam"
         },
         "coordinates": "52.963124, 29.776671",
         "map_marker": "detyam-zhertvam"
@@ -105,7 +105,7 @@
         "image": "./img/Monuments/9.jpg",
         "links": {
           "read_more": "https://gomelhistory.by/pamyatniki/memorialnye-doski/memorialnaya-doska-operativnoj-gruppe-shtaba-1-go-belorusskogo-fronta/",
-          "map": "../Map/index.html?marker=operativnaya-gruppa"
+          "map": "../Map?marker=operativnaya-gruppa"
         },
         "coordinates": "52.349315, 31.030095",
         "map_marker": "operativnaya-gruppa"
@@ -117,7 +117,7 @@
         "image": "./img/Monuments/10.jpg",
         "links": {
           "read_more": "https://ru.belarus.travel/landmarks/voenno-istoricheskii-kompleks-partizanskaia-krinichka",
-          "map": "../Map/index.html?marker=partizanskaya-krinichka"
+          "map": "../Map?marker=partizanskaya-krinichka"
         },
         "coordinates": "52.320462, 30.978118",
         "map_marker": "partizanskaya-krinichka"
@@ -129,7 +129,7 @@
         "image": "./img/Monuments/11.jpg",
         "links": {
           "read_more": "https://street.gomelhistory.by/pamyatniki-memorialnye-doski-skulptury-gomelya/pamyatniki-memorialy-bratskie-mogily/pamyatnik-opolchencam-zashhitnikam-goroda/",
-          "map": "../Map/index.html?marker=opolchentsam"
+          "map": "../Map?marker=opolchentsam"
         },
         "coordinates": "52.405290, 30.978156",
         "map_marker": "opolchentsam"
@@ -141,7 +141,7 @@
         "image": "./img/Monuments/12.jpg",
         "links": {
           "read_more": "https://eparhiya.by/2024/09/13/v-gomele-sostoyalos-torzhestvennoe-otkrytie-doski-pocheta/",
-          "map": "../Map/index.html?marker=doska-pocheta"
+          "map": "../Map?marker=doska-pocheta"
         },
         "coordinates": "52.429677, 31.012247",
         "map_marker": "doska-pocheta"
@@ -153,7 +153,7 @@
         "image": "./img/Monuments/13.jpg",
         "links": {
           "read_more": "https://gomel-region.gov.by/ru/society-ru/view/unikalnyj-monument-obnovlennyj-tank-alleja-zvezd-ploschad-vosstanija-v-gomele-otkryta-posle-50139-2024/",
-          "map": "../Map/index.html?marker=dulag-121"
+          "map": "../Map?marker=dulag-121"
         },
         "coordinates": "52.435572, 31.009199",
         "map_marker": "dulag-121"
@@ -165,7 +165,7 @@
         "image": "./img/Monuments/14.jpg",
         "links": {
           "read_more": "https://monument.goub.by/?p=1602",
-          "map": "../Map/index.html?marker=bratya-lizyukovy"
+          "map": "../Map?marker=bratya-lizyukovy"
         },
         "coordinates": "52.432703, 30.999007",
         "map_marker": "bratya-lizyukovy"
@@ -177,7 +177,7 @@
         "image": "./img/Monuments/15.jpg",
         "links": {
           "read_more": "http://ozarichi-memorial.museum.by/",
-          "map": "../Map/index.html?marker=ozarichi"
+          "map": "../Map?marker=ozarichi"
         },
         "coordinates": "52.485714, 29.219431",
         "map_marker": "ozarichi"
@@ -189,7 +189,7 @@
         "image": "./img/Monuments/16.jpg",
         "links": {
           "read_more": "https://pomnim.by/mass-grave/71370",
-          "map": "../Map/index.html?marker=bratskaya-mogila"
+          "map": "../Map?marker=bratskaya-mogila"
         },
         "coordinates": "52.628233, 29.386491",
         "map_marker": "bratskaya-mogila"
@@ -201,7 +201,7 @@
         "image": "./img/Monuments/17.jpg",
         "links": {
           "read_more": "http://znak.svetlogorsk.museum.by",
-          "map": "../Map/index.html?marker=operaciya-bagration"
+          "map": "../Map?marker=operaciya-bagration"
         },
         "coordinates": "52.671874, 29.358420",
         "map_marker": "operaciya-bagration"
@@ -213,7 +213,7 @@
         "image": "./img/Monuments/18.jpg",
         "links": {
           "read_more": "http://ola.svetlogorsk.museum.by",
-          "map": "../Map/index.html?marker=ola"
+          "map": "../Map?marker=ola"
         },
         "coordinates": "52.739368, 29.661140",
         "map_marker": "ola"
@@ -225,7 +225,7 @@
         "image": "./img/Monuments/19.jpg",
         "links": {
           "read_more": "https://street.gomelhistory.by/pamyatniki-memorialnye-doski-skulptury-gomelya/pamyatniki-memorialy-bratskie-mogily/pamjatnik-komsomolcam/",
-          "map": "../Map/index.html?marker=komsomoltsam"
+          "map": "../Map?marker=komsomoltsam"
         },
         "coordinates": "52.429118, 31.001134",
         "map_marker": "komsomoltsam"
@@ -237,7 +237,7 @@
         "image": "./img/Culture/3.jpg",
         "links": {
           "read_more": "http://sp.sb.by/gomel",
-          "map": "../Map/index.html?marker=vechnyy-ogon"
+          "map": "../Map?marker=vechnyy-ogon"
         },
         "coordinates": "52.425951, 31.010338",
         "map_marker": "vechnyy-ogon"
@@ -249,7 +249,7 @@
         "image": "./img/Monuments/21.jpg",
         "links": {
           "read_more": "https://belkagomel.by/2024/07/02/v-gomele-otkryli-memorial-zhertvam-genocida/",
-          "map": "../Map/index.html?marker=zhertvam-fashizma"
+          "map": "../Map?marker=zhertvam-fashizma"
         },
         "coordinates": "52.639820, 28.902130",
         "map_marker": "zhertvam-fashizma"
@@ -261,21 +261,21 @@
         "image": "./img/Monuments/22.jpg",
         "links": {
           "read_more": "https://gomelhistory.by/pamyatniki/memorialnye-doski/memorialnaya-doska-podpolshhikam-sovetskaya-50/",
-          "map": "../Map/index.html?marker=podpolshchikam"
+          "map": "../Map?marker=podpolshchikam"
         },
         "coordinates": "52.248494, 30.782345",
         "map_marker": "podpolshchikam"
       }
     ],
-    "Reserve": [
+    "reserve": [
       {
         "name": "Припятский национальный парк",
         "location": "Гомель",
         "description": "Припятский национальный парк (белор. Прыпяцкi нацыянальны парк) — национальный парк на юге Белоруссии, подчинён Управлению делами Президента Республики Беларусь. Припятский национальный парк расположен на западе Гомельской области в 350 к восточнее Бреста и в 250 км южнее Минска, к югу от трассы Брест — Брянск. В 1969 году сперва был создан Припятский государственный ландшафтно-гидрологический заповедник, в 1996 году преобразованный в национальный парк. Площадь заповедника, а позже национального парка, увеличивалась, сегодня она составляет 188 485 га. Южная часть его представлена особо охраняемой природной территорией площадью 85 841 га. Администрация национального парка находится в агрогородке Лясковичи.",
-        "image": "./img/reserve/1.jpg",
+        "image": "./img/Reserve/1.jpg",
         "links": {
           "read_more": "https://probelarus.by/belarus/sight/natsionalnye-parki/nacionalnyy-park-pripyats.html",
-          "map": "../Map/index.html?marker=pripyatsky-national-park"
+          "map": "../Map?marker=pripyatsky-national-park"
         },
         "coordinates": "51.9757, 27.9849",
         "map_marker": "pripyatsky-national-park"
@@ -284,82 +284,82 @@
         "name": "Республиканский биологический заказник «Днепро-Сожский»",
         "location": "Гомель",
         "description": "Республиканский биологический заказник «Днепро-Сожский» — национальный заказник общей площадью 14 556 гектар, находящийся на юго-востоке Белоруссии в Лоевском районе Гомельской области между реками Днепр и Сож. Заказник был образован 5 августа 1999 года постановлением Совета Министров Республики Беларусь в целях «сохранения ценных лесных формаций и луговых сообществ с комплексами редких и исчезающих видов растений и животных, занесенных в Красную книгу Республики Беларусь». С 2005 года работает государственное учреждение «Республиканский биологический заказник «Днепро-Сожский». Территория заказника на 80 % занята лесами, она является ареалом 140 видов птиц, в заказнике произрастает более 660 видов растений.",
-        "image": "./img/reserve/2.jpg",
+        "image": "./img/Reserve/2.jpg",
         "links": {
           "read_more": "https://loev.gov.by/ru/zakaznik/#:~:text=Республиканский%20заказник%20«Днепро-Сожский»%20расположен%20на,г.п.%20Лоев%20–%2015%20км",
-          "map": "../Map/index.html?marker=dnepro-sozki-zakaznik"
+          "map": "../Map?marker=dnepro-sozki-zakaznik"
         },
-        "coordinates": "52.029812, 30.907478",
+        "coordinates": "52.0576, 30.8125",
         "map_marker": "dnepro-sozki-zakaznik"
       },
       {
         "name": "Полесский государственный радиационно-экологический заповедник",
         "location": "Гомель",
         "description": "Полесский государственный радиационно-экологический заповедник (белор. Палескі дзяржаўны радыяцыйна-экалагічны запаведнік) (акроним: ПГРЭЗ) — крупнейший заповедник Белоруссии и единственный в мире радиационно-экологический заповедник. Заповедник занимает 215 тысяч га на территории трёх наиболее пострадавших от аварии на Чернобыльской АЭС районов Гомельской области — Брагинского, Наровлянского и Хойникского. Северо-западнее заповедника расположен национальный парк Припятский. Южнее — украинская часть Зоны отчуждения Чернобыльской АЭС. Заповедник был организован 18 июля 1988 года в белорусской части зоны отчуждения Чернобыльской АЭС. На территории находятся 96 покинутых населённых пунктов, где до аварии и эвакуации в 1986 году проживало более 22 тысяч жителей. По состоянию на 2009 год ежегодные затраты на заповедник составляли около 4 млн долларов США.",
-        "image": "./img/reserve/3.jpg",
+        "image": "./img/Reserve/3.jpg",
         "links": {
           "read_more": "https://zapovednik.by",
-          "map": "../Map/index.html?marker=radiation-akology-zapovednik"
+          "map": "../Map?marker=radiation-akology-zapovednik"
         },
-        "coordinates": "51.915600, 29.987290",
+        "coordinates": "51.6360, 29.8993",
         "map_marker": "radiation-akology-zapovednik"
       },
       {
         "name": "Водно-болотный заказник Алес",
         "location": "Гомель",
         "description": "Водно-болотный заказник местного значения «Алес» образуется на землях Мозырского района Гомельской области в целях сохранения ценного водно-болотного комплекса, являющегося местом произрастания и обитания дикорастущих растений и диких животных, относящихся к видам, включенным в Красную книгу Республики Беларусь, и (или) охраняемых в соответствии с международными договорами, действующими на территории Республики Беларусь.",
-        "image": "./img/reserve/4.jpg",
+        "image": "./img/Reserve/4.jpg",
         "links": {
           "read_more": "https://fgb.by/viewtopic.php?p=75389#:~:text=Водно-болотный%20заказник%20местного%20значения%20«Алес»,действующими%20на%20территории%20Республики%20Беларусь",
-          "map": "../Map/index.html?marker=zakaznik-ales"
+          "map": "../Map?marker=zakaznik-ales"
         },
         "coordinates": "52.089491, 28.972536",
         "map_marker": "zakaznik-ales"
       },
       {
-        "name": "заказник Стрельский",
+        "name": "Заказник Стрельский",
         "location": "Гомель",
         "description": "Республиканский ландшафтный заказник «Стрельский» образуется в Калинковичском и Мозырском районах Гомельской области в целях сохранения уникальной природной территории, где представлены почти все ландшафтные комплексы Белорусского Полесья, ценные геоморфологические особенности которых сочетаются с большим биологическим разнообразием природной среды.",
-        "image": "./img/reserve/5.jpg",
+        "image": "./img/Reserve/5.jpg",
         "links": {
           "read_more": "https://klnleshoz.by/заказник-стрельский",
-          "map": "../Map/index.html?marker=zakaznik-strelsky"
+          "map": "../Map?marker=zakaznik-strelsky"
         },
         "coordinates": "51.9385, 29.4214",
         "map_marker": "zakaznik-strelsky"
       },
       {
-        "name": "заказник Выдрица",
+        "name": "Заказник Выдрица",
         "location": "Гомель",
         "description": "Республиканский заказник «Выдрица» имеет международный статус Рамсарской территории и территории международного значения, важной для популяции птиц, и входит в состав Национальной экологической сети Республики Беларусь. Общая площадь заказника «Выдрица» составляет более 17 тыс. га. Этот живописный уголок белорусской природы расположен на территории Жлобинского и Светлогорского районов Гомельской области. Заказник осуществляет свою деятельность с целью сохранения в естественном состоянии уникального природного комплекса с популяциями редких и исчезающих видов растений и животных, занесенных в Красную книгу Беларуси. Территория является важнейшим элементом в миграционных процессах, обеспечивает условия для сохранения и распространения свыше 670 разновидностей растений, несколько сотен видов животных.",
-        "image": "./img/reserve/6.jpg",
+        "image": "./img/Reserve/6.jpg",
         "links": {
           "read_more": "https://zakaznik-vydritsa.by",
-          "map": "../Map/index.html?marker=zakaznik-vidrica"
+          "map": "../Map?marker=zakaznik-vidrica"
         },
         "coordinates": "52.737071, 29.736552",
         "map_marker": "zakaznik-vidrica"
       },
       {
-        "name": "заказник Старый Жаден",
+        "name": "Заказник Старый Жаден",
         "location": "Гомель",
         "description": "Республиканский заказник «Старый Жаден» размещается на территории Житковичского и Лельчицкого районов Гомельской области. Образован в 2015 г. на площади 17 048 га. Заказник имеет статус территории международного значения, важной для птиц, а также водно-болотного угодья международного значения (Рамсарской территории). С 2016 г. заказник «Старый Жаден» является частью биосферного резервата «Припятское Полесье». Вместе с ландшафтными заказниками «Ольманские болота», «Средняя Припять» и Национальным парком «Припятский» он формирует единый природный комплекс площадью более 200 тыс. га, существование которого обеспечивает эффективную охрану биологического и ландшафтного разнообразия, а также миграцию видов в региональном и глобальном масштабах.",
-        "image": "./img/reserve/7.jpg",
+        "image": "./img/Reserve/7.jpg",
         "links": {
           "read_more": "https://zapovednytur.by/oopt/zakazniki-respublikanskogo-znacheniya/staryj-zhaden.html",
-          "map": "../Map/index.html?marker=zakaznik-stary-zaden"
+          "map": "../Map?marker=zakaznik-stary-zaden"
         },
         "coordinates": "51.880298352411856, 27.622443458947142",
         "map_marker": "zakaznik-stary-zaden"
       },
       {
-        "name": "заказник Смычок",
+        "name": "Заказник Смычок",
         "location": "Гомель",
         "description": "Республиканский заказник «Смычок» расположен на территории Жлобинского и Речицкого районов Гомельской области. Образован в 2000 г. на площади 2635 га. Заказник размещается в месте впадения Березины в Днепр. Его территория охватывает левобережную часть Березины и правобережную часть Днепра.",
-        "image": "./img/reserve/8.jpg",
+        "image": "./img/Reserve/8.jpg",
         "links": {
           "read_more": "https://naturegomel.by/respublikanskiy-landshaftnyy-zakaznik-smychok",
-          "map": "../Map/index.html?marker=zakaznik-smychok"
+          "map": "../Map?marker=zakaznik-smychok"
         },
         "coordinates": "52.5827, 30.2344",
         "map_marker": "zakaznik-smychok"
@@ -373,7 +373,7 @@
         "image": "./img/Museums/1.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=gomel_history_museum"
+          "map": "../Map?marker=gomel_history_museum"
         },
         "coordinates": "52.42835, 31.01851",
         "map_marker": "gomel_history_museum"
@@ -385,7 +385,7 @@
         "image": "./img/Museums/2.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=gomel_photo_museum"
+          "map": "../Map?marker=gomel_photo_museum"
         },
         "coordinates": "52.426411, 31.010604",
         "map_marker": "gomel_photo_museum"
@@ -397,7 +397,7 @@
         "image": "./img/Museums/3.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=gomel_art_gallery"
+          "map": "../Map?marker=gomel_art_gallery"
         },
         "coordinates": "52.430799, 31.002839",
         "map_marker": "gomel_art_gallery"
@@ -409,7 +409,7 @@
         "image": "./img/Museums/4.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=gomel_criminal_museum"
+          "map": "../Map?marker=gomel_criminal_museum"
         },
         "coordinates": "52.430309, 31.013203",
         "map_marker": "gomel_criminal_museum"
@@ -421,7 +421,7 @@
         "image": "./img/Museums/6.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=gomel_history_museum"
+          "map": "../Map?marker=gomel_history_museum"
         },
         "coordinates": "52.505519, 31.033172",
         "map_marker": "gomel_history_museum"
@@ -433,7 +433,7 @@
         "image": "./img/Museums/7.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=bragin_museum"
+          "map": "../Map?marker=bragin_museum"
         },
         "coordinates": "51.790195, 30.270425",
         "map_marker": "bragin_museum"
@@ -445,7 +445,7 @@
         "image": "./img/Museums/8.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=vetka_museum"
+          "map": "../Map?marker=vetka_museum"
         },
         "coordinates": "52.559344, 31.170525",
         "map_marker": "vetka_museum"
@@ -457,7 +457,7 @@
         "image": "./img/Museums/9.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=talash_museum"
+          "map": "../Map?marker=talash_museum"
         },
         "coordinates": "52.139575, 28.605343",
         "map_marker": "talash_museum"
@@ -469,7 +469,7 @@
         "image": "./img/Museums/10.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=yelsk_museum"
+          "map": "../Map?marker=yelsk_museum"
         },
         "coordinates": "51.806668, 29.149673",
         "map_marker": "yelsk_museum"
@@ -481,7 +481,7 @@
         "image": "./img/Museums/11.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=korma_museum"
+          "map": "../Map?marker=korma_museum"
         },
         "coordinates": "53.190190, 30.870792",
         "map_marker": "korma_museum"
@@ -493,7 +493,7 @@
         "image": "./img/Museums/12.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=mazyr_museum"
+          "map": "../Map?marker=mazyr_museum"
         },
         "coordinates": "52.047812, 29.269256",
         "map_marker": "mazyr_museum"
@@ -505,7 +505,7 @@
         "image": "./img/Museums/13.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=loev_museum"
+          "map": "../Map?marker=loev_museum"
         },
         "coordinates": "51.939785, 30.805643",
         "map_marker": "loev_museum"
@@ -517,7 +517,7 @@
         "image": "./img/Museums/14.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=rogachev_museum"
+          "map": "../Map?marker=rogachev_museum"
         },
         "coordinates": "53.261957, 30.419745",
         "map_marker": "rogachev_museum"
@@ -529,7 +529,7 @@
         "image": "./img/Museums/15.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=oktyabr_museum"
+          "map": "../Map?marker=oktyabr_museum"
         },
         "coordinates": "52.635200, 28.880486",
         "map_marker": "oktyabr_museum"
@@ -541,7 +541,7 @@
         "image": "./img/Museums/16.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=narovlya_museum"
+          "map": "../Map?marker=narovlya_museum"
         },
         "coordinates": "51.801042, 29.505872",
         "map_marker": "narovlya_museum"
@@ -553,7 +553,7 @@
         "image": "./img/Museums/17.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=rechitsa_museum"
+          "map": "../Map?marker=rechitsa_museum"
         },
         "coordinates": "52.374085, 30.386950",
         "map_marker": "rechitsa_museum"
@@ -565,7 +565,7 @@
         "image": "./img/Museums/18.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=svetlogorsk_museum"
+          "map": "../Map?marker=svetlogorsk_museum"
         },
         "coordinates": "52.629414, 29.757808",
         "map_marker": "svetlogorsk_museum"
@@ -577,7 +577,7 @@
         "image": "./img/Museums/19.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=turov_museum"
+          "map": "../Map?marker=turov_museum"
         },
         "coordinates": "52.073358, 27.723525",
         "map_marker": "turov_museum"
@@ -589,7 +589,7 @@
         "image": "./img/Museums/21.jpg",
         "links": {
           "read_more": "https://chechersk.gov.by/ru/muzej-ru/",
-          "map": "../Map/index.html?marker=chechersk_museum"
+          "map": "../Map?marker=chechersk_museum"
         },
         "coordinates": "51.801015, 29.505892",
         "map_marker": "chechersk_museum"
@@ -601,7 +601,7 @@
         "image": "./img/Museums/22.jpg",
         "links": {
           "read_more": "https://belarusgid.com/muzei-gomelya/",
-          "map": "../Map/index.html?marker=military_museum"
+          "map": "../Map?marker=military_museum"
         },
         "coordinates": "52.429720, 31.014093",
         "map_marker": "military_museum"
@@ -615,7 +615,7 @@
         "image": "./img/Museums/5.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=gomel_zero_km"
+          "map": "../Map?marker=gomel_zero_km"
         },
         "coordinates": "52.423931, 31.013356",
         "map_marker": "gomel_zero_km"
@@ -628,7 +628,7 @@
         "image": "./img/Museums/20.jpg",
         "links": {
           "read_more": "https://belarusgid.com/muzei-gomelya/",
-          "map": "../Map/index.html?marker=dovzdorovo-parkovyy-ansambl"
+          "map": "../Map?marker=dovzdorovo-parkovyy-ansambl"
         },
         "coordinates": "52.422059, 31.015386",
         "map_marker": "dovzdorovo-parkovyy-ansambl"
@@ -641,7 +641,7 @@
         "image": "./img/Culture/1.jpg",
         "links": {
           "read_more": "https://strada.by/story/memorialnyi-kompleks-ola",
-          "map": "../Map/index.html?marker=memorial-complex-ola"
+          "map": "../Map?marker=memorial-complex-ola"
         },
         "coordinates": "52.739437, 29.661119",
         "map_marker": "memorial-complex-ola"
@@ -654,7 +654,7 @@
         "image": "./img/Culture/2.jpg",
         "links": {
           "read_more": "http://www.palacegomel.by/index.php?do=static&page=dvorec-rumyancevih-paskevichei",
-          "map": "../Map/index.html?marker=dvorec-rumyancevih-paskevichei"
+          "map": "../Map?marker=dvorec-rumyancevih-paskevichei"
         },
         "coordinates": "52.422245, 31.016840",
         "map_marker": "dvorec-rumyancevih-paskevichei"
@@ -666,7 +666,7 @@
         "image": "./img/Culture/5.jpg",
         "links": {
           "read_more": "https://vetliva.ru/belarus/what-to-see/gorodishche-na-zamkovoy-gore-v-mozyre/",
-          "map": "../Map/index.html?marker=zamkovaya_gora"
+          "map": "../Map?marker=zamkovaya_gora"
         },
         "coordinates": "52.92365967445942, 30.914484799999926",
         "map_marker": "zamkovaya_gora"
@@ -678,7 +678,7 @@
         "image": "./img/Culture/6.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=sobor-sv-petra-i-pavla"
+          "map": "../Map?marker=sobor-sv-petra-i-pavla"
         },
         "coordinates": "52.424129, 31.017424",
         "map_marker": "sobor-sv-petra-i-pavla"
@@ -690,7 +690,7 @@
         "image": "./img/Culture/7.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=oranjer"
+          "map": "../Map?marker=oranjer"
         },
         "coordinates": "52.421787, 31.016620",
         "map_marker": "oranjer"
@@ -702,7 +702,7 @@
         "image": "./img/Culture/8.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=dukhovnoe-uchilishche"
+          "map": "../Map?marker=dukhovnoe-uchilishche"
         },
         "coordinates": "52.427779269, 31.019169232",
         "map_marker": "dukhovnoe-uchilishche"
@@ -714,7 +714,7 @@
         "image": "./img/Culture/9.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=troitskaya-cerkov"
+          "map": "../Map?marker=troitskaya-cerkov"
         },
         "coordinates": "52.455468, 30.991012",
         "map_marker": "troitskaya-cerkov"
@@ -726,7 +726,7 @@
         "image": "./img/Culture/10.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=cinahoga-rosh-pina"
+          "map": "../Map?marker=cinahoga-rosh-pina"
         },
         "coordinates": "52.431300, 30.998608",
         "map_marker": "cinahoga-rosh-pina"
@@ -738,7 +738,7 @@
         "image": "./img/Culture/11.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=dohodny-dom-mayantsa"
+          "map": "../Map?marker=dohodny-dom-mayantsa"
         },
         "coordinates": "52.427145, 31.013195",
         "map_marker": "dohodny-dom-mayantsa"
@@ -752,7 +752,7 @@
         "image": "./img/AncientCity/1.jpg",
         "links": {
           "read_more": "https://topbelarus.com/country/cities/gomelskaya-oblast/turov/",
-          "map": "../Map/index.html?marker=turov"
+          "map": "../Map?marker=turov"
         },
         "coordinates": "52.066329, 27.740578",
         "map_marker": "turov"
@@ -762,6 +762,10 @@
         "year": 1142,
         "description": "Гомель также входит в число древнейших городов Беларуси. Впервые Гомий - таково древнее название Гомеля - упомянут в Ипатьевской летописи от 1142 года. Около 1335 года Гомель вошел в состав Великого княжества Литовского. Город имеет богатую историю, связанную с различными историческими периодами и событиями. В Средние века Гомель был важным торговым и ремесленным центром, а также стратегическим пунктом на пути из варяг в греки. В XVIII веке город стал частью Российской империи, а в XX веке - Советского Союза. Сегодня Гомель известен своими культурными и историческими достопримечательностями, такими как дворец Румянцевых и Паскевичей, парк имени Луначарского и множество музеев. Город также является важным промышленным центром, где расположены крупные предприятия, такие как Гомсельмаш и Гомельский химический завод. Гомель привлекает туристов своей богатой историей, культурным наследием и живописными пейзажами.",
         "image": "./img/AncientCity/2.png",
+        "links": {
+          "read_more": "",
+          "map": "../Map?marker=gomel"
+        },
         "map_marker": "gomel"
       },
       {
@@ -771,7 +775,7 @@
         "image": "./img/AncientCity/3.png",
         "links": {
           "read_more": "https://ru.ruwiki.ru/wiki/Мозырь",
-          "map": "../Map/index.html?marker=mozir"
+          "map": "../Map?marker=mozir"
         },
         "coordinates": "52.0459, 28.5634",
         "map_marker": "mozir"
@@ -783,7 +787,7 @@
         "image": "./img/AncientCity/4.png",
         "links": {
           "read_more": "https://planetabelarus.by/sights/",
-          "map": "../Map/index.html?marker=rechica"
+          "map": "../Map?marker=rechica"
         },
         "coordinates": "52.360292167680115, 30.382959100860855",
         "map_marker": "rechica"
@@ -797,7 +801,7 @@
         "image": "./img/Industry/1.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry1"
+          "map": "../Map?marker=industry1"
         },
         "coordinates": "51.901640, 29.329594",
         "map_marker": "industry1"
@@ -809,7 +813,7 @@
         "image": "./img/Industry/2.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry2"
+          "map": "../Map?marker=industry2"
         },
         "coordinates": "52.046556, 29.275965",
         "map_marker": "industry2"
@@ -821,7 +825,7 @@
         "image": "./img/Industry/3.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry3"
+          "map": "../Map?marker=industry3"
         },
         "coordinates": "52.435157, 31.001545",
         "map_marker": "industry3"
@@ -833,7 +837,7 @@
         "image": "./img/Industry/4.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry4"
+          "map": "../Map?marker=industry4"
         },
         "coordinates": "52.855619, 29.996882",
         "map_marker": "industry4"
@@ -845,7 +849,7 @@
         "image": "./img/Industry/5.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry5"
+          "map": "../Map?marker=industry5"
         },
         "coordinates": "52.461014, 30.974565",
         "map_marker": "industry5"
@@ -857,7 +861,7 @@
         "image": "./img/Industry/6.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry6"
+          "map": "../Map?marker=industry6"
         },
         "coordinates": "52.434075, 30.867168",
         "map_marker": "industry6"
@@ -869,7 +873,7 @@
         "image": "./img/Industry/7.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry7"
+          "map": "../Map?marker=industry7"
         },
         "coordinates": "52.365807, 30.430612",
         "map_marker": "industry7"
@@ -881,7 +885,7 @@
         "image": "./img/Industry/8.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry8"
+          "map": "../Map?marker=industry8"
         },
         "coordinates": "52.440476, 31.004791",
         "map_marker": "industry8"
@@ -893,7 +897,7 @@
         "image": "./img/Industry/9.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry9"
+          "map": "../Map?marker=industry9"
         },
         "coordinates": "52.404517, 30.963618",
         "map_marker": "industry9"
@@ -905,7 +909,7 @@
         "image": "./img/Industry/10.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry10"
+          "map": "../Map?marker=industry10"
         },
         "coordinates": "52.518137, 30.957495",
         "map_marker": "industry10"
@@ -917,7 +921,7 @@
         "image": "./img/Industry/11.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry11"
+          "map": "../Map?marker=industry11"
         },
         "coordinates": "52.385261, 31.021025",
         "map_marker": "industry11"
@@ -929,7 +933,7 @@
         "image": "./img/Industry/12.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry12"
+          "map": "../Map?marker=industry12"
         },
         "coordinates": "52.437164, 30.988130",
         "map_marker": "industry12"
@@ -941,7 +945,7 @@
         "image": "./img/Industry/13.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry13"
+          "map": "../Map?marker=industry13"
         },
         "coordinates": "52.454772, 30.916644",
         "map_marker": "industry13"
@@ -953,7 +957,7 @@
         "image": "./img/Industry/14.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry14"
+          "map": "../Map?marker=industry14"
         },
         "coordinates": "52.383461, 31.024626",
         "map_marker": "industry14"
@@ -965,7 +969,7 @@
         "image": "./img/Industry/15.jpg",
         "links": {
           "read_more": "",
-          "map": "../Map/index.html?marker=industry15"
+          "map": "../Map?marker=industry15"
         },
         "coordinates": "52.42411, 30.98279",
         "map_marker": "industry15"
@@ -979,7 +983,7 @@
         "image": "./img/Lake/1.jpg",
         "links": {
           "read_more": "https://turovschina.by/otdyh/beloe",
-          "map": "../Map/index.html?marker=beloe_lake"
+          "map": "../Map?marker=beloe_lake"
         },
         "coordinates": "52.337165, 27.694692",
         "map_marker": "beloe_lake"
@@ -991,7 +995,7 @@
         "image": "./img/Lake/2.png",
         "links": {
           "read_more": "https://fishingby.com/waterbodies/lyubenskoe-ozero-gomelskij-rajon/",
-          "map": "../Map/index.html?marker=lyubenskoe_lake"
+          "map": "../Map?marker=lyubenskoe_lake"
         },
         "coordinates": "52.401408, 30.994608",
         "map_marker": "lyubenskoe_lake"
@@ -1003,7 +1007,7 @@
         "image": "./img/Lake/3.jpg",
         "links": {
           "read_more": "https://antfish.com/ponds/10573",
-          "map": "../Map/index.html?marker=krushinovskoe_lake"
+          "map": "../Map?marker=krushinovskoe_lake"
         },
         "coordinates": "53.26967, 29.849562",
         "map_marker": "krushinovskoe_lake"
@@ -1015,7 +1019,7 @@
         "image": "./img/Lake/4.jpg",
         "links": {
           "read_more": "https://руни.рф/Гадынь",
-          "map": "../Map/index.html?marker=gadin"
+          "map": "../Map?marker=gadin"
         },
         "coordinates": "52.370209, 30.502610",
         "map_marker": "gadin"
@@ -1027,7 +1031,7 @@
         "image": "./img/Lake/5.jpg",
         "links": {
           "read_more": "https://wiki2.org/ru/Ревучее_(озеро)",
-          "map": "../Map/index.html?marker=revuchee"
+          "map": "../Map?marker=revuchee"
         },
         "coordinates": "52.580068, 31.493218",
         "map_marker": "revuchee"
@@ -1039,7 +1043,7 @@
         "image": "./img/Lake/6.png",
         "links": {
           "read_more": "https://antfish.com/ponds/8476",
-          "map": "../Map/index.html?marker=svyatoe"
+          "map": "../Map?marker=svyatoe"
         },
         "coordinates": "53.086291, 29.952940",
         "map_marker": "svyatoe"
@@ -1051,7 +1055,7 @@
         "image": "./img/Lake/7.jpg",
         "links": {
           "read_more": "https://ru.ruwiki.ru/wiki/Старик_(озеро,_Петриковский_район)",
-          "map": "../Map/index.html?marker=starik"
+          "map": "../Map?marker=starik"
         },
         "coordinates": "52.160592, 28.684959",
         "map_marker": "starik"
@@ -1063,7 +1067,7 @@
         "image": "./img/Lake/8.jpg",
         "links": {
           "read_more": "https://wiki2.org/ru/Старое_(озеро,_Гомельская_область)",
-          "map": "../Map/index.html?marker=staroe"
+          "map": "../Map?marker=staroe"
         },
         "coordinates": "52.848351, 30.892667",
         "map_marker": "staroe"
@@ -1075,7 +1079,7 @@
         "image": "./img/Lake/9.png",
         "links": {
           "read_more": "https://be.wikipedia.org/wiki/Старуха_(возера,_Нараўлянскі_раён)",
-          "map": "../Map/index.html?marker=staruha"
+          "map": "../Map?marker=staruha"
         },
         "coordinates": "51.74469, 29.59855",
         "map_marker": "staruha"
@@ -1087,7 +1091,7 @@
         "image": "./img/Lake/10.jpg",
         "links": {
           "read_more": "https://antfish.com/ponds/8687",
-          "map": "../Map/index.html?marker=stoyachee"
+          "map": "../Map?marker=stoyachee"
         },
         "coordinates": "52.860874, 30.911038.",
         "map_marker": "stoyachee"
@@ -1099,7 +1103,7 @@
         "image": "./img/Lake/11.jpg",
         "links": {
           "read_more": "https://ru.ruwiki.ru/wiki/Буснежье",
-          "map": "../Map/index.html?marker=busnezhye"
+          "map": "../Map?marker=busnezhye"
         },
         "coordinates": "52.344903, 30.498118",
         "map_marker": "busnezhye"
@@ -1111,7 +1115,7 @@
         "image": "./img/Lake/12.jpg",
         "links": {
           "read_more": "https://gomelstreet.by/vodoyomy-gomelya/ozero-shapor",
-          "map": "../Map/index.html?marker=shapor"
+          "map": "../Map?marker=shapor"
         },
         "coordinates": "52.393896, 31.018261",
         "map_marker": "shapor"
@@ -1123,19 +1127,19 @@
         "image": "./img/Lake/13.png",
         "links": {
           "read_more": "https://gomelstreet.by/vodoyomy-gomelya/ozero-dedno",
-          "map": "../Map/index.html?marker=dedno"
+          "map": "../Map?marker=dedno"
         },
         "coordinates": "52.442334, 31.021441",
         "map_marker": "dedno"
       },
       {
-        "name": "Роповское",
+        "name": "Роповское озеро",
         "location": "Гомель",
         "description": "Озеро пойменного типа, связано с рекой Сож двумя протоками. Расположено в Советском районе Гомеля, в южной части города вдоль улицы Богдана Хмельницкого. Название озера от аббревиатуры РОП — районный отстойник плав¬средств. В акватории озера расположена лодочная станция, гребная база и два пляжа с соответствующей инфраструктурой.",
-        "image": "./img/Lake/14.png",
+        "image": "./img/Lake/14.jpg",
         "links": {
           "read_more": "https://street.gomelhistory.by/vodoyomy-gomelya/ozero-ropovskoe/",
-          "map": "../Map/index.html?marker=ropovskoe"
+          "map": "../Map?marker=ropovskoe"
         },
         "coordinates": "52.393863, 30.981223",
         "map_marker": "ropovskoe"
@@ -1144,10 +1148,10 @@
         "name": "Осинник",
         "location": "Гомель",
         "description": "Озеро Осинное находится в Чечерском районе Гомельской обл., примерно в 14 км на юг от г. Чечерск, возле деревень Себровичи и Шепотовичи и относится к бассейну р. Сож (фактически расположено в ее припойменной зоне). Является озером пойменного типа. Местность преимущественно равнинная, низинная, местами грядистая, болотистая, поросшая кустарником и редколесьем.",
-        "image": "./img/Lake/15.png",
+        "image": "./img/Lake/15.jpg",
         "links": {
           "read_more": "https://antfish.com/ponds/11207",
-          "map": "../Map/index.html?marker=osinnik"
+          "map": "../Map?marker=osinnik"
         },
         "coordinates": "52.471232, 30.920318",
         "map_marker": "osinnik"
@@ -1156,10 +1160,10 @@
         "name": "Волотовское",
         "location": "Гомель",
         "description": "Озеро Волотовское — самое крупное озеро Волотовского каскада озёр в Гомеле. Расположено между Бурым болотом и каскадом малых озёр. Некогда весь Волотовской каскад был частью озера Волотово в деревне с одноименным названием. В настоящее время территория озера благоустроена и активно используется. Озеро богато рыбой, в 2016 году на Волотовском прошел чемпионат Беларуси по водно-моторному спорту.",
-        "image": "./img/Lake/15.png",
+        "image": "./img/Lake/16.jpg",
         "links": {
           "read_more": "https://street.gomelhistory.by/vodoyomy-gomelya/ozero-volotovskoe/",
-          "map": "../Map/index.html?marker=volotovskoye"
+          "map": "../Map?marker=volotovskoye"
         },
         "coordinates": "52.463628, 31.027145",
         "map_marker": "volotovskoye"
@@ -1168,10 +1172,10 @@
         "name": "Чырвонае озеро",
         "location": "Гомель",
         "description": "Крупнейшее озеро Полесья лежит среди плоских болот и лесных равнин. Когда-то оно было частью пресного моря, которое занимало значительную территорию Полесья. О названии озера ходит немало легенд. В давние времена называли его Червонным из-за большого количества рыбы красноперки. Рассказывают также о великой битве между богатырями за владение озером. От пролитой крови и назвали его Червоным.",
-        "image": "./img/Lake/16.png",
+        "image": "./img/Lake/17.jpg",
         "links": {
           "read_more": "https://planetabelarus.by/sights/ozero-chervonoe-knyaz-ozero/",
-          "map": "../Map/index.html?marker=chirvonaye"
+          "map": "../Map?marker=chirvonaye"
         },
         "coordinates": "52.403402, 27.970807",
         "map_marker": "chirvonaye"
@@ -1182,10 +1186,10 @@
         "name": "Сож",
         "location": "Украина, Россия, Беларусь",
         "description": "Река Сож — второй по величине и водности левый приток Днепра — берёт начало на Смоленско-Московской возвышенности в Смоленском районе Смоленской области в 12 км к югу от Смоленска. Протекая по территории двух областей Белоруссии (Могилёвской и Гомельской), пересекает различные геоморфологические районы ледникового и водно-ледникового происхождения. Наличие хорошо выраженных в рельефе и прослеживаемых на значительном протяжении трёх сквозных террас (двух надпойменных и поймы) составляет характерную особенность долины реки Сож. Долина хорошо выраженная, трапецеидальная, врезана на глубину 20-30 м. На большем протяжении в пределах Кричевского района её ширина составляет 1,5-3 км, при слиянии с долиной реки Остёр — 5 км. После слияния с рекой Беседь Сож течёт по Белорусскому Полесью. Склоны пологие и умеренно крутые, высотой 15-25 м, рассечены оврагами, балками и долинами притоков. Правый склон преимущественно открытый, распаханный, левый — облесен. В обнажениях долины реки и её притоков прослеживаются моргельно-меловые породы, содержащие кремнёвое сырье. Впадает в Днепр у Лоева. Ширина русла Сожа в нижнем течении достигает 230 м, глубина — до 5-6 м, скорость течения — иногда более 1,5 м в секунду. У Гомеля каждую секунду река проносит около 200 м³ воды. Эта вода славится высокой степенью чистоты. Сож — одна из самых чистых рек в Европе.",
-        "image": "./img/river1.png",
+        "image": "./img/Rivers/1.jpg",
         "links": {
           "read_more": "https://ozeraireki.by/reka-sozh/",
-          "map": "../Map/index.html?marker=sozh"
+          "map": "../Map?marker=sozh"
         },
         "coordinates": "52.41711431844062, 31.015170976037076",
         "map_marker": "sozh"
@@ -1194,10 +1198,10 @@
         "name": "Припять",
         "location": "Украина, Беларусь",
         "description": "При́пять - Крупнейший по площади бассейна, длине и водности правый приток Днепра, впадает в Киевское водохранилище. Длина реки Припять составляет 761 км, из которых на территорию Беларуси приходится 500 км.",
-        "image": "./img/river2.png",
+        "image": "./img/Rivers/2.jpg",
         "links": {
           "read_more": "https://ru.wikipedia.org/wiki/Припять_(река)",
-          "map": "../Map/index.html?marker=pripyat"
+          "map": "../Map?marker=pripyat"
         },
         "coordinates": "51.758007, 29.593769",
         "map_marker": "pripyat"
@@ -1206,10 +1210,10 @@
         "name": "Березина",
         "location": "Беларусь",
         "description": "Река Березина — значительная река Гомельщины в Беларуси, длиной около 613 километров и площадью бассейна примерно 21 000 квадратных километров. Она начинается в Минской области и течет на юг, впадая в Днепр. Березина известна разнообразием флоры и фауны, её берега окружены лесами и болотами. Река популярна для рыбалки, в ней обитают щука, карп и лещ. Березина также имеет историческое значение, играя роль во время Наполеоновских войн, и привлекает туристов возможностями для активного отдыха, такими как каякинг и рыбалка.",
-        "image": "./img/river3.png",
+        "image": "./img/Rivers/3.jpg",
         "links": {
-          "read_more": "https://berezina-river.by/",
-          "map": "../Map/index.html?marker=berezina"
+          "read_more": "https://berezina-rivers.by/",
+          "map": "../Map?marker=berezina"
         },
         "coordinates": "52.575426, 30.174877",
         "map_marker": "berezina"
@@ -1218,18 +1222,14 @@
         "name": "Днепр",
         "location": "Украина, Россия, Беларусь",
         "description": "Днепр — четвёртая по длине река Европы после Волги, Дуная и Урала, имеет самое длинное русло в границах Украины. Протяженность на территории Беларуси - 700 км.",
-        "image": "./img/river4.png",
+        "image": "./img/Rivers/4.jpg",
         "links": {
           "read_more": "https://ru.wikipedia.org/wiki/Днепр",
-          "map": "../Map/index.html?marker=dnepr"
+          "map": "../Map?marker=dnepr"
         },
         "coordinates": "52.22875, 30.54914",
         "map_marker": "dnepr"
       }
-    ],
-    "interesting_fact": {
-      "text": "Единственный в Беларуси фарфоровый завод работает в Добруше",
-      "video_url": "https://www.youtube.com/embed/ZaIaknnPD1U"
-    }
+    ]
   }
 }

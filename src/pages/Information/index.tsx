@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import style from './style.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -122,23 +123,25 @@ interface Item {
     read_more?: string;
     map?: string;
   };
+  map_marker?: string;
 }
 
 interface Data {
   categories: Record<string, Item[]>;
 }
 
-const ContentBlock: FC<Item> = ({
+const ContentBlock: FC<Item & { id?: string }> = ({
+  id,
   name,
   location,
   description,
   image,
   links,
+  map_marker,
 }) => (
-  <div className={style.blockDost}>
+  <div id={id} className={style.blockDost}>
     <p className={style.textDost}>{name}</p>
-    <h2 className={style.textName}>{location}</h2>
-    <p className={style.gorod}>{description}</p>
+    <h2 className={style.gorod}>{location}</h2>
     <img
       src="./img/Line 14.png"
       alt="divider decoration"
@@ -158,34 +161,97 @@ const ContentBlock: FC<Item> = ({
           Читать ещё
         </a>
       )}
-      {links?.map && (
-        <a href={links.map} className={style.btn2}>
-          Показать на карте
-        </a>
-      )}
+      <Link to={`/map?marker=${map_marker}`} className={style.btn2}>
+        Показать на карте
+      </Link>
     </div>
   </div>
 );
 
 export const Information: FC = () => {
   const [data, setData] = useState<Data | null>(null);
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('category');
+  const itemId = searchParams.get('item');
+  // Добавляем состояние для отслеживания развернутых категорий
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
+    new Set(),
+  );
+
+  // Добавляем словарь названий категорий
+  const categoryNames: { [key: string]: string } = {
+    museums: 'Музеи',
+    monuments: 'Монументы',
+    cultural_values: 'Культурные ценности',
+    ancient_cities: 'Древние города',
+    industry: 'Промышленность',
+    reserve: 'Заповедники',
+    lakes: 'Озёра',
+    rivers: 'Реки',
+  };
+
+  // Функция для переключения состояния категории
+  const toggleCategory = (categoryKey: string) => {
+    setExpandedCategories(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(categoryKey)) {
+        newSet.delete(categoryKey);
+      } else {
+        newSet.add(categoryKey);
+      }
+      return newSet;
+    });
+  };
 
   useEffect(() => {
     fetch('/data.json')
       .then(response => response.json())
-      .then(setData)
+      .then(data => {
+        setData(data);
+        if (category && itemId && data.categories[category]) {
+          const item = data.categories[category].find(
+            (item: Item) => item.map_marker === itemId,
+          );
+          if (item) {
+            const element = document.getElementById(itemId);
+            element?.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      })
       .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  }, [category, itemId]);
 
   return (
     <>
       <Header />
       <Banner />
-      {data?.categories &&
-        Object.values(data.categories)
-          .flat()
-          .map((item, index) => <ContentBlock key={index} {...item} />)}
-      <Modal />
+      <div className={style.main}>
+        {data?.categories &&
+          Object.entries(data.categories).map(([categoryKey, items]) => {
+            const isExpanded = expandedCategories.has(categoryKey);
+            const displayedItems = isExpanded ? items : items.slice(0, 5);
+
+            return (
+              <div key={categoryKey} className={style.categorySection}>
+                <h2 className={style.categoryTitle}>
+                  {categoryNames[categoryKey]}
+                </h2>
+                {displayedItems.map((item, index) => (
+                  <ContentBlock key={index} {...item} id={item.map_marker} />
+                ))}
+                {items.length > 5 && (
+                  <button
+                    className={style.showMoreButton}
+                    onClick={() => toggleCategory(categoryKey)}
+                  >
+                    {isExpanded ? 'Показать меньше' : 'Показать больше'}
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        <Modal />
+      </div>
     </>
   );
 };

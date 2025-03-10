@@ -2,18 +2,16 @@ import React from 'react';
 import { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 
-type MenuType = 'left' | 'top';
-
-interface IMenuProps {
-  type: MenuType;
+interface NavMenuProps {
   activeCategories: string[];
   setActiveCategories: (categories: string[]) => void;
+  onCategorySelect?: () => void;
 }
 
-export const NavMenu: React.FC<IMenuProps> = ({
-  type,
+export const NavMenu: React.FC<NavMenuProps> = ({
   activeCategories,
   setActiveCategories,
+  onCategorySelect,
 }) => {
   const categories = [
     'museums',
@@ -50,12 +48,7 @@ export const NavMenu: React.FC<IMenuProps> = ({
   };
 
   return (
-    <div
-      style={{
-        ...styles.navMenu,
-        ...(type === 'left' ? styles.leftMenu : styles.topMenu),
-      }}
-    >
+    <div style={{ ...styles.navMenu, ...styles.topMenu }}>
       <Link to="/" style={styles.backButton}>
         Назад
       </Link>
@@ -93,17 +86,6 @@ const styles: { [key: string]: CSSProperties } = {
     width: '100%',
     zIndex: 1000,
   },
-  leftMenu: {
-    width: '10%',
-    height: '100vh',
-    backgroundColor: '#f4f4f4',
-    padding: '10px',
-    boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
   topMenu: {
     width: '100%',
     display: 'flex',
@@ -129,6 +111,7 @@ const styles: { [key: string]: CSSProperties } = {
     backgroundColor: '#ccc',
     transition: 'background-color 0.3s',
     width: 'auto',
+    border: 1,
   },
   clearButton: {
     margin: '5px',
