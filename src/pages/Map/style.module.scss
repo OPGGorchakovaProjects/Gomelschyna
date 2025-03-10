@@ -193,4 +193,45 @@
       opacity: 0;
     }
   }
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.routeButton {
+  display: flex;
+  flex: 1;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: #218838;
+  }
+}
+
+// Стили для маршрута
+:global {
+  .leaflet-routing-container {
+    display: none;
+  }
+
+  .leaflet-routing-alt {
+    max-height: none !important;
+  }
+
+  .leaflet-routing-geocoder {
+    display: none;
+  }
 } 

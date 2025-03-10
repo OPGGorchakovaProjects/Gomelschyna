@@ -3,8 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import 'leaflet-routing-machine';
 import { useSearchParams } from 'react-router-dom';
-
 import { Typography } from '@components';
 import { Header } from '@modules';
 import { Link } from 'react-router-dom';
@@ -43,24 +43,64 @@ const createClusterCustomIcon = function (cluster: any) {
   } else if (count > 20) {
     className = 'cluster-medium';
   }
-
-  return L.divIcon({
-    html: `<div class="cluster-icon ${className}">${count}</div>`,
-    className: 'custom-marker-cluster',
-    iconSize: L.point(40, 40, true),
-  });
 };
 
 export const Map = () => {
   const [data, setData] = useState<Data | null>(null);
   const [activeCategories, setActiveCategories] = useState<string[]>([]);
   const [searchParams] = useSearchParams();
-  const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
   const mapRef = useRef<any>(null);
+  const [routingControl, setRoutingControl] = useState<any>(null);
+  const [userLocation, setUserLocation] = useState<[number, number] | null>(
+    null,
+  );
+
+  const getUserLocation = (destinationCoords: [number, number]) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation([latitude, longitude]);
+          createRoute([latitude, longitude], destinationCoords);
+        },
+        error => {
+          console.error('Error getting user location:', error);
+          alert('Не удалось получить ваше местоположение');
+        },
+      );
+    } else {
+      alert('Геолокация не поддерживается вашим браузером');
+    }
+  };
+
+  const createRoute = (from: [number, number], to: [number, number]) => {
+    if (mapRef.current) {
+      if (routingControl) {
+        mapRef.current.removeControl(routingControl);
+      }
+
+      const control = L.Routing.control({
+        waypoints: [L.latLng(from[0], from[1]), L.latLng(to[0], to[1])],
+        routeWhileDragging: false,
+        lineOptions: {
+          styles: [{ color: '#007bff', weight: 4 }],
+        },
+        show: false,
+        addWaypoints: false,
+        draggableWaypoints: false,
+        fitSelectedRoutes: true,
+      }).addTo(mapRef.current);
+
+      setRoutingControl(control);
+    }
+  };
 
   useEffect(() => {
     const markerFromUrl = searchParams.get('marker');
-    setSelectedPoint(markerFromUrl);
+    if (markerFromUrl) {
+      setSelectedMarker(markerFromUrl);
+    }
   }, [searchParams]);
 
   useEffect(() => {
@@ -69,14 +109,14 @@ export const Map = () => {
       .then(jsonData => {
         setData(jsonData);
 
-        if (selectedPoint) {
+        if (selectedMarker) {
           for (const [category, items] of Object.entries(
             jsonData.categories as Record<string, Item[]>,
           )) {
-            if (items.some(item => item.map_marker === selectedPoint)) {
+            if (items.some(item => item.map_marker === selectedMarker)) {
               setActiveCategories([category]);
 
-              const item = items.find(i => i.map_marker === selectedPoint);
+              const item = items.find(i => i.map_marker === selectedMarker);
               if (item?.coordinates && mapRef.current) {
                 const [lat, lng] = item.coordinates
                   .split(',')
@@ -89,7 +129,7 @@ export const Map = () => {
         }
       })
       .catch(error => console.error('Error:', error));
-  }, [selectedPoint]);
+  }, [selectedMarker]);
 
   const renderMarkers = (category: string): JSX.Element[] | null => {
     if (!data?.categories[category] || !activeCategories.includes(category)) {
@@ -97,12 +137,9 @@ export const Map = () => {
     }
 
     return data.categories[category]
-      .filter((item: Item) => {
-        if (selectedPoint) {
-          return item.map_marker === selectedPoint;
-        }
-        return true;
-      })
+      .filter((item: Item) =>
+        selectedMarker ? item.map_marker === selectedMarker : true,
+      )
       .map((item: Item, index: number) => {
         const coordinates: [number, number] = item.coordinates
           ? (item.coordinates
@@ -119,28 +156,29 @@ export const Map = () => {
                 text={item.description}
                 limit={400}
               />
-              <Link
-                className={styles.link}
-                to={`/information?category=${category}&item=${item.map_marker}#${item.map_marker}`}
-              >
-                Читать дальше
-              </Link>
+              <div className={styles.buttonContainer}>
+                <Link
+                  className={styles.link}
+                  to={`/information?category=${category}&item=${item.map_marker}`}
+                >
+                  Читать дальше
+                </Link>
+                <button
+                  className={styles.routeButton}
+                  onClick={e => {
+                    e.preventDefault();
+                    getUserLocation(coordinates);
+                  }}
+                >
+                  Проложить маршрут
+                </button>
+              </div>
               {item.image && (
                 <img
                   src={item.image}
                   alt={item.name}
                   className={styles.image}
                 />
-              )}
-              {item.links?.read_more && (
-                <a
-                  href={item.links.read_more}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.link}
-                >
-                  Больше информации
-                </a>
               )}
             </Popup>
             <Tooltip>{item.name}</Tooltip>
@@ -174,13 +212,10 @@ export const Map = () => {
             chunkedLoading
             iconCreateFunction={createClusterCustomIcon}
             showCoverageOnHover={false}
-            maxClusterRadius={100}
+            maxClusterRadius={60}
+            spiderfyDistanceMultiplier={2}
             animate={true}
             animateAddingMarkers={true}
-            disableClusteringAtZoom={13}
-            spiderLegPolylineOptions={{ opacity: 0 }}
-            spiderfyOnMaxZoom={false}
-            zoomToBoundsOnClick={true}
           >
             {data &&
               Object.keys(categoryColors).map(category =>
