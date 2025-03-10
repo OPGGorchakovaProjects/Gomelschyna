@@ -1,12 +1,15 @@
 import { useEffect, useState, JSX, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet/dist/leaflet.css';
+// import 'react-leaflet-markercluster/dist/styles.min.css';
 import L from 'leaflet';
 import { useSearchParams } from 'react-router-dom';
 
 import { Typography } from '@components';
 import { NavMenu } from '@modules';
 import { Link } from 'react-router-dom';
+import styles from './style.module.scss';
 
 const categoryColors: { [key: string]: string } = {
   reserve: 'green',
@@ -22,7 +25,7 @@ const categoryColors: { [key: string]: string } = {
 
 const getIcon = (category: string) => {
   return L.divIcon({
-    html: `<div style="background-color: ${categoryColors[category]}; width: 20px; height: 20px; border-radius: 50%; border: 2px solid white;"></div>`,
+    html: `<div class="${styles.markerIcon}" style="background-color: ${categoryColors[category]};"></div>`,
     className: '',
     iconSize: [20, 20],
     iconAnchor: [10, 10],
@@ -47,6 +50,23 @@ interface Data {
     [key: string]: Item[];
   };
 }
+
+const createClusterCustomIcon = function (cluster: any) {
+  const count = cluster.getChildCount();
+  let className = 'cluster-small';
+
+  if (count > 50) {
+    className = 'cluster-large';
+  } else if (count > 20) {
+    className = 'cluster-medium';
+  }
+
+  return L.divIcon({
+    html: `<div class="cluster-icon ${className}">${count}</div>`,
+    className: 'custom-marker-cluster',
+    iconSize: L.point(40, 40, true),
+  });
+};
 
 export const Map = () => {
   const [data, setData] = useState<Data | null>(null);
@@ -110,27 +130,31 @@ export const Map = () => {
         return (
           <Marker key={index} position={coordinates} icon={getIcon(category)}>
             <Popup>
-              <h3 style={styles.title}>{item.name}</h3>
+              <h3 className={styles.title}>{item.name}</h3>
               <Typography
-                style={styles.description}
+                className={styles.description}
                 text={item.description}
                 limit={400}
               />
               <Link
-                style={styles.link}
+                className={styles.link}
                 to={`/information?category=${category}&item=${item.map_marker}#${item.map_marker}`}
               >
                 Читать дальше
               </Link>
               {item.image && (
-                <img src={item.image} alt={item.name} style={styles.image} />
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className={styles.image}
+                />
               )}
               {item.links?.read_more && (
                 <a
                   href={item.links.read_more}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={styles.link}
+                  className={styles.link}
                 >
                   Больше информации
                 </a>
@@ -143,18 +167,18 @@ export const Map = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div className={styles.container}>
       <NavMenu
         activeCategories={activeCategories}
         setActiveCategories={setActiveCategories}
         onCategorySelect={() => setSelectedPoint(null)}
       />
-      <div style={styles.mapWrapper}>
+      <div className={styles.mapWrapper}>
         <MapContainer
           ref={mapRef}
           center={[52.4242, 31.014]}
           zoom={8}
-          style={styles.mapContainer}
+          className={styles.mapContainer}
           attributionControl={false}
           zoomControl={false}
           maxBounds={[
@@ -164,79 +188,25 @@ export const Map = () => {
           minZoom={5}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          {data &&
-            Object.keys(categoryColors).map(category =>
-              renderMarkers(category),
-            )}
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={createClusterCustomIcon}
+            showCoverageOnHover={false}
+            maxClusterRadius={100}
+            animate={true}
+            animateAddingMarkers={true}
+            disableClusteringAtZoom={13}
+            spiderLegPolylineOptions={{ opacity: 0 }}
+            spiderfyOnMaxZoom={false}
+            zoomToBoundsOnClick={true}
+          >
+            {data &&
+              Object.keys(categoryColors).map(category =>
+                renderMarkers(category),
+              )}
+          </MarkerClusterGroup>
         </MapContainer>
       </div>
     </div>
   );
-};
-
-import { CSSProperties } from 'react';
-
-const styles: { [key: string]: CSSProperties } = {
-  container: {
-    position: 'relative',
-    height: '100vh',
-    width: '100vw',
-    overflowX: 'hidden',
-    overflowY: 'hidden',
-  },
-  mapWrapper: {
-    height: '100%',
-    width: '100%',
-  },
-  mapContainer: {
-    height: '100%',
-    width: '100%',
-  },
-  title: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: '10px',
-    color: '#333',
-  },
-  description: {
-    textAlign: 'justify',
-    fontSize: 15,
-    color: '#555',
-    marginBottom: '10px',
-    hyphens: 'auto',
-    wordWrap: 'normal',
-    textJustify: 'auto',
-    textIndent: '1.5em',
-    lineHeight: 1.4,
-    textAlignLast: 'left',
-    maxWidth: '100%',
-  },
-  image: {
-    width: '100%',
-    height: 'auto',
-    borderRadius: '8px',
-    marginBottom: '10px',
-  },
-  popup: {
-    padding: '10px',
-    borderRadius: '8px',
-    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
-  },
-  link: {
-    display: 'flex',
-    flex: 1,
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    padding: '10px 20px',
-    fontSize: '16px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
-  },
-  buttonHover: {
-    backgroundColor: '#0056b3',
-  },
 };
