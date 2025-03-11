@@ -2,8 +2,18 @@ import { useEffect, useState, JSX, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.js';
+
+declare module 'leaflet' {
+  namespace Routing {
+    function control(options: any): any;
+  }
+}
+
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.js';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import { useSearchParams } from 'react-router-dom';
 import { Typography } from '@components';
 import { Header } from '@modules';
@@ -96,6 +106,14 @@ export const Map = () => {
     }
   };
 
+  const clearRoute = () => {
+    if (routingControl && mapRef.current) {
+      mapRef.current.removeControl(routingControl);
+      setRoutingControl(null);
+      setUserLocation(null);
+    }
+  };
+
   useEffect(() => {
     const markerFromUrl = searchParams.get('marker');
     if (markerFromUrl) {
@@ -180,6 +198,9 @@ export const Map = () => {
                   className={styles.image}
                 />
               )}
+              {item.links?.read_more && (
+                <a href={item.links?.read_more}>Больше информации</a>
+              )}
             </Popup>
             <Tooltip>{item.name}</Tooltip>
           </Marker>
@@ -192,6 +213,8 @@ export const Map = () => {
       <Header
         activeCategories={activeCategories}
         setActiveCategories={setActiveCategories}
+        hasRoute={!!routingControl}
+        onClearRoute={clearRoute}
       />
       <div className={styles.mapWrapper}>
         <MapContainer

@@ -61,7 +61,6 @@ const RoutingControl = ({
   return null;
 };
 
-// Создаем новый компонент для обработки событий карты
 const MapEvents = ({
   onMapClick,
 }: {

@@ -26,7 +26,7 @@ const Header: FC = () => {
   );
 };
 
-const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => (
+const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen }) => (
   <div className={`${style.blockBurger} ${isOpen ? style.active2 : ''}`}>
     <div className={style.burgerContent}>
       {[

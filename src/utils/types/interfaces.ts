@@ -24,9 +24,11 @@ export interface IScreenProps {
   className?: string;
 }
 
-export interface HeaderProps {
+export interface IHeaderProps {
   activeCategories: string[];
   setActiveCategories: (categories: string[]) => void;
+  hasRoute?: boolean;
+  onClearRoute?: () => void;
 }
 
 export interface CategoryInfo {

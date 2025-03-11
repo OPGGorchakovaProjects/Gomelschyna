@@ -12,7 +12,7 @@ import {
   IconArrowLeft,
 } from '@tabler/icons-react';
 import styles from './style.module.scss';
-import { CategoryInfo, HeaderProps } from '@utils';
+import { CategoryInfo, IHeaderProps } from '@utils';
 
 const categoryInfo: { [key: string]: CategoryInfo } = {
   museums: {
@@ -49,9 +49,11 @@ const categoryInfo: { [key: string]: CategoryInfo } = {
   },
 };
 
-export const Header: FC<HeaderProps> = ({
+export const Header: FC<IHeaderProps> = ({
   activeCategories,
   setActiveCategories,
+  hasRoute,
+  onClearRoute,
 }) => {
   const toggleCategory = (category: string) => {
     if (activeCategories.includes(category)) {
@@ -62,7 +64,11 @@ export const Header: FC<HeaderProps> = ({
   };
 
   const handleClearClick = () => {
-    setActiveCategories([]);
+    if (hasRoute && onClearRoute) {
+      onClearRoute();
+    } else {
+      setActiveCategories([]);
+    }
   };
 
   return (
@@ -92,9 +98,9 @@ export const Header: FC<HeaderProps> = ({
       </div>
 
       <div className={styles.rightContainer}>
-        {activeCategories.length > 0 && (
+        {(activeCategories.length > 0 || hasRoute) && (
           <button onClick={handleClearClick} className={styles.clearButton}>
-            Очистить
+            {hasRoute ? 'Очистить маршрут' : 'Очистить'}
           </button>
         )}
       </div>
