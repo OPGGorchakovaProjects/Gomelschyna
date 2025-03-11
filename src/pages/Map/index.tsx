@@ -235,8 +235,9 @@ export const Map = () => {
             chunkedLoading
             iconCreateFunction={createClusterCustomIcon}
             showCoverageOnHover={false}
-            maxClusterRadius={60}
+            maxClusterRadius={80}
             spiderfyDistanceMultiplier={2}
+            disableClusteringAtZoom={13}
             animate={true}
             animateAddingMarkers={true}
           >

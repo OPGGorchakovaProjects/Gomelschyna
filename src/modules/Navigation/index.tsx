@@ -13,25 +13,19 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import styles from './style.module.scss';
-import { IconManFilled, IconFlag } from '@tabler/icons-react';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { man, mapPin } from '@assets';
 
-const createCustomIcon = (icon: JSX.Element, size: number = 40) => {
+// Создание кастомных иконок через <i>
+const createCustomIcon = (className: string, size: number = 40) => {
   return L.divIcon({
     className: 'custom-icon',
-    html: renderToStaticMarkup(icon),
+    html: `<i class="${className}" style="font-size:${size}px;"></i>`,
     iconSize: [size, size],
     iconAnchor: [size / 2, size],
   });
 };
 
-const RoutingControl = ({
-  userLocation,
-  destination,
-}: {
-  userLocation: [number, number];
-  destination: [number, number];
-}) => {
+const RoutingControl = ({ userLocation, destination, onRouteCreated }: any) => {
   const map = useMap();
   const routingControlRef = useRef<any>(null);
 
@@ -42,21 +36,29 @@ const RoutingControl = ({
       map.removeControl(routingControlRef.current);
     }
 
+    if (!L.Routing) {
+      console.error('Leaflet Routing Machine не загружен.');
+      return;
+    }
+
     routingControlRef.current = L.Routing.control({
-      waypoints: [
-        L.latLng(userLocation[0], userLocation[1]),
-        L.latLng(destination[0], destination[1]),
-      ],
+      waypoints: [L.latLng(userLocation), L.latLng(destination)],
       routeWhileDragging: true,
-      lineOptions: {
-        styles: [{ color: '#007bff', weight: 4 }],
-      },
+      lineOptions: { styles: [{ color: '#007bff', weight: 4 }] },
       show: false,
       addWaypoints: false,
       draggableWaypoints: false,
       fitSelectedRoutes: true,
     }).addTo(map);
-  }, [userLocation, destination, map]);
+
+    onRouteCreated();
+
+    return () => {
+      if (routingControlRef.current) {
+        map.removeControl(routingControlRef.current);
+      }
+    };
+  }, [userLocation, destination, map, onRouteCreated]);
 
   return null;
 };
@@ -66,9 +68,7 @@ const MapEvents = ({
 }: {
   onMapClick: (e: L.LeafletMouseEvent) => void;
 }) => {
-  useMapEvents({
-    click: onMapClick,
-  });
+  useMapEvents({ click: onMapClick });
   return null;
 };
 
@@ -77,14 +77,16 @@ export const Navigation = () => {
     null,
   );
   const [destination, setDestination] = useState<[number, number] | null>(null);
+  const [hasRoute, setHasRoute] = useState(false);
 
   const handleGetLocation = () => {
     navigator.geolocation.getCurrentPosition(
-      position => {
-        const { latitude, longitude } = position.coords;
-        setUserLocation([latitude, longitude]);
+      position =>
+        setUserLocation([position.coords.latitude, position.coords.longitude]),
+      error => {
+        console.error('Ошибка получения местоположения:', error);
+        alert('Не удалось получить ваше местоположение');
       },
-      error => console.error('Error getting location:', error),
       { enableHighAccuracy: true },
     );
   };
@@ -93,12 +95,23 @@ export const Navigation = () => {
     setDestination([e.latlng.lat, e.latlng.lng]);
   };
 
+  const handleClearRoute = () => {
+    setUserLocation(null);
+    setDestination(null);
+    setHasRoute(false);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.controls}>
         <button className={styles.locationButton} onClick={handleGetLocation}>
           Моё местоположение
         </button>
+        {hasRoute && (
+          <button className={styles.clearButton} onClick={handleClearRoute}>
+            Очистить маршрут
+          </button>
+        )}
       </div>
 
       <MapContainer center={[52.4242, 31.014]} zoom={8} className={styles.map}>
@@ -108,7 +121,7 @@ export const Navigation = () => {
         {userLocation && (
           <Marker
             position={userLocation}
-            icon={createCustomIcon(<IconManFilled size={24} color="blue" />)}
+            icon={createCustomIcon('ti ti-man', 40)}
           >
             <Popup>Вы здесь</Popup>
             <Tooltip>Вы здесь</Tooltip>
@@ -118,7 +131,7 @@ export const Navigation = () => {
         {destination && (
           <Marker
             position={destination}
-            icon={createCustomIcon(<IconFlag size={24} color="red" />)}
+            icon={createCustomIcon('ti ti-map-pin-down', 40)}
           >
             <Popup>Пункт назначения</Popup>
             <Tooltip>Пункт назначения</Tooltip>
@@ -129,6 +142,7 @@ export const Navigation = () => {
           <RoutingControl
             userLocation={userLocation}
             destination={destination}
+            onRouteCreated={() => setHasRoute(true)}
           />
         )}
       </MapContainer>

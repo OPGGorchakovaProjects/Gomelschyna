@@ -28,11 +28,17 @@
   border-radius: 50%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transform: translate(-50%, -50%);
-}
+  transition: all 0.3s ease;
 
-.custom-icon svg {
-  width: 24px;
-  height: 24px;
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .locationButton {
@@ -90,8 +96,74 @@
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
+.markerIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50% 50% 0;
+  position: relative;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: rotate(-45deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  svg {
+    transform: rotate(45deg);
+  }
+}
+
+.route-marker {
+  background: white;
+  border: 2px solid;
+  border-radius: 50%;
+  
+  &.start {
+    border-color: #2196F3;
+  }
+  
+  &.end {
+    border-color: #F44336;
+  }
+}
+
+.routeMarker {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  
+  i {
+    transform: rotate(45deg);
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+  }
+
+  &:hover {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
 :global {
   .hidden-marker {
     display: none;
+  }
+}
+
+.customIcon {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 } 
