@@ -1,0 +1,315 @@
+@import '@theme/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap');
+
+// Переменные для цветов и размеров
+$primary-color: #a8d1e7;
+$secondary-color: #f76c6c;
+$tertiary-color: #24305e;
+$white: #ffffff;
+$black: #000000;
+$shadow: 0px 10px 5px rgba(0, 0, 0, 0.25);
+
+
+* {
+    margin: 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+// Основные стили
+.heroSection {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+.leftSection {
+    width: 50%;
+    background-color: $primary-color;
+    position: relative;
+    overflow: hidden;
+}
+
+.rightSection {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+// Логотип и текст
+.logo {
+    width: auto;
+    height: auto;
+    padding: 20px 25px;
+}
+
+.logoText {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: $black;
+    max-width: 631px;
+    margin: 0 0 0 10%;
+}
+
+.emblem {
+    width: 202px;
+    height: 255px;
+    margin: 40px auto 0;
+    display: block;
+    filter: drop-shadow($shadow);
+}
+
+.background {
+    position: absolute;
+    bottom: 0;
+    left: 1%;
+    width: 98%;
+    height: auto;
+}
+
+.title {
+    position: absolute;
+    width: 540px;
+    left: 6%;
+    bottom: 40%;
+    font-size: 55px;
+    line-height: 65px;
+    color: $black;
+    z-index: 2;
+    font-weight: 500;
+}
+
+.subtitle {
+    position: absolute;
+    font-size: 20px;
+    bottom: 34%;
+    left: 6%;
+    z-index: 2;
+}
+
+a {
+    text-decoration: none;
+    width: 100%; 
+}
+
+// Карточки
+.card {
+    flex: 1;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.mapCard {
+    align-content: space-around;
+    justify-content: center;
+    display: flex;
+    flex: 1;
+    background-color: $secondary-color;
+}
+
+.infoCard {
+    align-content: space-around;
+    justify-content: center;
+    display: flex;
+    flex: 1;
+    background-color: $tertiary-color;
+}
+
+.cardImage {
+    width: 369px;
+    height: 205px;
+    display: block;
+    margin: 40px auto 0;
+    filter: drop-shadow(14px 14px 5px rgba(0, 0, 0, 0.6));
+}
+
+.cardIcon {
+    width: 225px;
+    height: 225px;
+    display: block;
+    margin: 30px auto 0;
+}
+
+.cardTitle {
+    color: $white;
+    font-size: 45px;
+    font-weight: 500;
+    margin: 20px 0 0 5%;
+    width: 90%;
+    text-align: left;
+    text-wrap: wrap;
+}
+
+.cardSubtitle {
+    color: $white;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 10px 0 0 5%;
+    text-align: left;
+}
+
+.cardHint {
+    color: rgba($black, 0.38);
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+// Адаптивность
+@media (max-width: 900px) {
+    .heroSection {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .leftSection {
+        width: 100%;
+        height: auto;
+        min-height: 50vh;
+        position: relative;
+        padding-bottom: 200px; // Для фонового изображения
+    }
+
+    .rightSection {
+        width: 100%;
+        height: auto;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+        padding: 15px;
+    }
+
+    .logoText {
+        font-size: 14px;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0 20px;
+        text-align: left;
+        max-width: none;
+    }
+
+    .emblem {
+        width: 120px;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .title {
+        position: relative;
+        width: auto;
+        font-size: 32px;
+        line-height: 1.2;
+        margin: 20px 20px;
+        text-align: left;
+        left: 0;
+        bottom: auto;
+    }
+
+    .subtitle {
+        position: relative;
+        font-size: 18px;
+        margin: 10px 20px;
+        text-align: left;
+        left: 0;
+        bottom: auto;
+    }
+
+    .background {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+
+    .card {
+        height: 300px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mapCard, .infoCard {
+        a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+    }
+
+    .cardImage {
+        width: 200px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .cardIcon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .cardTitle {
+        font-size: 24px;
+        margin: 15px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .cardSubtitle {
+        font-size: 16px;
+        margin: 5px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .cardHint {
+        font-size: 14px;
+        margin: 10px 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .leftSection {
+        padding-bottom: 150px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .logoText {
+        font-size: 12px;
+    }
+
+    .card {
+        height: 250px;
+    }
+
+    .cardTitle {
+        font-size: 20px;
+    }
+
+    .cardSubtitle {
+        font-size: 14px;
+    }
+
+    .cardHint {
+        font-size: 12px;
+    }
+}

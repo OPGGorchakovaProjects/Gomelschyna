@@ -1,0 +1,120 @@
+@import '../../theme/colors.scss';
+
+// Базовые стили кнопки
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  height: 48px; // Фиксированная высота для всех кнопок
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: white;
+  text-decoration: none;
+  margin: 0;
+  line-height: 1.5;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: unset;
+    padding: 10px 20px;
+    font-size: 15px;
+    height: 44px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Стиль для первой (основной) кнопки
+.primary {
+  background-color: #3498db;
+  
+  &:hover:not(:disabled) {
+    background-color: #2980b9;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    &:hover:not(:disabled) {
+      transform: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Стиль для второй (вторичной) кнопки
+.secondary {
+  background-color: #27ae60;
+  
+  &:hover:not(:disabled) {
+    background-color: #219653;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    &:hover:not(:disabled) {
+      transform: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Группа кнопок
+.buttonGroup {
+  display: flex;
+  align-items: stretch; // Растягиваем кнопки по высоте контейнера
+  gap: 15px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .button {
+    flex: 1 0 auto; // Позволяет кнопкам растягиваться, сохраняя базовый размер
+  }
+}
+
+// Стили для ссылок-кнопок
+.link {
+  text-decoration: none;
+  display: inline-block;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+@media (hover: hover) {
+  .primary:hover:not(:disabled) {
+    background-color: #2980b9;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  .secondary:hover:not(:disabled) {
+    background-color: #219653;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
+  }
+}
+
