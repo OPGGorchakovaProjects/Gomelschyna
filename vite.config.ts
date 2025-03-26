@@ -20,5 +20,8 @@ export default defineConfig({
       'X-Content-Type-Options': 'nosniff'
     }
   },
-  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg']
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
+  optimizeDeps: {
+    include: ['react', 'react-dom']
+  }
 })
