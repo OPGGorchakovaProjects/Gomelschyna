@@ -24,9 +24,11 @@ export interface IScreenProps {
   className?: string;
 }
 
-export interface HeaderProps {
+export interface IHeaderProps {
   activeCategories: string[];
   setActiveCategories: (categories: string[]) => void;
+  hasRoute?: boolean;
+  onClearRoute?: () => void;
 }
 
 export interface CategoryInfo {
@@ -54,4 +56,14 @@ export interface Data {
 export interface IBurgerMenuProps {
   isOpen: boolean;
   toggleMenu: () => void;
+}
+
+export interface IRoutingControlProps {
+  userLocation: [number, number];
+  destination: [number, number];
+  onRouteCreated?: () => void;
+}
+
+export interface IMapEventsProps {
+  onMapClick: (e: L.LeafletMouseEvent) => void;
 }

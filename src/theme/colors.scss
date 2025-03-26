@@ -1,17 +1,66 @@
+// Создаем миксин для получения отступов
+@function get-spacing($size) {
+  $spacings: (
+    xs: 4px,
+    s: 8px,
+    sm: 12px,
+    m: 16px,
+    ml: 24px,
+    l: 32px,
+    xl: 40px
+  );
+  @return map-get($spacings, $size);
+}
+
+// SCSS переменные для использования в миксинах и функциях
 $primary-color: #3498db;
 $primary-light: #5dade2;
 $primary-dark: #2e86c1;
-
+$secondary-color: #7f8c8d;
 $warning-color: #f1c40f;
 $danger-color: #e74c3c;
 $success-color: #2ecc71;
-
-$gray-dark: #7f8c8d;
-$secondary-color: $gray-dark;
-
 $white: #ffffff;
 $black: #000000;
-$gray-light: #ecf0f1;
 
-$shadow-color: rgba(0, 0, 0, 0.15);
+:root {
+  // Основные цвета
+  --primary-color: #{$primary-color};
+  --primary-light: #{$primary-light};
+  --primary-dark: #{$primary-dark};
+  
+  // Статусные цвета
+  --warning: #{$warning-color};
+  --danger: #{$danger-color};
+  --success: #{$success-color};
+  
+  // Нейтральные цвета
+  --secondary: #{$secondary-color};
+  --secondary-dark: #{darken($secondary-color, 10%)};
+  --white: #{$white};
+  --black: #{$black};
+  
+  // Фоновые цвета
+  --background-light: #ecf0f1;
+  --background-dark: #{darken(#ecf0f1, 5%)};
+  
+  // Тени
+  --shadow-primary: rgba(52, 152, 219, 0.4);
+  --shadow-secondary: rgba(127, 140, 141, 0.4);
+  
+  // Размеры шрифтов
+  --font-size-small: 16px;
+  --font-size-medium: 20px;
+  --font-size-large: 28px;
+}
+
+// Экспортируем миксины для использования в других файлах
+@mixin use-theme-colors {
+  color: var(--primary-color);
+  background-color: var(--background-light);
+}
+
+@mixin theme-shadow {
+  box-shadow: 0 4px 6px var(--shadow-primary);
+}
 

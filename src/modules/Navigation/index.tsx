@@ -1,87 +1,149 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { JSX, useEffect, useRef, useState } from 'react';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  Tooltip,
+  useMapEvents,
+} from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-// import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import 'leaflet-routing-machine';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import styles from './style.module.scss';
+import { man, mapPin } from '@assets';
 
-// Extend leaflet module to include Routing
-declare module 'leaflet' {
-  namespace Routing {
-    function control(options: any): any;
-  }
-}
+// Создание кастомных иконок через <i>
+const createCustomIcon = (className: string, size: number = 40) => {
+  return L.divIcon({
+    className: 'custom-icon',
+    html: `<i class="${className}" style="font-size:${size}px;"></i>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size],
+  });
+};
 
-let DefaultIcon = L.icon({
-  iconUrl: L.Icon.Default.prototype.options.iconUrl || 'default-icon-url.png',
-  shadowUrl:
-    L.Icon.Default.prototype.options.shadowUrl || 'default-shadow-url.png',
-  iconSize: [20, 33],
-  iconAnchor: [10, 33],
-});
-L.Marker.prototype.options.icon = DefaultIcon;
-
-export const Navigation = () => {
-  const [start, setStart] = useState<[number, number] | null>(null);
-  const [end, setEnd] = useState<[number, number] | null>(null);
-  const [map, setMap] = useState<L.Map | null>(null);
+const RoutingControl = ({ userLocation, destination, onRouteCreated }: any) => {
+  const map = useMap();
+  const routingControlRef = useRef<any>(null);
 
   useEffect(() => {
-    if (map && start && end) {
-      const routingControl = L.Routing.control({
-        waypoints: [L.latLng(start), L.latLng(end)],
-        routeWhileDragging: true,
-      }).addTo(map);
-      return () => {
-        map.removeControl(routingControl);
-      };
-    }
-  }, [map, start, end]);
+    if (!userLocation || !destination) return;
 
-  const handleUseCurrentLocation = () => {
+    if (routingControlRef.current) {
+      map.removeControl(routingControlRef.current);
+    }
+
+    if (!L.Routing) {
+      console.error('Leaflet Routing Machine не загружен.');
+      return;
+    }
+
+    routingControlRef.current = L.Routing.control({
+      waypoints: [L.latLng(userLocation), L.latLng(destination)],
+      routeWhileDragging: true,
+      lineOptions: { styles: [{ color: '#007bff', weight: 4 }] },
+      show: false,
+      addWaypoints: false,
+      draggableWaypoints: false,
+      fitSelectedRoutes: true,
+    }).addTo(map);
+
+    onRouteCreated();
+
+    return () => {
+      if (routingControlRef.current) {
+        map.removeControl(routingControlRef.current);
+      }
+    };
+  }, [userLocation, destination, map, onRouteCreated]);
+
+  return null;
+};
+
+const MapEvents = ({
+  onMapClick,
+}: {
+  onMapClick: (e: L.LeafletMouseEvent) => void;
+}) => {
+  useMapEvents({ click: onMapClick });
+  return null;
+};
+
+export const Navigation = () => {
+  const [userLocation, setUserLocation] = useState<[number, number] | null>(
+    null,
+  );
+  const [destination, setDestination] = useState<[number, number] | null>(null);
+  const [hasRoute, setHasRoute] = useState(false);
+
+  const handleGetLocation = () => {
     navigator.geolocation.getCurrentPosition(
-      position => {
-        setStart([position.coords.latitude, position.coords.longitude]);
+      position =>
+        setUserLocation([position.coords.latitude, position.coords.longitude]),
+      error => {
+        console.error('Ошибка получения местоположения:', error);
+        alert('Не удалось получить ваше местоположение');
       },
-      error => console.error(error),
+      { enableHighAccuracy: true },
     );
   };
 
+  const handleMapClick = (e: L.LeafletMouseEvent) => {
+    setDestination([e.latlng.lat, e.latlng.lng]);
+  };
+
+  const handleClearRoute = () => {
+    setUserLocation(null);
+    setDestination(null);
+    setHasRoute(false);
+  };
+
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>
-      <div
-        style={{
-          position: 'absolute',
-          top: 10,
-          left: 10,
-          zIndex: 1000,
-          background: 'white',
-          padding: 10,
-        }}
-      >
-        <button onClick={handleUseCurrentLocation}>Use My Location</button>
-        <button onClick={() => setStart([52.4242, 31.014])}>
-          Set Start (Default)
+    <div className={styles.container}>
+      <div className={styles.controls}>
+        <button className={styles.locationButton} onClick={handleGetLocation}>
+          Моё местоположение
         </button>
-        <button onClick={() => setEnd([52.5242, 31.114])}>
-          Set End (Example)
-        </button>
+        {hasRoute && (
+          <button className={styles.clearButton} onClick={handleClearRoute}>
+            Очистить маршрут
+          </button>
+        )}
       </div>
-      <MapContainer
-        center={[52.4242, 31.014]}
-        zoom={8}
-        style={{ height: '100%', width: '100%' }}
-        whenReady={() => setMap(map)}
-      >
+
+      <MapContainer center={[52.4242, 31.014]} zoom={8} className={styles.map}>
+        <MapEvents onMapClick={handleMapClick} />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {start && (
-          <Marker position={start}>
-            <Popup>Start Point</Popup>
+
+        {userLocation && (
+          <Marker
+            position={userLocation}
+            icon={createCustomIcon('ti ti-man', 40)}
+          >
+            <Popup>Вы здесь</Popup>
+            <Tooltip>Вы здесь</Tooltip>
           </Marker>
         )}
-        {end && (
-          <Marker position={end}>
-            <Popup>End Point</Popup>
+
+        {destination && (
+          <Marker
+            position={destination}
+            icon={createCustomIcon('ti ti-map-pin-down', 40)}
+          >
+            <Popup>Пункт назначения</Popup>
+            <Tooltip>Пункт назначения</Tooltip>
           </Marker>
+        )}
+
+        {userLocation && destination && (
+          <RoutingControl
+            userLocation={userLocation}
+            destination={destination}
+            onRouteCreated={() => setHasRoute(true)}
+          />
         )}
       </MapContainer>
     </div>

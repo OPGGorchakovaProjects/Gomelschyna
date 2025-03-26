@@ -34,298 +34,414 @@ $primary-color: var(--primary-color);
   .main {
     min-height: 100vh;
     width: 100%;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-    padding: 20px;
+    background: linear-gradient(135deg, var(--background-light) 0%, var(--background-dark) 100%);
+    padding: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 768px) {
+      padding: 0 8px;
+    }
   }
 
   .navContainer {
-    @include flex-center;
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    position: relative;
+
+    @media (max-width: 768px) {
+      padding: 10px 15px;
+    }
   }
 
   .headerTitle {
-    color: $white;
-    font-size: $font-size-large;
-    text-align: center;
-    flex-grow: 1;
+    color: white;
+    font-size: 24px;
     font-weight: bold;
     letter-spacing: 1px;
-    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    padding-left: 55px;
+    padding-right: 55px;
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
   }
 
   .burgerMenu {
-    z-index: 1000;
-    margin: 20px;
-    padding: 10px;
-    cursor: pointer;
-    @include flex-center;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    background: transparent;
     border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px;
+    position: absolute;
+    left: 15px;
+    z-index: 1000;
 
-    &:hover {
-      transform: scale(1.1);
+    .line {
+      width: 100%;
+      height: 2px;
+      background: white;
+      transition: all 0.3s ease;
     }
-  }
 
-  .line {
-    pointer-events: none;
-    height: 4px;
-    width: 100%;
-    background-color: $white;
-    transition: all 0.3s ease;
+    &.active {
+      .line:first-child {
+        transform: translateY(8px) rotate(45deg);
+      }
+      
+      .line:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .line:last-child {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
   }
 
   .blockBurger {
-    z-index: 999;
-    display: none;
-    position: fixed;
-    top: 15%;
-    left: 15%;
-    width: 100%;
-    height: 100%;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    &.active2 {
-      display: flex;
-    }
-  }
-
-  .burgerContent {
-    background: $white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 240px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .button {
-    @include button-styles($primary-color, $primary-dark);
-    width: 100%;
-    margin: 10px 0;
-
-    &.back {
-      background-color: $secondary-color;
-    }
-  }
-
-  .banner {
-    position: relative;
-    background: url('../img/image-PhotoRoom 1.png') no-repeat center center/cover;
-    height: 800px;
-    @include flex-center;
-    color: $white;
-    text-align: center;
-    padding: 20px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 100%;
-  }
-
-  .bannerContent {
-    position: relative;
-    @include flex-center;
-    flex-direction: column;
-    z-index: 2;
-    max-width: 1200px;
-    width: 100%;
-
-    h1 {
-      font-size: 48px;
-      margin: 0 0 20px;
-      font-weight: 700;
-      color: $primary-color;
-    }
-
-    p {
-      font-size: $font-size-medium;
-      margin: 0 0 20px;
-      color: $white;
-    }
-  }
-
-  .mapBtn {
-    @include flex-center;
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 200px;
-    color: var(--blue);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-
-    &:hover {
-      background-color: $primary-color;
-      color: $white;
-      transform: scale(1.05);
-      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-    }
-  }
-
-  .mapImg {
-    width: 30px;
-    height: auto;
-    margin-right: 10px;
-  }
-
-  .boxWithButtons {
-    @include flex-center;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-    width: 100%;
-    height: 100px;
-    gap: 20px;
-  }
-
-  .modalBack {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    @include flex-center;
+    height: 100vh;
+    z-index: 999;
+    display: none;
+    background: rgba(0, 0, 0, 0.3);
 
     &.active2 {
-      display: flex;
+      display: block;
     }
   }
 
-  .blockModal {
-    background-color: $white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px $black;
-  }
-
-  .contentModal {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-
-  .blockDost {
+  .burgerContent {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    padding: 25px;
-    margin-bottom: 25px;
-    transition: all 0.3s ease;
+    padding: 80px 15px 20px;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    @media (max-width: 768px) {
+      width: 260px;
+      padding: 70px 12px 20px;
+    }
+
+    .active2 & {
+      left: 0;
+    }
+
+    button, a {
+      padding: 12px 16px;
+      font-size: 16px;
+
+      @media (max-width: 768px) {
+        padding: 10px 14px;
+        font-size: 15px;
+      }
+
+      .icon {
+        font-size: 20px;
+
+        @media (max-width: 768px) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    width: 100%;
+      padding: 12px 20px;
+      text-align: left;
+      background: white;
+      border: none;
+      border-radius: 6px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        background: #f8f9fa;
+        
+        .icon {
+          transform: scale(1.1);
+          transition: transform 0.2s ease;
+        }
+      }
+    }
+
+    a {
+      display: block;
+    width: 100%;
+      text-decoration: none;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+
+      button {
+        margin: 0;
+        color: #666;
+        
+        .icon {
+          color: #666;
+        }
+
+        &:hover {
+          background: #f8f9fa;
+          color: #333;
+          
+          .icon {
+            color: #333;
+          }
+        }
+      }
     }
   }
 
-  .textDost {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    text-align: center;
-  }
-
-  .textName {
-    font-size: $font-size-large;
-    font-weight: bold;
-    color: #333;
-  }
-
-  .gorod {
-    font-size: 20px;
-    color: var(--secondary);
-    margin-bottom: 15px;
-    text-align: center;
-    font-weight: 600;
-  }
-
-  .divider {
-    width: 100%;
-    height: 4px;
-    margin: 20px 0;
-    background-color: $primary-color;
-  }
-
-  .content {
+  .banner {
+    height: 90vh;
+    background: url('/img/background.png') no-repeat center center/cover;
+    position: relative;
     display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    margin: 20px 0;
-    width: 100%;
-  }
-
-  .imgCity {
-    width: 40%;
-    max-width: 500px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-
-    @media (max-width: 900px) {
-      width: 100%;
-      max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1;
     }
 
+    @media (max-width: 768px) {
+      padding: 40px 15px;
+    }
+    }
+
+  .bannerContent {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    h1 {
+      color: white;
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1.2;
+      animation: fadeInUp 1s ease-out;
+      max-width: 900px;
+
+      @media (max-width: 768px) {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+    }
+    
+    p {
+      color: white;
+      font-size: 18px;
+      margin-bottom: 40px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+      animation: fadeInUp 1.2s ease-out;
+      font-weight: 500;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .boxWithButtons {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    margin-top: 30px;
+    animation: fadeInUp 1.4s ease-out;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 0;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+  }
+
+  .mapBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    background: rgba(52, 152, 219, 0.9);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    min-width: 200px;
+    max-width: 240px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    min-height: 50px;
+    white-space: normal;
+    line-height: 1.3;
+
     &:hover {
-      transform: scale(1.02);
+      background: rgba(41, 128, 185, 0.95);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    &:active {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    &:last-child {
+      background: rgba(231, 76, 60, 0.9);
+      flex-direction: column;
+      padding: 12px 25px;
+      height: auto;
+      min-height: 50px;
+      
+      &:hover {
+        background: rgba(192, 57, 43, 0.95);
+      }
+    }
+
+    @media (max-width: 768px) {
+      min-width: auto;
+    width: 100%;
+      padding: 12px 20px;
+    }
+  }
+
+  .mapImg {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    filter: brightness(0) invert(1);
+  }
+
+  .factText {
+    display: block;
+    font-size: 13px;
+    margin-top: 5px;
+    opacity: 0.9;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
     }
   }
 
   .buttonContainer {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
     justify-content: center;
-    margin-top: 25px;
-  }
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 10px;
+      padding: 0;
+    }
 
-  .btn1, .btn2 {
-    padding: 12px 25px;
+    button, .showMoreButton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 30px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
     border-radius: 30px;
     font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
     text-align: center;
-    transition: all 0.3s ease;
-    min-width: 160px;
-    border: none;
-    cursor: pointer;
-  }
+      width: auto;
+      min-width: 180px;
+      height: 48px;
+      box-sizing: border-box;
 
-  .btn1 {
-    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
-    color: white;
+      @media (max-width: 768px) {
+        width: 100%;
+        min-width: unset;
+        padding: 10px 20px;
+        font-size: 15px;
+        height: 44px;
+      }
     
     &:hover {
+        background-color: var(--primary-dark);
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-    }
-  }
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
 
-  .btn2 {
-    background: linear-gradient(45deg, var(--secondary), #ff6b6b);
-    color: white;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+      &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
     }
   }
 
@@ -334,90 +450,92 @@ $primary-color: var(--primary-color);
   }
 
   // Responsive Styles
-  @media (max-width: 900px) {
-    .navContainer {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-
-    .headerTitle {
-      margin-top: 10px;
-    }
-
+  @media (max-width: 991px) {
     .bannerContent h1 {
-      font-size: 36px;
+      font-size: 48px;
     }
 
     .bannerContent p {
-      font-size: 18px;
-    }
-
-    .boxWithButtons {
-      flex-direction: column;
-    }
-
-    .blockDost:nth-child(even) .content,
-    .blockDost:nth-child(odd) .content {
-      flex-direction: column;
-    }
-
-    .imgCity {
-      width: 100%;
-      margin: 10px 0;
-    }
-
-    .buttonContainer {
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .btn1, .btn2 {
-      height: 40px;
-      border-radius: 8px;
-    }
-
-    .textDost {
-      font-size: 18px;
-    }
-
-    .textName {
       font-size: 22px;
+      margin-bottom: 40px;
     }
-
-    .gorod {
+    
+    .mapBtn {
+      padding: 18px 35px;
       font-size: 18px;
     }
+  }
 
-    .textContent {
+  @media (max-width: 768px) {
+    .banner {
+      height: 100vh;
+    }
+    
+    .bannerContent h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    
+    .bannerContent p {
       font-size: 16px;
+      margin-bottom: 30px;
+    }
+    
+    .mapBtn {
+      padding: 12px 20px;
+      font-size: 16px;
+      min-width: auto;
       width: 100%;
     }
-
-    .content {
-      flex-direction: column;
-      align-items: center;
+    
+    .mapImg {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    
+    .mapBtn:last-child {
+      padding: 10px 20px;
+    }
+    
+    .factText {
+      font-size: 12px;
+      margin-top: 6px;
+      
+      &::before, &::after {
+        display: none;
+      }
     }
   }
 
   .categorySection {
-    margin: 20px auto;
-    padding: 30px;
+    margin: 30px auto;
+    padding: 35px;
     background: white;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
     max-width: 1200px;
     width: 100%;
     transition: transform 0.3s ease;
+    animation: fadeIn 0.6s ease-out forwards;
+    scroll-margin-top: 100px;
+    
+    @media (max-width: 768px) {
+      margin: 15px 0;
+      padding: 15px;
+      width: 100%;
+      border-radius: 8px;
+    }
     
     &:hover {
-      transform: translateY(-5px);
+      transform: translateY(-2px);
     }
   }
 
   .categoryTitle {
-    font-size: 36px;
-    color: var(--primary-color);
-    margin-bottom: 35px;
+    font-size: 28px;
+    color: var(--black);
+    margin-bottom: 25px;
     padding-bottom: 15px;
     border-bottom: 4px solid var(--primary-color);
     text-align: center;
@@ -436,6 +554,11 @@ $primary-color: var(--primary-color);
       height: 4px;
       background-color: var(--secondary);
     }
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
   }
 
   .textContent {
@@ -444,37 +567,18 @@ $primary-color: var(--primary-color);
     line-height: 1.6;
     color: #555;
     text-align: justify;
+    word-wrap: break-word;
     
     @media (max-width: 900px) {
       width: 100%;
     }
-  }
 
-  .showMoreButton {
-    display: block;
-    margin: 30px auto 10px;
-    padding: 15px 40px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary));
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      background: linear-gradient(45deg, var(--secondary), var(--primary-color));
-    }
-
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    @media (max-width: 768px) {
+      width: 100%;
+      font-size: 15px;
     }
   }
+
 
   // Анимация появления
   @keyframes fadeIn {
@@ -488,6 +592,341 @@ $primary-color: var(--primary-color);
     }
   }
 
-  .categorySection {
-    animation: fadeIn 0.6s ease-out forwards;
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: var(--primary-color, #3498db);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .blockDost {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      margin: 15px 0;
+      padding: 15px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .textDost {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-align: center;
+    word-wrap: break-word;
+    
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 1.3;
+    }
+  }
+
+  .gorod {
+    font-size: 20px;
+    color: #5a6268;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 500;
+    // font-style: italic;
+    letter-spacing: 0.5px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      rgba(0,0,0,0) 0%, 
+      rgba(52, 152, 219, 0.5) 20%, 
+      rgba(52, 152, 219, 1) 50%, 
+      rgba(52, 152, 219, 0.5) 80%, 
+      rgba(0,0,0,0) 100%);
+    margin: 20px auto;
+    display: block;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+
+  .imgCity {
+    width: 40%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    
+    @media (max-width: 900px) {
+      width: 100%;
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 200px;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes glowing {
+    0% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
+    50% { box-shadow: 0 6px 30px rgba(52, 152, 219, 0.6); }
+    100% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
+  }
+
+  .showMoreButton {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .modalBack {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+    padding: 20px;
+
+    &.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      padding: 15px;
+    }
+  }
+
+  .blockModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 90%;
+    max-width: 700px;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+
+    @media (max-width: 768px) {
+      width: 95%;
+      padding: 20px;
+    }
+  }
+
+  .closeModal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #e0e0e0;
+      color: #333;
+    }
+  }
+
+  .contentModal {
+    font-size: 22px;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 600;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  iframe {
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+      height: 200px;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  // Обновляем глобальные стили для кнопок
+  :global(.button) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-sizing: border-box;
+    min-width: 160px;
+    
+    @media (max-width: 768px) {
+      width: 100%;
+      min-width: unset;
+      padding: 10px 15px;
+      font-size: 14px;
+      white-space: normal;
+      height: auto;
+      min-height: 44px;
+    }
+
+    // Стили для основной кнопки
+    &[data-variant='primary'] {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      
+      &:hover {
+        background: var(--primary-dark);
+      }
+    }
+
+    // Стили для вторичной кнопки
+    &[data-variant='secondary'] {
+      background: #f5f5f5;
+      color: #333;
+      border: 1px solid #ddd;
+      
+      &:hover {
+        background: #ebebeb;
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    .mapBtn:hover {
+      background: rgba(41, 128, 185, 0.95);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .buttonContainer {
+      button:hover, .showMoreButton:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .showMoreButton:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
   }

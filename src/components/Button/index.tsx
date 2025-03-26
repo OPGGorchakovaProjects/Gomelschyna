@@ -1,31 +1,55 @@
 import React from 'react';
-import { Typography } from '../Typography';
+import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
-import { IButtonProps } from '@utils';
 
-export const Button: React.FC<IButtonProps> = ({
+interface ButtonProps {
+  children: React.ReactNode;
+  to?: string;
+  href?: string;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary';
+  className?: string;
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  to,
+  href,
   onClick,
-  label = 'Button',
-  size = 'medium',
-  color = 'primary',
-  type = 'solid',
-  disabled = false,
-  buttonStyle,
-  textStyles,
+  variant = 'primary',
+  className = '',
 }) => {
-  const buttonClass = [
-    styles.defaultButton,
-    size && styles[size],
-    styles[color],
-    styles[type],
-    buttonStyle,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const btnClass = `${styles.button} ${styles[variant]} ${className}`;
+
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className={btnClass}
+        style={{ color: 'white', textDecoration: 'none' }}
+      >
+        {children}
+      </Link>
+    );
+  }
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        className={btnClass}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: 'white', textDecoration: 'none' }}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
-    <button onClick={onClick} className={buttonClass} disabled={disabled}>
-      <Typography text={label} className={textStyles} />
+    <button className={btnClass} onClick={onClick}>
+      {children}
     </button>
   );
 };

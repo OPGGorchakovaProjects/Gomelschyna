@@ -3,8 +3,19 @@ import { useSearchParams } from 'react-router-dom';
 import style from './style.module.scss';
 import { Link } from 'react-router-dom';
 import { IBurgerMenuProps } from '@utils';
+import { Button } from '@components';
+import {
+  IconMapPin,
+  IconTree,
+  IconBuilding,
+  IconBuildingMonument,
+  IconBuildingCastle,
+  IconBuildingFactory,
+  IconDroplet,
+  IconHome,
+} from '@tabler/icons-react';
 
-const Header: FC = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
@@ -13,7 +24,10 @@ const Header: FC = () => {
     <header>
       <nav id="header">
         <div className={style.navContainer}>
-          <button className={style.burgerMenu} onClick={toggleMenu}>
+          <button
+            className={`${style.burgerMenu} ${isMenuOpen ? style.active : ''}`}
+            onClick={toggleMenu}
+          >
             {[...Array(3)].map((_, i) => (
               <div key={i} className={style.line}></div>
             ))}
@@ -26,58 +40,129 @@ const Header: FC = () => {
   );
 };
 
-const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => (
-  <div className={`${style.blockBurger} ${isOpen ? style.active2 : ''}`}>
-    <div className={style.burgerContent}>
-      {[
-        'Достопримечательности',
-        'Культурные ценности',
-        'Старейшие города',
-        'Известные люди',
-        'Промышленность',
-        'Озёра',
-        'Реки',
-      ].map((text, i) => (
-        <button key={i} className={style.button}>
-          {text}
-        </button>
-      ))}
-      <Link to="/">
-        <button className={`${style.button} ${style.back}`}>На главную</button>
-      </Link>
-    </div>
-  </div>
-);
+const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
+  const handleScroll = (categoryId: string) => {
+    const element = document.querySelector(`[data-category="${categoryId}"]`);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
-const Banner: FC = () => (
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+    toggleMenu();
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const menu = document.querySelector(`.${style.burgerContent}`);
+      const button = document.querySelector(`.${style.burgerMenu}`);
+
+      if (
+        isOpen &&
+        menu &&
+        button &&
+        !menu.contains(event.target as Node) &&
+        !button.contains(event.target as Node)
+      ) {
+        toggleMenu();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen, toggleMenu]);
+
+  return (
+    <div className={`${style.blockBurger} ${isOpen ? style.active2 : ''}`}>
+      <div className={style.burgerContent}>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('monuments')}
+        >
+          <IconBuildingMonument className={style.icon} />
+          Монументы
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('reserve')}
+        >
+          <IconTree className={style.icon} />
+          Заповедники
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('museums')}
+        >
+          <IconBuilding className={style.icon} />
+          Музеи
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('cultural_values')}
+        >
+          <IconBuildingCastle className={style.icon} />
+          Культурные ценности
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('ancient_cities')}
+        >
+          <IconMapPin className={style.icon} />
+          Старейшие города
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('industry')}
+        >
+          <IconBuildingFactory className={style.icon} />
+          Промышленность
+        </button>
+        <button className={style.button} onClick={() => handleScroll('lakes')}>
+          <IconDroplet className={style.icon} />
+          Озёра
+        </button>
+        <button className={style.button} onClick={() => handleScroll('rivers')}>
+          <IconDroplet className={style.icon} />
+          Реки
+        </button>
+        <Link to="/">
+          <button className={`${style.button} ${style.back}`}>
+            <IconHome className={style.icon} />
+            На главную
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+const Banner = () => (
   <section className={style.banner}>
     <div className={style.bannerContent}>
-      <div>
-        <h1>Добро пожаловать в Гомельскую область</h1>
-        <p>
-          Откройте для себя уникальные достопримечательности и культурные
-          ценности региона
-        </p>
-      </div>
+      <h1>Добро пожаловать в Гомельскую область</h1>
+      <p>
+        Откройте для себя уникальные достопримечательности и культурные ценности
+        региона
+      </p>
       <div className={style.boxWithButtons}>
         <Link to="/Map" className={style.mapBtn}>
-          <img
-            src="./img/image-PhotoRoom 1.png"
-            alt="Карта"
-            className={style.mapImg}
-          />
           Открыть карту
         </Link>
         <button className={style.mapBtn} id="interes-fact">
           Знаете ли вы?
-          <p className={style.factText}>( интересный факт )</p>
+          <span className={style.factText}>(интересный факт)</span>
         </button>
       </div>
     </div>
   </section>
 );
 
-const Modal: FC = () => {
+const Modal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(prev => !prev);
@@ -89,24 +174,22 @@ const Modal: FC = () => {
   }, []);
 
   return (
-    isModalOpen && (
-      <div className={style.modalBack}>
-        <div className={style.blockModal}>
-          <div className={style.content}>
-            <p className={style.contentModal}>
-              Единственный в Беларуси фарфоровый завод работает в Добруше
-            </p>
-            <iframe
-              width="356"
-              height="238"
-              src="https://www.youtube.com/embed/ZaIaknnPD1U"
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-          </div>
+    <div className={`${style.modalBack} ${isModalOpen ? style.active : ''}`}>
+      <div className={style.blockModal}>
+        <div className={style.content}>
+          <p className={style.contentModal}>
+            Единственный в Беларуси фарфоровый завод работает в Добруше
+          </p>
+          <iframe
+            width="100%"
+            height="350"
+            src="https://www.youtube.com/embed/ZaIaknnPD1U"
+            frameBorder="0"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
-    )
+    </div>
   );
 };
 
@@ -138,11 +221,7 @@ const ContentBlock: FC<Item & { id?: string }> = ({
   <div id={id} className={style.blockDost}>
     <p className={style.textDost}>{name}</p>
     <h2 className={style.gorod}>{location}</h2>
-    <img
-      src="./img/Line 14.png"
-      alt="divider decoration"
-      className={style.divider}
-    />
+    <div className={style.divider}></div>
     <div className={style.content}>
       <p className={style.textContent}>{description}</p>
       <img
@@ -153,13 +232,13 @@ const ContentBlock: FC<Item & { id?: string }> = ({
     </div>
     <div className={style.buttonContainer}>
       {links?.read_more && (
-        <a href={links.read_more} className={style.btn1}>
+        <Button href={links.read_more} variant="primary">
           Читать ещё
-        </a>
+        </Button>
       )}
-      <Link to={`/map?marker=${map_marker}`} className={style.btn2}>
+      <Button to={`/map?selected=${map_marker}`} variant="secondary">
         Показать на карте
-      </Link>
+      </Button>
     </div>
   </div>
 );
@@ -169,12 +248,11 @@ export const Information: FC = () => {
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category');
   const itemId = searchParams.get('item');
-  // Добавляем состояние для отслеживания развернутых категорий
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(),
   );
 
-  // Добавляем словарь названий категорий
+  // Словарь названий категорий
   const categoryNames: { [key: string]: string } = {
     museums: 'Музеи',
     monuments: 'Монументы',
@@ -186,7 +264,7 @@ export const Information: FC = () => {
     rivers: 'Реки',
   };
 
-  // Функция для переключения состояния категории
+  // Функция для переключения категории
   const toggleCategory = (categoryKey: string) => {
     setExpandedCategories(prev => {
       const newSet = new Set(prev);
@@ -209,13 +287,33 @@ export const Information: FC = () => {
             (item: Item) => item.map_marker === itemId,
           );
           if (item) {
-            const element = document.getElementById(itemId);
-            element?.scrollIntoView({ behavior: 'smooth' });
+            // Сначала раскрываем категорию
+            setExpandedCategories(prev => new Set([...prev, category]));
+
+            // Увеличиваем задержку для гарантии, что DOM обновился
+            setTimeout(() => {
+              const element = document.getElementById(itemId);
+              if (element) {
+                // Добавляем отступ сверху для учета фиксированного хедера
+                const headerHeight = 80; // Примерная высота хедера
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition =
+                  elementPosition + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth',
+                });
+              }
+            }, 300);
           }
         }
       })
       .catch(error => console.error('Error fetching data:', error));
   }, [category, itemId]);
+
+  // Удаляем наблюдатель IntersectionObserver, так как он автоматически раскрывает категории
+  // и мешает правильной работе сворачивания/разворачивания
 
   return (
     <>
@@ -225,12 +323,17 @@ export const Information: FC = () => {
         {data?.categories &&
           Object.entries(data.categories).map(([categoryKey, items]) => {
             const isExpanded = expandedCategories.has(categoryKey);
+            // Отображаем все элементы, если категория развернута, или только первые 5, если свернута
             const displayedItems = isExpanded ? items : items.slice(0, 5);
 
             return (
-              <div key={categoryKey} className={style.categorySection}>
+              <div
+                key={categoryKey}
+                className={style.categorySection}
+                data-category={categoryKey}
+              >
                 <h2 className={style.categoryTitle}>
-                  {categoryNames[categoryKey]}
+                  {categoryNames[categoryKey] || categoryKey}
                 </h2>
                 {displayedItems.map((item, index) => (
                   <ContentBlock key={index} {...item} id={item.map_marker} />
