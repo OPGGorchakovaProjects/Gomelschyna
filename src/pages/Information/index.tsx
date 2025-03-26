@@ -169,7 +169,6 @@ export const Information: FC = () => {
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category');
   const itemId = searchParams.get('item');
-  // Добавляем состояние для отслеживания развернутых категорий
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(),
   );
@@ -186,7 +185,7 @@ export const Information: FC = () => {
     rivers: 'Реки',
   };
 
-  // Функция для переключения состояния категории
+  // Добавляем функцию для переключения категории
   const toggleCategory = (categoryKey: string) => {
     setExpandedCategories(prev => {
       const newSet = new Set(prev);
@@ -209,13 +208,61 @@ export const Information: FC = () => {
             (item: Item) => item.map_marker === itemId,
           );
           if (item) {
-            const element = document.getElementById(itemId);
-            element?.scrollIntoView({ behavior: 'smooth' });
+            // Сначала раскрываем категорию
+            setExpandedCategories(prev => new Set([...prev, category]));
+
+            // Увеличиваем задержку для гарантии, что DOM обновился
+            setTimeout(() => {
+              const element = document.getElementById(itemId);
+              if (element) {
+                // Добавляем отступ сверху для учета фиксированного хедера
+                const headerHeight = 80; // Примерная высота хедера
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition =
+                  elementPosition + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth',
+                });
+              }
+            }, 300);
           }
         }
       })
       .catch(error => console.error('Error fetching data:', error));
   }, [category, itemId]);
+
+  useEffect(() => {
+    const observers = new Map();
+
+    // Создаем наблюдатели для всех категорий
+    Object.keys(data?.categories || {}).forEach(categoryKey => {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setExpandedCategories(prev => new Set([...prev, categoryKey]));
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      const categorySection = document.querySelector(
+        `[data-category="${categoryKey}"]`,
+      );
+      if (categorySection) {
+        observer.observe(categorySection);
+      }
+      observers.set(categoryKey, observer);
+    });
+
+    // Очистка при размонтировании
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, [data?.categories]); // Зависимость от данных категорий
 
   return (
     <>
@@ -228,7 +275,11 @@ export const Information: FC = () => {
             const displayedItems = isExpanded ? items : items.slice(0, 5);
 
             return (
-              <div key={categoryKey} className={style.categorySection}>
+              <div
+                key={categoryKey}
+                className={style.categorySection}
+                data-category={categoryKey}
+              >
                 <h2 className={style.categoryTitle}>
                   {categoryNames[categoryKey]}
                 </h2>
