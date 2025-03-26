@@ -57,3 +57,13 @@ export interface IBurgerMenuProps {
   isOpen: boolean;
   toggleMenu: () => void;
 }
+
+export interface IRoutingControlProps {
+  userLocation: [number, number];
+  destination: [number, number];
+  onRouteCreated?: () => void;
+}
+
+export interface IMapEventsProps {
+  onMapClick: (e: L.LeafletMouseEvent) => void;
+}

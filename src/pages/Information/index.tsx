@@ -157,7 +157,7 @@ const ContentBlock: FC<Item & { id?: string }> = ({
           Читать ещё
         </a>
       )}
-      <Link to={`/map?marker=${map_marker}`} className={style.btn2}>
+      <Link to={`/map?selected=${map_marker}`} className={style.btn2}>
         Показать на карте
       </Link>
     </div>

@@ -14,6 +14,7 @@ declare module 'leaflet' {
 
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.js';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+
 import { useSearchParams } from 'react-router-dom';
 import { Typography } from '@components';
 import { Header } from '@modules';
@@ -115,9 +116,12 @@ export const Map = () => {
   };
 
   useEffect(() => {
-    const markerFromUrl = searchParams.get('marker');
-    if (markerFromUrl) {
-      setSelectedMarker(markerFromUrl);
+    const selected = searchParams.get('selected');
+    if (selected) {
+      setSelectedMarker(selected);
+      setTimeout(() => {
+        setSelectedMarker(null);
+      }, 1500);
     }
   }, [searchParams]);
 
@@ -235,11 +239,13 @@ export const Map = () => {
             chunkedLoading
             iconCreateFunction={createClusterCustomIcon}
             showCoverageOnHover={false}
-            maxClusterRadius={80}
-            spiderfyDistanceMultiplier={2}
-            disableClusteringAtZoom={13}
+            maxClusterRadius={100}
             animate={true}
             animateAddingMarkers={true}
+            disableClusteringAtZoom={13}
+            spiderLegPolylineOptions={{ opacity: 0 }}
+            spiderfyOnMaxZoom={false}
+            zoomToBoundsOnClick={true}
           >
             {data &&
               Object.keys(categoryColors).map(category =>
