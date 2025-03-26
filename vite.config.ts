@@ -11,7 +11,14 @@ export default defineConfig({
       '@modules': path.resolve(__dirname, 'src/modules'),
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@theme': path.resolve(__dirname, 'src/theme'),
-      '@utils': path.resolve(__dirname, 'src/utils'), 
+      '@utils': path.resolve(__dirname, 'src/utils')
+    }
   },
-},
+  server: {
+    headers: {
+      'Content-Type': 'application/javascript',
+      'X-Content-Type-Options': 'nosniff'
+    }
+  },
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg']
 })
