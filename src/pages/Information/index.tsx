@@ -4,6 +4,16 @@ import style from './style.module.scss';
 import { Link } from 'react-router-dom';
 import { IBurgerMenuProps } from '@utils';
 import { Button } from '@components';
+import {
+  IconMapPin,
+  IconTree,
+  IconBuilding,
+  IconBuildingMonument,
+  IconBuildingCastle,
+  IconBuildingFactory,
+  IconDroplet,
+  IconHome,
+} from '@tabler/icons-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +24,10 @@ const Header = () => {
     <header>
       <nav id="header">
         <div className={style.navContainer}>
-          <button className={style.burgerMenu} onClick={toggleMenu}>
+          <button
+            className={`${style.burgerMenu} ${isMenuOpen ? style.active : ''}`}
+            onClick={toggleMenu}
+          >
             {[...Array(3)].map((_, i) => (
               <div key={i} className={style.line}></div>
             ))}
@@ -27,30 +40,108 @@ const Header = () => {
   );
 };
 
-const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen }) => (
-  <div className={`${style.blockBurger} ${isOpen ? style.active2 : ''}`}>
-    <div className={style.burgerContent}>
-      {[
-        'Достопримечательности',
-        'Культурные ценности',
-        'Старейшие города',
-        'Известные люди',
-        'Промышленность',
-        'Озёра',
-        'Реки',
-      ].map((text, i) => (
-        <button key={i} className={style.button}>
-          {text}
-        </button>
-      ))}
-      <Link to="/">
-        <button className={`${style.button} ${style.back}`}>На главную</button>
-      </Link>
-    </div>
-  </div>
-);
+const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
+  const handleScroll = (categoryId: string) => {
+    const element = document.querySelector(`[data-category="${categoryId}"]`);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
-const Banner: FC = () => (
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+    toggleMenu();
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const menu = document.querySelector(`.${style.burgerContent}`);
+      const button = document.querySelector(`.${style.burgerMenu}`);
+
+      if (
+        isOpen &&
+        menu &&
+        button &&
+        !menu.contains(event.target as Node) &&
+        !button.contains(event.target as Node)
+      ) {
+        toggleMenu();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen, toggleMenu]);
+
+  return (
+    <div className={`${style.blockBurger} ${isOpen ? style.active2 : ''}`}>
+      <div className={style.burgerContent}>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('monuments')}
+        >
+          <IconBuildingMonument className={style.icon} />
+          Монументы
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('reserve')}
+        >
+          <IconTree className={style.icon} />
+          Заповедники
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('museums')}
+        >
+          <IconBuilding className={style.icon} />
+          Музеи
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('cultural_values')}
+        >
+          <IconBuildingCastle className={style.icon} />
+          Культурные ценности
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('ancient_cities')}
+        >
+          <IconMapPin className={style.icon} />
+          Старейшие города
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('industry')}
+        >
+          <IconBuildingFactory className={style.icon} />
+          Промышленность
+        </button>
+        <button className={style.button} onClick={() => handleScroll('lakes')}>
+          <IconDroplet className={style.icon} />
+          Озёра
+        </button>
+        <button className={style.button} onClick={() => handleScroll('rivers')}>
+          <IconDroplet className={style.icon} />
+          Реки
+        </button>
+        <Link to="/">
+          <button className={`${style.button} ${style.back}`}>
+            <IconHome className={style.icon} />
+            На главную
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+const Banner = () => (
   <section className={style.banner}>
     <div className={style.bannerContent}>
       <h1>Добро пожаловать в Гомельскую область</h1>
@@ -71,7 +162,7 @@ const Banner: FC = () => (
   </section>
 );
 
-const Modal: FC = () => {
+const Modal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(prev => !prev);
@@ -83,24 +174,22 @@ const Modal: FC = () => {
   }, []);
 
   return (
-    isModalOpen && (
-      <div className={style.modalBack}>
-        <div className={style.blockModal}>
-          <div className={style.content}>
-            <p className={style.contentModal}>
-              Единственный в Беларуси фарфоровый завод работает в Добруше
-            </p>
-            <iframe
-              width="356"
-              height="238"
-              src="https://www.youtube.com/embed/ZaIaknnPD1U"
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-          </div>
+    <div className={`${style.modalBack} ${isModalOpen ? style.active : ''}`}>
+      <div className={style.blockModal}>
+        <div className={style.content}>
+          <p className={style.contentModal}>
+            Единственный в Беларуси фарфоровый завод работает в Добруше
+          </p>
+          <iframe
+            width="100%"
+            height="350"
+            src="https://www.youtube.com/embed/ZaIaknnPD1U"
+            frameBorder="0"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
-    )
+    </div>
   );
 };
 
