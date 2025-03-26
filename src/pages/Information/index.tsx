@@ -163,7 +163,7 @@ export const Information: FC = () => {
     new Set(),
   );
 
-  // Добавляем словарь названий категорий
+  // Словарь названий категорий
   const categoryNames: { [key: string]: string } = {
     museums: 'Музеи',
     monuments: 'Монументы',
@@ -175,7 +175,7 @@ export const Information: FC = () => {
     rivers: 'Реки',
   };
 
-  // Добавляем функцию для переключения категории
+  // Функция для переключения категории
   const toggleCategory = (categoryKey: string) => {
     setExpandedCategories(prev => {
       const newSet = new Set(prev);
@@ -223,36 +223,8 @@ export const Information: FC = () => {
       .catch(error => console.error('Error fetching data:', error));
   }, [category, itemId]);
 
-  useEffect(() => {
-    const observers = new Map();
-
-    // Создаем наблюдатели для всех категорий
-    Object.keys(data?.categories || {}).forEach(categoryKey => {
-      const observer = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              setExpandedCategories(prev => new Set([...prev, categoryKey]));
-            }
-          });
-        },
-        { threshold: 0.1 },
-      );
-
-      const categorySection = document.querySelector(
-        `[data-category="${categoryKey}"]`,
-      );
-      if (categorySection) {
-        observer.observe(categorySection);
-      }
-      observers.set(categoryKey, observer);
-    });
-
-    // Очистка при размонтировании
-    return () => {
-      observers.forEach(observer => observer.disconnect());
-    };
-  }, [data?.categories]); // Зависимость от данных категорий
+  // Удаляем наблюдатель IntersectionObserver, так как он автоматически раскрывает категории
+  // и мешает правильной работе сворачивания/разворачивания
 
   return (
     <>
@@ -262,6 +234,7 @@ export const Information: FC = () => {
         {data?.categories &&
           Object.entries(data.categories).map(([categoryKey, items]) => {
             const isExpanded = expandedCategories.has(categoryKey);
+            // Отображаем все элементы, если категория развернута, или только первые 5, если свернута
             const displayedItems = isExpanded ? items : items.slice(0, 5);
 
             return (
@@ -271,7 +244,7 @@ export const Information: FC = () => {
                 data-category={categoryKey}
               >
                 <h2 className={style.categoryTitle}>
-                  {categoryNames[categoryKey]}
+                  {categoryNames[categoryKey] || categoryKey}
                 </h2>
                 {displayedItems.map((item, index) => (
                   <ContentBlock key={index} {...item} id={item.map_marker} />
