@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import style from './style.module.scss';
 import { Link } from 'react-router-dom';
 import { IBurgerMenuProps } from '@utils';
+import { Button } from '@components';
 
 const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -138,11 +139,7 @@ const ContentBlock: FC<Item & { id?: string }> = ({
   <div id={id} className={style.blockDost}>
     <p className={style.textDost}>{name}</p>
     <h2 className={style.gorod}>{location}</h2>
-    <img
-      src="./img/Line 14.png"
-      alt="divider decoration"
-      className={style.divider}
-    />
+    <div className={style.divider}></div>
     <div className={style.content}>
       <p className={style.textContent}>{description}</p>
       <img
@@ -153,13 +150,13 @@ const ContentBlock: FC<Item & { id?: string }> = ({
     </div>
     <div className={style.buttonContainer}>
       {links?.read_more && (
-        <a href={links.read_more} className={style.btn1}>
+        <Button href={links.read_more} variant="primary">
           Читать ещё
-        </a>
+        </Button>
       )}
-      <Link to={`/map?selected=${map_marker}`} className={style.btn2}>
+      <Button to={`/map?selected=${map_marker}`} variant="secondary">
         Показать на карте
-      </Link>
+      </Button>
     </div>
   </div>
 );
