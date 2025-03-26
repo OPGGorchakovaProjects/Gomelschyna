@@ -2,98 +2,119 @@
 
 // Базовые стили кнопки
 .button {
-  display: inline-block !important;
-  padding: 12px 25px !important;
-  border-radius: 30px !important;
-  font-size: 16px !important;
-  // font-weight: 600 !important;
-  text-align: center !important;
-  transition: all 0.3s ease !important;
-  min-width: 150px !important;
-  border: none !important;
-  cursor: pointer !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
-  color: white !important;
-  text-decoration: none !important;
-  margin: 0 !important;
-  line-height: 1.5 !important;
-  font-family: inherit !important;
-  outline: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  height: 48px; // Фиксированная высота для всех кнопок
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: white;
+  text-decoration: none;
+  margin: 0;
+  line-height: 1.5;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: unset;
+    padding: 10px 20px;
+    font-size: 15px;
+    height: 44px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 // Стиль для первой (основной) кнопки
 .primary {
-  background-color: #3498db !important;
+  background-color: #3498db;
   
-  &:hover, &:focus, &:active, &:visited {
-    background-color: #2980b9 !important;
-    color: white !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3) !important;
+  &:hover:not(:disabled) {
+    background-color: #2980b9;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    &:hover:not(:disabled) {
+      transform: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
   }
 }
 
 // Стиль для второй (вторичной) кнопки
 .secondary {
-  background-color: #27ae60 !important;
+  background-color: #27ae60;
   
-  &:hover, &:focus, &:active, &:visited {
-    background-color: #219653 !important;
-    color: white !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3) !important;
+  &:hover:not(:disabled) {
+    background-color: #219653;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    &:hover:not(:disabled) {
+      transform: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
   }
 }
 
-// Для кнопок, которые используются за пределами компонента Button
-:global {
-  /* Общие стили для всех кнопок и ссылок */
-  a[class*="button"], 
-  a[href*="map"], 
-  a[href^="http"],
-  .buttonContainer a,
-  .buttonContainer button,
-  [class*="_button_"],
-  [class*="_primary_"] {
-    display: inline-block !important;
-    padding: 12px 25px !important;
-    border-radius: 30px !important;
-    font-size: 16px !important;
-    // font-weight: 600 !important;
-    text-align: center !important;
-    transition: all 0.3s ease !important;
-    min-width: 150px !important;
-    border: none !important;
-    cursor: pointer !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
-    color: white !important;
-    text-decoration: none !important;
-  }
+// Группа кнопок
+.buttonGroup {
+  display: flex;
+  align-items: stretch; // Растягиваем кнопки по высоте контейнера
+  gap: 15px;
   
-  /* Стили для первичных кнопок */
-  a[href^="http"],
-  a[class*="primary"],
-  [class*="_primary_"],
-  .buttonContainer a:first-child {
-    background-color: #3498db !important;
-    
-    &:hover {
-      background-color: #2980b9 !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3) !important;
-    }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
   }
+
+  .button {
+    flex: 1 0 auto; // Позволяет кнопкам растягиваться, сохраняя базовый размер
+  }
+}
+
+// Стили для ссылок-кнопок
+.link {
+  text-decoration: none;
+  display: inline-block;
   
-  /* Стили для вторичных кнопок (карта) */
-  a[href*="map"],
-  a[class*="secondary"],
-  .buttonContainer a:last-child {
-    background-color: #27ae60 !important;
-    
-    &:hover {
-      background-color: #219653 !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3) !important;
-    }
+  @media (max-width: 768px) {
+    width: 100%;
   }
+}
+
+@media (hover: hover) {
+  .primary:hover:not(:disabled) {
+    background-color: #2980b9;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
   }
+
+  .secondary:hover:not(:disabled) {
+    background-color: #219653;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
+  }
+}
+
