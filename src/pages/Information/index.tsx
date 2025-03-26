@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { IBurgerMenuProps } from '@utils';
 import { Button } from '@components';
 
-const Header: FC = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
@@ -53,25 +53,18 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen }) => (
 const Banner: FC = () => (
   <section className={style.banner}>
     <div className={style.bannerContent}>
-      <div>
-        <h1>Добро пожаловать в Гомельскую область</h1>
-        <p>
-          Откройте для себя уникальные достопримечательности и культурные
-          ценности региона
-        </p>
-      </div>
+      <h1>Добро пожаловать в Гомельскую область</h1>
+      <p>
+        Откройте для себя уникальные достопримечательности и культурные ценности
+        региона
+      </p>
       <div className={style.boxWithButtons}>
         <Link to="/Map" className={style.mapBtn}>
-          <img
-            src="./img/image-PhotoRoom 1.png"
-            alt="Карта"
-            className={style.mapImg}
-          />
           Открыть карту
         </Link>
         <button className={style.mapBtn} id="interes-fact">
           Знаете ли вы?
-          <p className={style.factText}>( интересный факт )</p>
+          <span className={style.factText}>(интересный факт)</span>
         </button>
       </div>
     </div>
