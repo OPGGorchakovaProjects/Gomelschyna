@@ -40,6 +40,7 @@ $primary-color: var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 
     @media (max-width: 768px) {
       padding: 0 8px;
@@ -267,13 +268,18 @@ $primary-color: var(--primary-color);
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+      padding: 0 15px;
+    }
 
     h1 {
       color: white;
@@ -339,12 +345,14 @@ $primary-color: var(--primary-color);
     width: 100%;
     max-width: 900px;
     animation: fadeInUp 1.6s ease-out;
+    padding: 0;
+    box-sizing: border-box;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
       flex-direction: column;
       gap: 15px;
       margin-top: 25px;
-      padding: 0 15px;
+      padding: 0;
     }
   }
 
@@ -363,6 +371,7 @@ $primary-color: var(--primary-color);
     border: none;
     height: 100px;
     box-sizing: border-box;
+    overflow: hidden;
 
     &:hover {
       transform: translateY(-3px);
@@ -370,7 +379,7 @@ $primary-color: var(--primary-color);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
       width: 100%;
       height: 90px;
       padding: 15px;
@@ -392,12 +401,20 @@ $primary-color: var(--primary-color);
         font-size: 18px;
         font-weight: 700;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+        @media (max-width: 1000px) {
+          font-size: 16px;
+        }
       }
 
       p {
         color: rgba(255, 255, 255, 0.9);
         font-size: 14px;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+        @media (max-width: 1000px) {
+          font-size: 12px;
+        }
       }
     }
 
@@ -422,7 +439,7 @@ $primary-color: var(--primary-color);
     backdrop-filter: blur(5px);
     flex-shrink: 0;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
       width: 40px;
       height: 40px;
       font-size: 20px;
@@ -435,6 +452,8 @@ $primary-color: var(--primary-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 0;
+    width: 100%;
 
     h3 {
       color: white;
@@ -442,9 +461,13 @@ $primary-color: var(--primary-color);
       margin: 0 0 4px 0;
       font-weight: 600;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
 
-      @media (max-width: 768px) {
-        font-size: 15px;
+      @media (max-width: 1000px) {
+        font-size: 14px;
       }
     }
 
@@ -454,9 +477,15 @@ $primary-color: var(--primary-color);
       margin: 0;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
 
-      @media (max-width: 768px) {
-        font-size: 12px;
+      @media (max-width: 1000px) {
+        font-size: 11px;
       }
     }
   }
@@ -606,15 +635,16 @@ $primary-color: var(--primary-color);
     border-radius: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
     max-width: 1200px;
-    width: 100%;
+    width: calc(100% - 40px);
     transition: transform 0.3s ease;
     animation: fadeIn 0.6s ease-out forwards;
     scroll-margin-top: 100px;
+    box-sizing: border-box;
     
     @media (max-width: 768px) {
-      margin: 15px 0;
+      margin: 15px auto;
       padding: 15px;
-      width: 100%;
+      width: calc(100% - 30px);
       border-radius: 8px;
     }
     
