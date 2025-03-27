@@ -12,7 +12,11 @@ import {
   IconBuildingCastle,
   IconBuildingFactory,
   IconDroplet,
+  IconRipple,
   IconHome,
+  IconFlag,
+  IconUsers,
+  IconBookmark,
 } from '@tabler/icons-react';
 
 const Header = () => {
@@ -110,6 +114,13 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
         </button>
         <button
           className={style.button}
+          onClick={() => handleScroll('known_people')}
+        >
+          <IconUsers className={style.icon} />
+          Известные люди
+        </button>
+        <button
+          className={style.button}
           onClick={() => handleScroll('ancient_cities')}
         >
           <IconMapPin className={style.icon} />
@@ -127,7 +138,7 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
           Озёра
         </button>
         <button className={style.button} onClick={() => handleScroll('rivers')}>
-          <IconDroplet className={style.icon} />
+          <IconRipple className={style.icon} />
           Реки
         </button>
         <Link to="/">
@@ -136,6 +147,20 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
             На главную
           </button>
         </Link>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('obelisk')}
+        >
+          <IconFlag className={style.icon} />
+          Обелиски
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('memorial_boards')}
+        >
+          <IconBookmark className={style.icon} />
+          Мемориальные доски
+        </button>
       </div>
     </div>
   );
