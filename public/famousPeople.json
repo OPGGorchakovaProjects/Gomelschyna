@@ -4,175 +4,97 @@
           "name": "Николай Петрович Румянцев",
           "location": "Гомель",
           "description": "Граф, государственный деятель, дипломат, меценат. Сыграл важную роль в развитии Гомеля, построив дворец и собор Св. Петра и Павла. Основал Гомельский областной краеведческий музей.",
-          "image": "./img/famous/rumyantsev.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=rumyantsev"
-          },
-          "map_marker": "rumyantsev"
+          "image": "./img/People/1.jpg"
         },
         {
           "name": "Иван Федорович Паскевич",
           "location": "Гомель",
           "description": "Русский военный деятель, генерал-фельдмаршал, князь Варшавский. В 1834 году купил Гомельское имение у Румянцевых. При нем город получил новый импульс развития.",
-          "image": "./img/famous/paskevich.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=paskevich"
-          },
-          "map_marker": "paskevich"
+          "image": "./img/People/2.jpg"
         },
         {
           "name": "Гавриил Харитонович Ващенко",
           "location": "Гомель",
           "description": "Белорусский художник, народный художник Беларуси. Его работы стали основой для создания картинной галереи в Гомеле.",
-          "image": "./img/famous/vaschenko.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=vaschenko"
-          },
-          "map_marker": "vaschenko"
+          "image": "./img/People/3.jpg"
         },
         {
           "name": "Дед Талаш",
           "location": "Петриков",
           "description": "Национальный герой Беларуси, партизан. Участвовал в партизанском движении во время советско-польской войны и Великой Отечественной войны. В его честь создан дом-музей в Петрикове.",
-          "image": "./img/famous/talash.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=talash"
-          },
-          "map_marker": "talash"
-        },
+          "image": "./img/People/4.jpg"
+        },  
         {
           "name": "Василий Игнатенко",
           "location": "Брагин",
           "description": "Пожарный, один из первых ликвидаторов аварии на Чернобыльской АЭС. Его личные вещи хранятся в Брагинском историческом музее.",
-          "image": "./img/famous/ignatenko.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=ignatenko"
-          },
-          "map_marker": "ignatenko"
+          "image": "./img/People/5.jpg"
         },
         {
           "name": "Анатолий Каплан",
           "location": "Рогачев",
           "description": "Художник-график, чье творческое наследие представлено в Рогачевском музее Народной славы.",
-          "image": "./img/famous/kaplan.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=kaplan"
-          },
-          "map_marker": "kaplan"
+          "image": "./img/People/6.jpg"
         },
         {
           "name": "Леонид Борисович Пинский",
           "location": "Гомель",
           "description": "Гомельский фотограф и коллекционер, который первым подарил музею большую коллекцию фотографий и фотоаппаратов, ставшую основой Музея фотографии.",
-          "image": "./img/famous/pinsky.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=pinsky"
-          },
-          "map_marker": "pinsky"
+          "image": "./img/People/7.jpg"
         },
         {
           "name": "Матильда Ващенко",
           "location": "Гомель",
           "description": "Жена художника Г.Х. Ващенко, передавшая городу коллекцию из 70 работ современных белорусских художников, друзей и учеников Гавриила Харитоновича.",
-          "image": "./img/famous/matilda.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=matilda"
-          },
-          "map_marker": "matilda"
+          "image": "./img/People/8.jpg"
         },
         {
           "name": "Иван Дьячков",
           "location": "Гомель",
           "description": "Архитектор, руководивший строительством здания Музея истории города Гомеля в 1820-1822 годах в стиле ампир.",
-          "image": "./img/famous/dyachkov.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=dyachkov"
-          },
-          "map_marker": "dyachkov"
+          "image": "./img/People/9.jpg"
         },
         {
           "name": "Т.С. Бородин",
           "location": "Гомель",
           "description": "Один из руководителей патриотического подполья в Гомеле в годы Великой Отечественной войны (1941-1942).",
-          "image": "./img/famous/borodin.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=borodin"
-          },
-          "map_marker": "borodin"
+          "image": "./img/People/10.jpg"
         },
         {
           "name": "Р.И. Тимошенко",
           "location": "Гомель",
           "description": "Один из руководителей патриотического подполья в Гомеле в годы Великой Отечественной войны (1941-1942).",
-          "image": "./img/famous/timoshenko.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=timoshenko"
-          },
-          "map_marker": "timoshenko"
+          "image": "./img/People/11.jpg"
         },
         {
           "name": "Юрий Фисюк",
           "location": "Наровля",
           "description": "Художник, чьи живописные произведения представлены в экспозиции «Моя Наровлянщина» в Наровлянском этнографическом музее.",
-          "image": "./img/famous/fisyuk.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=fisyuk"
-          },
-          "map_marker": "fisyuk"
+          "image": "./img/People/12.jpg"
         },
         {
           "name": "М. Засинец",
           "location": "Ельск",
           "description": "Заслуженный работник культуры БССР, самодеятельный художник, чьи 65 работ представлены в Ельском краеведческом музее.",
-          "image": "./img/famous/zasinets.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=zasinets"
-          },
-          "map_marker": "zasinets"
+          "image": "./img/People/13.jpg"
         },
         {
           "name": "Алексей Никитин",
           "location": "Калуга",
           "description": "Фотограф и коллекционер из Калуги, поддержавший создание Музея фотографии в Гомеле.",
-          "image": "./img/famous/nikitin.jpg",
-          "links": {
-            "read_more": "",
-            "map": "../Map/index.html?marker=nikitin"
-          },
-          "map_marker": "nikitin"
+          "image": "./img/People/14.jpg"
         },
         {
           "name": "Александр Анатольевич Исачёв",
           "location": "Калинковичский район",
           "description": "Александр Исачев - один из самых необычных белорусских художников 20 века. В его картинах сплелись мифология, христианство и эротика. За свою жизнь А. Исачёв создал около 500 картин, большинство из которых были вывезены в Швецию, Германию, Францию, Израиль и США.",
-          "image": "./img/famous/isachev.png",
-          "links": {
-            "read_more": "https://hvali.by/belorusskie-hudozhniki/aleksandr-isachev/",
-            "map": "../Map/index.html?marker=isachev"
-          }
+          "image": "./img/People/15.jpg"
         },
         {
           "name": "Мележ Иван Павлович",
           "location": "Хойникский район, Глинище",
           "description": "Мележ Иван Павлович - Белорусский советский прозаик, драматург, публицист. Автор ряда литературно-критических статей, очерков. По произведениям И. Мележа поставлены спектакли, сняты художественные фильмы.",
-          "image": "./img/famous/melezh.png",
-          "links": {
-            "read_more": "https://lib-bykhov.by/virtualny-proekt-oni-proshli-po-toy-voyne-pisateli-frontoviki/ivan-pavlovich-melezh",
-            "map": "../Map/index.html?marker=melezh"
-          }
+          "image": "./img/People/16.jpg"
         }
       ]
 }

@@ -40,20 +40,28 @@ export interface CategoryInfo {
 
 export interface Item {
   name: string;
+  location: string;
   description: string;
-  coordinates?: string;
   image?: string;
   links?: {
     read_more?: string;
+    map?: string;
   };
-  map_marker: string;
+  map_marker?: string;
 }
 
 export interface Data {
-  categories: {
-    [key: string]: Item[];
-  };
-} 
+  categories: Record<string, Item[]>;
+  famous_people?: Item[];
+}
+
+export interface ContentBlockProps extends Item {
+  id?: string;
+}
+
+export interface CategoryNames {
+  [key: string]: string;
+}
 
 export interface IBurgerMenuProps {
   isOpen: boolean;
