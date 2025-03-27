@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import styles from './style.module.scss';
 import { IScreenProps } from '@utils';
 

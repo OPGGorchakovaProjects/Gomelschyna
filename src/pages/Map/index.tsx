@@ -54,6 +54,7 @@ const createClusterCustomIcon = function (cluster: any) {
   } else if (count > 20) {
     className = 'cluster-medium';
   }
+  return className;
 };
 
 export const Map = () => {
@@ -63,9 +64,7 @@ export const Map = () => {
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
   const mapRef = useRef<any>(null);
   const [routingControl, setRoutingControl] = useState<any>(null);
-  const [userLocation, setUserLocation] = useState<[number, number] | null>(
-    null,
-  );
+  const [, setUserLocation] = useState<[number, number] | null>(null);
 
   const getUserLocation = (destinationCoords: [number, number]) => {
     if (navigator.geolocation) {

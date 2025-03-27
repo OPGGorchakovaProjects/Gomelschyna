@@ -11,7 +11,6 @@ import {
   IconRipple,
   IconArrowLeft,
   IconX,
-  IconMenu2,
   IconLayoutGrid,
 } from '@tabler/icons-react';
 import styles from './style.module.scss';
