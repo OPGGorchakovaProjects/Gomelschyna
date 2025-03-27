@@ -149,14 +149,20 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
         </Link>
         <button
           className={style.button}
-          onClick={() => handleScroll('obelisk')}
+          onClick={() =>
+            (window.location.href =
+              'https://plaques-obelisks.netlify.app/pages/obelisks')
+          }
         >
           <IconFlag className={style.icon} />
           Обелиски
         </button>
         <button
           className={style.button}
-          onClick={() => handleScroll('memorial_boards')}
+          onClick={() =>
+            (window.location.href =
+              'https://plaques-obelisks.netlify.app/pages/memorial_plaques')
+          }
         >
           <IconBookmark className={style.icon} />
           Мемориальные доски
