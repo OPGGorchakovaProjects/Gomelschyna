@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { IconMapPinFilled, IconUserCircle } from '@tabler/icons-react';
-import styles from './style.module.scss';
+import styles from '../pages/Map/style.module.scss';
 import { IRoutingControlProps } from './types';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';

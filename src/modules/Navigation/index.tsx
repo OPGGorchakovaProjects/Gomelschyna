@@ -1,4 +1,4 @@
-import { JSX, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   MapContainer,
   TileLayer,
@@ -13,7 +13,6 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import styles from './style.module.scss';
-import { man, mapPin } from '@assets';
 
 // Создание кастомных иконок через <i>
 const createCustomIcon = (className: string, size: number = 40) => {

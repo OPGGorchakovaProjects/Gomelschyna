@@ -1,0 +1,26 @@
+[build]
+  command = "npm run build"
+  publish = "dist"  # для Vite. Для Create-React-App укажите "build"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    "Content-Type" = "text/javascript"
+
+[[headers]]
+  for = "/*.jsx"
+  [headers.values]
+    "Content-Type" = "text/javascript"
+
+[[headers]]
+  for = "/*.ts"
+  [headers.values]
+    "Content-Type" = "text/javascript"
+
+[[headers]]
+  for = "/*.tsx"
+  [headers.values]
+    "Content-Type" = "text/javascript"
+
+[dev]
+  framework = "vite"  # или "create-react-app" если используете CRA

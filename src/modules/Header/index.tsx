@@ -11,20 +11,29 @@ import {
   IconRipple,
   IconArrowLeft,
   IconX,
-  IconMenu2,
   IconLayoutGrid,
+  IconRoad,
 } from '@tabler/icons-react';
 import styles from './style.module.scss';
 import { CategoryInfo, IHeaderProps } from '@utils';
+import { CategoryKey } from '../../utils/types/types';
 
-const categoryInfo: { [key: string]: CategoryInfo } = {
-  museums: {
-    name: 'Музеи',
-    icon: <IconBuildings size={24} stroke={2} />,
+const categoryInfo: { [key in CategoryKey]: CategoryInfo } = {
+  streets: {
+    name: 'Улицы',
+    icon: <IconRoad size={24} stroke={2} />,
   },
   monuments: {
     name: 'Монументы',
     icon: <IconBuildingMonument size={24} stroke={2} />,
+  },
+  museums: {
+    name: 'Музеи',
+    icon: <IconBuildings size={24} stroke={2} />,
+  },
+  reserve: {
+    name: 'Заповедники',
+    icon: <IconTree size={24} stroke={2} />,
   },
   cultural_values: {
     name: 'Культурные ценности',
@@ -37,10 +46,6 @@ const categoryInfo: { [key: string]: CategoryInfo } = {
   industry: {
     name: 'Промышленность',
     icon: <IconBuildingFactory size={24} stroke={2} />,
-  },
-  reserve: {
-    name: 'Заповедники',
-    icon: <IconTree size={24} stroke={2} />,
   },
   lakes: {
     name: 'Озёра',
@@ -79,7 +84,7 @@ export const Header: FC<IHeaderProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const toggleCategory = (category: string) => {
+  const toggleCategory = (category: CategoryKey) => {
     if (activeCategories.includes(category)) {
       setActiveCategories(activeCategories.filter(c => c !== category));
     } else {
@@ -111,9 +116,11 @@ export const Header: FC<IHeaderProps> = ({
               <button
                 key={key}
                 className={`${styles.categoryButton} ${
-                  activeCategories.includes(key) ? styles.active : ''
+                  activeCategories.includes(key as CategoryKey)
+                    ? styles.active
+                    : ''
                 }`}
-                onClick={() => toggleCategory(key)}
+                onClick={() => toggleCategory(key as CategoryKey)}
               >
                 <span className={styles.icon}>{info.icon}</span>
                 <span className={styles.text}>{info.name}</span>
@@ -164,10 +171,12 @@ export const Header: FC<IHeaderProps> = ({
             <button
               key={key}
               className={`${styles.categoryButton} ${
-                activeCategories.includes(key) ? styles.active : ''
+                activeCategories.includes(key as CategoryKey)
+                  ? styles.active
+                  : ''
               }`}
               onClick={() => {
-                toggleCategory(key);
+                toggleCategory(key as CategoryKey);
               }}
             >
               <span className={styles.icon}>{info.icon}</span>
