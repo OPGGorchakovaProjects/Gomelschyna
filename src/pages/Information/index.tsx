@@ -17,6 +17,7 @@ import {
   IconFlag,
   IconUsers,
   IconBookmark,
+  IconX,
 } from '@tabler/icons-react';
 
 const Header = () => {
@@ -225,9 +226,24 @@ const Modal = () => {
     return () => button?.removeEventListener('click', toggleModal);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const modalBack = document.querySelector(`.${style.modalBack}`);
+      if (isModalOpen && modalBack && event.target === modalBack) {
+        toggleModal();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isModalOpen]);
+
   return (
     <div className={`${style.modalBack} ${isModalOpen ? style.active : ''}`}>
       <div className={style.blockModal}>
+        <button className={style.closeButton} onClick={toggleModal}>
+          <IconX />
+        </button>
         <div className={style.content}>
           <p className={style.contentModal}>
             Единственный в Беларуси фарфоровый завод работает в Добруше
