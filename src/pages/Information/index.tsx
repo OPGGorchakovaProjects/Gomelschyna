@@ -12,7 +12,12 @@ import {
   IconBuildingCastle,
   IconBuildingFactory,
   IconDroplet,
+  IconRipple,
   IconHome,
+  IconFlag,
+  IconUsers,
+  IconBookmark,
+  IconX,
 } from '@tabler/icons-react';
 
 const Header = () => {
@@ -110,6 +115,13 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
         </button>
         <button
           className={style.button}
+          onClick={() => handleScroll('known_people')}
+        >
+          <IconUsers className={style.icon} />
+          Известные люди
+        </button>
+        <button
+          className={style.button}
           onClick={() => handleScroll('ancient_cities')}
         >
           <IconMapPin className={style.icon} />
@@ -127,7 +139,7 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
           Озёра
         </button>
         <button className={style.button} onClick={() => handleScroll('rivers')}>
-          <IconDroplet className={style.icon} />
+          <IconRipple className={style.icon} />
           Реки
         </button>
         <Link to="/">
@@ -136,6 +148,26 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
             На главную
           </button>
         </Link>
+        <button
+          className={style.button}
+          onClick={() =>
+            (window.location.href =
+              'https://plaques-obelisks.netlify.app/pages/obelisks')
+          }
+        >
+          <IconFlag className={style.icon} />
+          Обелиски
+        </button>
+        <button
+          className={style.button}
+          onClick={() =>
+            (window.location.href =
+              'https://plaques-obelisks.netlify.app/pages/memorial_plaques')
+          }
+        >
+          <IconBookmark className={style.icon} />
+          Мемориальные доски
+        </button>
       </div>
     </div>
   );
@@ -149,14 +181,35 @@ const Banner = () => (
         Откройте для себя уникальные достопримечательности и культурные ценности
         региона
       </p>
-      <div className={style.boxWithButtons}>
-        <Link to="/Map" className={style.mapBtn}>
-          Открыть карту
+      <div className={style.downloadCards}>
+        <Link to="/Map" className={`${style.downloadCard} ${style.mapCard}`}>
+          <div className={style.cardIcon}>🗺️</div>
+          <div className={style.cardContent}>
+            <h3>Открыть карту</h3>
+            <p>Исследуйте достопримечательности на интерактивной карте</p>
+          </div>
         </Link>
-        <button className={style.mapBtn} id="interes-fact">
-          Знаете ли вы?
-          <span className={style.factText}>(интересный факт)</span>
+        <button className={style.downloadCard} id="interes-fact">
+          <div className={style.cardIcon}>💡</div>
+          <div className={style.cardContent}>
+            <h3>Знаете ли вы?</h3>
+            <p>Интересные факты о Гомельской области</p>
+          </div>
         </button>
+        <a href="/travel-tips.pptx" download className={style.downloadCard}>
+          <div className={style.cardIcon}>📖</div>
+          <div className={style.cardContent}>
+            <h3>Советы путешественнику</h3>
+            <p>Полезная информация для вашего путешествия</p>
+          </div>
+        </a>
+        <a href="/self-check.pptx" download className={style.downloadCard}>
+          <div className={style.cardIcon}>✍️</div>
+          <div className={style.cardContent}>
+            <h3>Проверь себя</h3>
+            <p>Тест на знание Гомельской области</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -173,9 +226,24 @@ const Modal = () => {
     return () => button?.removeEventListener('click', toggleModal);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const modalBack = document.querySelector(`.${style.modalBack}`);
+      if (isModalOpen && modalBack && event.target === modalBack) {
+        toggleModal();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isModalOpen]);
+
   return (
     <div className={`${style.modalBack} ${isModalOpen ? style.active : ''}`}>
       <div className={style.blockModal}>
+        <button className={style.closeButton} onClick={toggleModal}>
+          <IconX />
+        </button>
         <div className={style.content}>
           <p className={style.contentModal}>
             Единственный в Беларуси фарфоровый завод работает в Добруше
