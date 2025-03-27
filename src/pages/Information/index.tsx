@@ -18,6 +18,7 @@ import {
   IconUsers,
   IconBookmark,
   IconX,
+  IconRoad,
 } from '@tabler/icons-react';
 import {
   Item,
@@ -31,6 +32,13 @@ const Header = () => {
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <header>
       <nav id="header">
@@ -43,7 +51,9 @@ const Header = () => {
               <div key={i} className={style.line}></div>
             ))}
           </button>
-          <h1 className={style.headerTitle}>Гомельщина</h1>
+          <button className={style.headerTitle} onClick={scrollToTop}>
+            Гомельщина
+          </button>
         </div>
       </nav>
       <BurgerMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
@@ -147,6 +157,13 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
         >
           <IconUsers className={style.icon} />
           Известные люди
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('streets')}
+        >
+          <IconRoad className={style.icon} />
+          Улицы
         </button>
         <Link to="/">
           <button className={`${style.button} ${style.back}`}>
@@ -306,6 +323,7 @@ const ContentBlock: FC<ContentBlockProps> = ({
 export const Information: FC = () => {
   const [data, setData] = useState<Data | null>(null);
   const [famousPeople, setFamousPeople] = useState<Item[]>([]);
+  const [streets, setStreets] = useState<Item[]>([]);
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category');
   const itemId = searchParams.get('item');
@@ -313,6 +331,7 @@ export const Information: FC = () => {
     new Set(),
   );
   const [isFamousPeopleExpanded, setIsFamousPeopleExpanded] = useState(false);
+  const [isStreetsExpanded, setIsStreetsExpanded] = useState(false);
 
   // Словарь названий категорий
   const categoryNames: CategoryNames = {
@@ -325,6 +344,7 @@ export const Information: FC = () => {
     lakes: 'Озёра',
     rivers: 'Реки',
     famous_people: 'Известные люди',
+    streets: 'Улицы',
   };
 
   // Функция для переключения категории
@@ -378,6 +398,14 @@ export const Information: FC = () => {
         setFamousPeople(data.famous_people || []);
       })
       .catch(error => console.error('Error fetching famous people:', error));
+
+    // Загрузка данных об улицах
+    fetch('/streets.json')
+      .then(response => response.json())
+      .then(data => {
+        setStreets(data.categories.streets || []);
+      })
+      .catch(error => console.error('Error fetching streets:', error));
   }, [category, itemId]);
 
   return (
@@ -438,6 +466,30 @@ export const Information: FC = () => {
                 onClick={() => setIsFamousPeopleExpanded(prev => !prev)}
               >
                 {isFamousPeopleExpanded ? 'Показать меньше' : 'Показать больше'}
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Секция улиц */}
+        {streets.length > 0 && (
+          <div
+            className={style.categorySection}
+            data-category="streets"
+            id="streets"
+          >
+            <h2 className={style.categoryTitle}>{categoryNames.streets}</h2>
+            {(isStreetsExpanded ? streets : streets.slice(0, 5)).map(
+              (street: Item, index: number) => (
+                <ContentBlock key={index} {...street} id={street.map_marker} />
+              ),
+            )}
+            {streets.length > 5 && (
+              <button
+                className={style.showMoreButton}
+                onClick={() => setIsStreetsExpanded(prev => !prev)}
+              >
+                {isStreetsExpanded ? 'Показать меньше' : 'Показать больше'}
               </button>
             )}
           </div>

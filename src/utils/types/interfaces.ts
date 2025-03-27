@@ -48,11 +48,13 @@ export interface Item {
     map?: string;
   };
   map_marker?: string;
+  coordinates?: [number, number][];
 }
 
 export interface Data {
   categories: Record<string, Item[]>;
   famous_people?: Item[];
+  streets?: Item[];
 }
 
 export interface ContentBlockProps extends Item {
