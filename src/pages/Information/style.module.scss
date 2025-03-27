@@ -816,15 +816,11 @@ $primary-color: var(--primary-color);
   .content {
     display: flex;
     flex-direction: row;
-    gap: 25px;
-    margin-top: 10px;
-    width: 100%;
-    box-sizing: border-box;
+    gap: 20px;
 
     @media (max-width: 768px) {
       flex-direction: column;
-      gap: 20px;
-      align-items: center;
+      gap: 15px;
     }
   }
 
@@ -929,12 +925,6 @@ $primary-color: var(--primary-color);
     }
   }
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
   .contentModal {
     font-size: 18px;
     font-weight: 600;
@@ -992,52 +982,6 @@ $primary-color: var(--primary-color);
   }
 
   // Обновляем глобальные стили для кнопок
-  :global(.button) {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 25px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    box-sizing: border-box;
-    min-width: 160px;
-    
-    @media (max-width: 768px) {
-      width: 100%;
-      min-width: unset;
-      padding: 10px 15px;
-      font-size: 14px;
-      white-space: normal;
-      height: auto;
-      min-height: 44px;
-    }
-
-    // Стили для основной кнопки
-    &[data-variant='primary'] {
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      
-      &:hover {
-        background: var(--primary-dark);
-      }
-    }
-
-    // Стили для вторичной кнопки
-    &[data-variant='secondary'] {
-      background: #f5f5f5;
-      color: #333;
-      border: 1px solid #ddd;
-      
-      &:hover {
-        background: #ebebeb;
-      }
-    }
-  }
 
   @media (hover: hover) {
     .mapBtn:hover {

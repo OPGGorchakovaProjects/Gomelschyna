@@ -24,3 +24,8 @@
 
 [dev]
   framework = "vite"  # или "create-react-app" если используете CRA
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
