@@ -1,10 +1,41 @@
-import { useEffect, useState, JSX, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
+import React, { useEffect, useState, JSX, useRef } from 'react';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Tooltip,
+  Polygon,
+} from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.js';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Typography } from '@components';
+import { Header } from '@modules';
+import { Link } from 'react-router-dom';
+import styles from './style.module.scss';
+import {
+  Data,
+  Item,
+  categoryColors,
+  getIcon,
+  createCustomIcon,
+  createClusterCustomIcon,
+  Street,
+  StreetsData,
+  IMapProps,
+  IMarkerProps,
+  IPolygonProps,
+  IClusterIconProps,
+  MapCoordinates,
+  MapBounds,
+  CategoryKey,
+  IconSize,
+} from '@utils';
+import streetsData from '../../../public/streets.json';
 
 declare module 'leaflet' {
   namespace Routing {
@@ -15,67 +46,18 @@ declare module 'leaflet' {
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.js';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 
-import { useSearchParams } from 'react-router-dom';
-import { Typography } from '@components';
-import { Header } from '@modules';
-import { Link } from 'react-router-dom';
-import styles from './style.module.scss';
-import { Data, Item } from '@utils';
-
-const categoryColors: { [key: string]: string } = {
-  reserve: 'green',
-  monuments: 'blue',
-  museums: 'purple',
-  cultural_values: 'orange',
-  ancient_cities: 'brown',
-  famous_people: 'pink',
-  industry: 'gray',
-  lakes: 'cyan',
-  rivers: 'navy',
-};
-
-const getIcon = (category: string) => {
-  return L.divIcon({
-    html: `<div class="${styles.markerIcon}" style="background-color: ${categoryColors[category]};"></div>`,
-    className: '',
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
-    popupAnchor: [0, -10],
-    tooltipAnchor: [10, -10],
-  });
-};
-
-const createClusterCustomIcon = function (cluster: any) {
-  const count = cluster.getChildCount();
-  let className = 'cluster-small';
-  let size = 30;
-
-  if (count > 50) {
-    className = 'cluster-large';
-    size = 50;
-  } else if (count > 20) {
-    className = 'cluster-medium';
-    size = 40;
-  }
-
-  return L.divIcon({
-    html: `<div class="${className}"><span>${count}</span></div>`,
-    className: '',
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
-  });
-};
-
 export const Map = () => {
   const [data, setData] = useState<Data | null>(null);
-  const [activeCategories, setActiveCategories] = useState<string[]>([]);
+  const [activeCategories, setActiveCategories] = useState<CategoryKey[]>([]);
   const [searchParams] = useSearchParams();
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<L.Map>(null);
   const [routingControl, setRoutingControl] = useState<any>(null);
-  const [, setUserLocation] = useState<[number, number] | null>(null);
+  const [, setUserLocation] = useState<MapCoordinates | null>(null);
+  const navigate = useNavigate();
+  const [streets, setStreets] = useState<Street[]>([]);
 
-  const getUserLocation = (destinationCoords: [number, number]) => {
+  const getUserLocation = (destinationCoords: MapCoordinates) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
@@ -93,7 +75,7 @@ export const Map = () => {
     }
   };
 
-  const createRoute = (from: [number, number], to: [number, number]) => {
+  const createRoute = (from: MapCoordinates, to: MapCoordinates) => {
     if (mapRef.current) {
       if (routingControl) {
         mapRef.current.removeControl(routingControl);
@@ -144,7 +126,7 @@ export const Map = () => {
             jsonData.categories as Record<string, Item[]>,
           )) {
             if (items.some(item => item.map_marker === selectedMarker)) {
-              setActiveCategories([category]);
+              setActiveCategories([category as CategoryKey]);
 
               const item = items.find(i => i.map_marker === selectedMarker);
               if (item?.coordinates && mapRef.current) {
@@ -161,8 +143,95 @@ export const Map = () => {
       .catch(error => console.error('Error:', error));
   }, [selectedMarker]);
 
-  const renderMarkers = (category: string): JSX.Element[] | null => {
-    if (!data?.categories[category] || !activeCategories.includes(category)) {
+  useEffect(() => {
+    console.log('Raw streets data:', streetsData);
+    if (streetsData?.categories?.streets) {
+      console.log('Streets array:', streetsData.categories.streets);
+      const formattedStreets = (
+        streetsData as StreetsData
+      ).categories.streets.map(street => {
+        console.log('Street before formatting:', street);
+        const formattedStreet = {
+          ...street,
+          coordinates: street.coordinates.map(coord => {
+            console.log('Coordinate before formatting:', coord);
+            if (Array.isArray(coord) && coord.length === 2) {
+              return coord as MapCoordinates;
+            }
+            return [52.4242, 31.014] as MapCoordinates;
+          }),
+        };
+        console.log('Street after formatting:', formattedStreet);
+        return formattedStreet;
+      });
+      console.log('All formatted streets:', formattedStreets);
+      setStreets(formattedStreets);
+    } else {
+      console.log('No streets data found in streetsData:', streetsData);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('Active categories:', activeCategories);
+    console.log('Current streets state:', streets);
+    console.log(
+      'Is streets category active:',
+      activeCategories.includes('streets'),
+    );
+    console.log('Number of streets:', streets.length);
+  }, [activeCategories, streets]);
+
+  const renderMarkers = (category: CategoryKey): JSX.Element[] | null => {
+    if (category === 'streets') {
+      if (!activeCategories.includes('streets') || streets.length === 0) {
+        return null;
+      }
+      return streets.map((street, index) => {
+        const markerPosition: MapCoordinates = street
+          .coordinates[0] as MapCoordinates;
+        const linePositions: MapCoordinates[] =
+          street.coordinates as MapCoordinates[];
+
+        return (
+          <React.Fragment key={street.map_marker}>
+            <Marker
+              position={markerPosition}
+              icon={createCustomIcon('streets')}
+            >
+              <Popup>
+                <div className={styles.popupContent}>
+                  <h3>{street.name}</h3>
+                  <p>{street.description}</p>
+                  <button
+                    onClick={() =>
+                      navigate(`/information?marker=${street.map_marker}`)
+                    }
+                    className={styles.readMoreButton}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </Popup>
+            </Marker>
+            <Polygon
+              positions={linePositions}
+              pathOptions={{
+                color: categoryColors.streets,
+                weight: 2,
+                opacity: 0.3,
+                fillOpacity: 0.2,
+                className: styles.streetLine,
+              }}
+            />
+          </React.Fragment>
+        );
+      });
+    }
+
+    if (
+      !data?.categories[category] ||
+      !activeCategories.includes(category as CategoryKey)
+    ) {
       return null;
     }
 
@@ -197,7 +266,7 @@ export const Map = () => {
                   className={styles.routeButton}
                   onClick={e => {
                     e.preventDefault();
-                    getUserLocation(coordinates);
+                    getUserLocation(coordinates as MapCoordinates);
                   }}
                 >
                   Проложить маршрут
@@ -220,28 +289,60 @@ export const Map = () => {
       });
   };
 
+  const mapProps: IMapProps = {
+    ref: mapRef as React.RefObject<L.Map>,
+    center: [52.4242, 31.014] as MapCoordinates,
+    zoom: 8,
+    className: styles.mapContainer,
+    attributionControl: false,
+    zoomControl: false,
+    maxBounds: [
+      [50.5, 26.5],
+      [54.0, 32.0],
+    ] as MapBounds,
+    minZoom: 5,
+  };
+
+  const markerProps: IMarkerProps = {
+    position: [52.4242, 31.014] as MapCoordinates,
+    icon: createCustomIcon('streets') as L.Icon,
+    children: null,
+  };
+
+  const polygonProps: IPolygonProps = {
+    positions: [] as L.LatLngExpression[],
+    pathOptions: {
+      color: categoryColors.streets,
+      weight: 3,
+      opacity: 0.8,
+      fillOpacity: 0.2,
+      dashArray: '5, 5',
+      className: styles.streetLine,
+    },
+  };
+
+  const clusterIconProps: IClusterIconProps = {
+    cluster: {
+      getChildCount: () => 0,
+    },
+    options: {
+      iconSize: [40, 40] as IconSize,
+    },
+  };
+
   return (
     <div className={styles.container}>
       <Header
         activeCategories={activeCategories}
-        setActiveCategories={setActiveCategories}
+        setActiveCategories={(categories: CategoryKey[]) => {
+          console.log('Setting active categories:', categories);
+          setActiveCategories(categories);
+        }}
         hasRoute={!!routingControl}
         onClearRoute={clearRoute}
       />
       <div className={styles.mapWrapper}>
-        <MapContainer
-          ref={mapRef}
-          center={[52.4242, 31.014]}
-          zoom={8}
-          className={styles.mapContainer}
-          attributionControl={false}
-          zoomControl={false}
-          maxBounds={[
-            [50.5, 26.5],
-            [54.0, 32.0],
-          ]}
-          minZoom={5}
-        >
+        <MapContainer {...mapProps}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <MarkerClusterGroup
             chunkedLoading
@@ -256,10 +357,49 @@ export const Map = () => {
             zoomToBoundsOnClick={true}
           >
             {data &&
-              Object.keys(categoryColors).map(category =>
-                renderMarkers(category),
-              )}
+              Object.keys(categoryColors)
+                .filter(category => category !== 'streets')
+                .map(category => renderMarkers(category as CategoryKey))}
           </MarkerClusterGroup>
+          {activeCategories.includes('streets') && streets.length > 0 && (
+            <>
+              {streets.map((street, index) => {
+                console.log('Rendering street:', street);
+                const streetMarkerProps: IMarkerProps = {
+                  ...markerProps,
+                  position: street.coordinates[0] as MapCoordinates,
+                  children: (
+                    <Popup>
+                      <div className={styles.popupContent}>
+                        <h3>{street.name}</h3>
+                        <p>{street.description}</p>
+                        <button
+                          onClick={() =>
+                            navigate(`/information?marker=${street.map_marker}`)
+                          }
+                          className={styles.readMoreButton}
+                        >
+                          Подробнее
+                        </button>
+                      </div>
+                    </Popup>
+                  ),
+                };
+
+                const streetPolygonProps: IPolygonProps = {
+                  ...polygonProps,
+                  positions: street.coordinates as L.LatLngExpression[],
+                };
+
+                return (
+                  <React.Fragment key={street.map_marker}>
+                    <Marker {...streetMarkerProps} />
+                    <Polygon {...streetPolygonProps} />
+                  </React.Fragment>
+                );
+              })}
+            </>
+          )}
         </MapContainer>
       </div>
     </div>
