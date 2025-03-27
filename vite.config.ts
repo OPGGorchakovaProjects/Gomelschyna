@@ -25,5 +25,10 @@ export default defineConfig({
   },
   esbuild: {
     loader: 'tsx',
-  }
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
+  },
+  base: '/',
 })
