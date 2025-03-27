@@ -48,13 +48,22 @@ const getIcon = (category: string) => {
 const createClusterCustomIcon = function (cluster: any) {
   const count = cluster.getChildCount();
   let className = 'cluster-small';
+  let size = 30;
 
   if (count > 50) {
     className = 'cluster-large';
+    size = 50;
   } else if (count > 20) {
     className = 'cluster-medium';
+    size = 40;
   }
-  return className;
+
+  return L.divIcon({
+    html: `<div class="${className}"><span>${count}</span></div>`,
+    className: '',
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+  });
 };
 
 export const Map = () => {

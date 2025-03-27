@@ -14,21 +14,21 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, 'src/utils'),
     }
   },
-  server: {
-    headers: {
-      'X-Content-Type-Options': 'nosniff',
-    }
-  },
-  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
-  optimizeDeps: {
-    include: ['react', 'react-dom'],
-  },
-  esbuild: {
-    loader: 'tsx',
-  },
-  build: {
-    outDir: 'dist',
-    emptyOutDir: true,
-  },
-  base: '/',
+  // server: {
+  //   headers: {
+  //     'X-Content-Type-Options': 'nosniff',
+  //   }
+  // },
+  // assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
+  // optimizeDeps: {
+  //   include: ['react', 'react-dom'],
+  // },
+  // esbuild: {
+  //   loader: 'tsx',
+  // },
+  // build: {
+  //   outDir: 'dist',
+  //   emptyOutDir: true,
+  // },
+  // base: '/',
 })
