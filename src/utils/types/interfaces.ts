@@ -1,7 +1,7 @@
 import { ReactNode, JSX, CSSProperties } from 'react';
 import { ButtonSize, ButtonColor, ButtonType } from '@utils';
 import * as L from 'leaflet';
-import { CategoryKey } from './types';
+import { CategoryKey, MapCoordinates, StringCoordinates } from './types';
 
 export interface IButtonProps {
   onClick: () => void;
@@ -48,7 +48,7 @@ export interface Item {
     map?: string;
   };
   map_marker?: string;
-  coordinates?: [number, number][];
+  coordinates?: MapCoordinates[] | StringCoordinates;
 }
 
 export interface Data {
@@ -81,16 +81,15 @@ export interface IMapEventsProps {
 }
 
 export interface Street {
-  map_marker: string;
   name: string;
-  location: string;
   description: string;
-  image: string;
-  links: {
-    read_more: string;
-    map: string;
+  map_marker: string;
+  coordinates: MapCoordinates[];
+  center: MapCoordinates;
+  image?: string;
+  links?: {
+    read_more?: string;
   };
-  coordinates: number[][];
 }
 
 export interface StreetsData {

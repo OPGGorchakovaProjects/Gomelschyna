@@ -5,6 +5,8 @@ export type ButtonColor = 'primary' | 'secondary' | 'danger' | 'warning' | 'succ
 export type ButtonType = 'solid' | 'outline' | 'ghost';
 
 export type MapCoordinates = [number, number];
+export type StringCoordinates = string;
+export type Coordinates = MapCoordinates | StringCoordinates;
 
 export type MapBounds = [[number, number], [number, number]];
 
