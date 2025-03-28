@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import style from './style.module.scss';
 import { Link } from 'react-router-dom';
-import { IBurgerMenuProps } from '@utils';
 import { Button } from '@components';
 import {
   IconMapPin,
@@ -25,10 +24,12 @@ import {
   Data,
   ContentBlockProps,
   CategoryNames,
-} from '../../utils/types/interfaces';
+  IBurgerMenuProps,
+} from '@utils';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [, setSearchParams] = useSearchParams();
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
@@ -37,6 +38,8 @@ const Header = () => {
       top: 0,
       behavior: 'smooth',
     });
+    // Сбрасываем параметр object из URL
+    setSearchParams({});
   };
 
   return (
@@ -293,7 +296,7 @@ const ContentBlock: FC<ContentBlockProps> = ({
   links,
   map_marker,
 }) => (
-  <div id={id} className={style.blockDost}>
+  <div id={id} data-object-id={map_marker} className={style.blockDost}>
     <p className={style.textDost}>{name}</p>
     <h2 className={style.gorod}>{location}</h2>
     <div className={style.divider}></div>
@@ -321,17 +324,16 @@ const ContentBlock: FC<ContentBlockProps> = ({
 );
 
 export const Information: FC = () => {
+  const [searchParams] = useSearchParams();
   const [data, setData] = useState<Data | null>(null);
   const [famousPeople, setFamousPeople] = useState<Item[]>([]);
   const [streets, setStreets] = useState<Item[]>([]);
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get('category');
-  const itemId = searchParams.get('item');
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(),
   );
   const [isFamousPeopleExpanded, setIsFamousPeopleExpanded] = useState(false);
   const [isStreetsExpanded, setIsStreetsExpanded] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   // Словарь названий категорий
   const categoryNames: CategoryNames = {
@@ -361,36 +363,67 @@ export const Information: FC = () => {
   };
 
   useEffect(() => {
-    // Загрузка основных данных
-    fetch('/data.json')
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-        if (category && itemId && data.categories[category]) {
-          const item = data.categories[category].find(
-            (item: Item) => item.map_marker === itemId,
-          );
-          if (item) {
-            setExpandedCategories(prev => new Set([...prev, category]));
-            setTimeout(() => {
-              const element = document.getElementById(itemId);
-              if (element) {
-                const headerHeight = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition =
-                  elementPosition + window.pageYOffset - headerHeight;
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/data.json');
+        const jsonData = await response.json();
+        setData(jsonData);
+        setIsDataLoaded(true);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth',
-                });
-              }
-            }, 300);
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const scrollToObject = () => {
+      const objectId = searchParams.get('object');
+      if (!objectId || !isDataLoaded) return;
+
+      const element = document.querySelector(`[data-object-id="${objectId}"]`);
+      if (element) {
+        const headerOffset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        // Находим категорию объекта
+        const categorySection = element.closest('[data-category]');
+        if (categorySection) {
+          const category = categorySection.getAttribute('data-category');
+          if (category) {
+            // Разворачиваем категорию
+            setExpandedCategories(prev => new Set([...prev, category]));
+
+            // Для известных людей и улиц используем специальные состояния
+            if (category === 'famous_people') {
+              setIsFamousPeopleExpanded(true);
+            } else if (category === 'streets') {
+              setIsStreetsExpanded(true);
+            }
+
+            // Увеличиваем задержку для гарантии, что все объекты отрендерены
+            setTimeout(() => {
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+              });
+            }, 500);
           }
         }
-      })
-      .catch(error => console.error('Error fetching data:', error));
+      } else {
+        console.warn(`Element with data-object-id="${objectId}" not found`);
+      }
+    };
 
+    if (isDataLoaded) {
+      scrollToObject();
+    }
+  }, [searchParams, isDataLoaded]);
+
+  useEffect(() => {
     // Загрузка данных о известных людях
     fetch('/famousPeople.json')
       .then(response => response.json())
@@ -406,7 +439,7 @@ export const Information: FC = () => {
         setStreets(data.categories.streets || []);
       })
       .catch(error => console.error('Error fetching streets:', error));
-  }, [category, itemId]);
+  }, []);
 
   return (
     <>
