@@ -147,3 +147,9 @@ export interface IClusterIconProps {
     iconSize: [number, number];
   };
 }
+
+export interface IMapControllerProps {
+  selected: string | null;
+  data: Data | null;
+  streets: Street[];
+}

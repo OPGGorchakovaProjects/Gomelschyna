@@ -1,4 +1,4 @@
-import { MapCoordinates } from '../../utils/types/types';
+import { MapCoordinates } from '@utils';
 
 export const parseCoordinates = (coord: string | MapCoordinates): MapCoordinates => {
   if (Array.isArray(coord) && coord.length === 2) {
