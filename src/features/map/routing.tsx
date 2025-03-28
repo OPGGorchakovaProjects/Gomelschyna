@@ -35,6 +35,16 @@ export const createCustomIcon = (isUser: boolean = false) => {
   });
 };
 
+// Создаем кастомные иконки для маршрута
+const createRouteIcon = (type: 'start' | 'end') => {
+  return L.divIcon({
+    className: `custom-route-icon ${type}`,
+    html: `<div class="icon-inner ${type}"></div>`,
+    iconSize: [20, 20],
+    iconAnchor: [10, 10],
+  });
+};
+
 export const createRoute = (
   map: L.Map,
   from: MapCoordinates,
@@ -58,15 +68,10 @@ export const createRoute = (
     draggableWaypoints: false,
     fitSelectedRoutes: true,
     showAlternatives: false,
-    createMarker: function (i: number, waypoint: any, n: number) {
-      const marker = L.marker(waypoint.latLng, {
-        icon: L.divIcon({
-          className:
-            i === 0 ? 'leaflet-routing-icon-start' : 'leaflet-routing-icon-end',
-          iconSize: [20, 20],
-        }),
+    createMarker: function (i: number, waypoint: any) {
+      return L.marker(waypoint.latLng, {
+        icon: createRouteIcon(i === 0 ? 'start' : 'end'),
       });
-      return marker;
     },
   }).addTo(map);
 
