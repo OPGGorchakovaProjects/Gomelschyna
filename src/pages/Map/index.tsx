@@ -21,6 +21,7 @@ import {
   createClusterCustomIcon,
   parseCoordinates,
   getIcon,
+  MapController,
 } from '@features';
 import {
   MapCoordinates,
@@ -122,26 +123,29 @@ export const Map = () => {
         setData(jsonData);
 
         if (selected) {
+          // Сначала проверяем в основных категориях
+          let found = false;
           for (const [category, items] of Object.entries(
             jsonData.categories as Record<string, Item[]>,
           )) {
             if (items.some(item => item.map_marker === selected)) {
               setActiveCategories([category as CategoryKey]);
-
-              const item = items.find(i => i.map_marker === selected);
-              if (item?.coordinates && mapRef.current) {
-                const coordinates = Array.isArray(item.coordinates)
-                  ? (item.coordinates[0] as MapCoordinates)
-                  : ([52.4242, 31.014] as MapCoordinates);
-                mapRef.current.setView(coordinates, 13);
-              }
+              found = true;
               break;
+            }
+          }
+
+          // Если не нашли в основных категориях, проверяем улицы
+          if (!found) {
+            const street = streets.find(s => s.map_marker === selected);
+            if (street) {
+              setActiveCategories(['streets']);
             }
           }
         }
       })
       .catch(error => console.error('Error:', error));
-  }, [searchParams]);
+  }, [searchParams, streets]);
 
   useEffect(() => {
     if (streetsData?.categories?.streets) {
@@ -299,6 +303,11 @@ export const Map = () => {
       />
       <div className={styles.mapWrapper}>
         <MapContainer {...mapProps}>
+          <MapController
+            selected={searchParams.get('selected')}
+            data={data}
+            streets={streets}
+          />
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <MarkerClusterGroup
             chunkedLoading

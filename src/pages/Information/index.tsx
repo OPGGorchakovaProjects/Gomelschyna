@@ -382,6 +382,7 @@ export const Information: FC = () => {
       const objectId = searchParams.get('object');
       if (!objectId || !isDataLoaded) return;
 
+      // Сначала проверяем, есть ли объект в основных категориях
       const element = document.querySelector(`[data-object-id="${objectId}"]`);
       if (element) {
         const headerOffset = 100;
@@ -414,14 +415,36 @@ export const Information: FC = () => {
           }
         }
       } else {
-        console.warn(`Element with data-object-id="${objectId}" not found`);
+        // Если объект не найден в основных категориях, проверяем улицы
+        const streetElement = streets.find(
+          street => street.map_marker === objectId,
+        );
+        if (streetElement) {
+          setIsStreetsExpanded(true);
+          // Даем время на отрисовку улиц
+          setTimeout(() => {
+            const newElement = document.querySelector(
+              `[data-object-id="${objectId}"]`,
+            );
+            if (newElement) {
+              const headerOffset = 100;
+              const elementPosition = newElement.getBoundingClientRect().top;
+              const offsetPosition =
+                elementPosition + window.pageYOffset - headerOffset;
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+              });
+            }
+          }, 500);
+        }
       }
     };
 
     if (isDataLoaded) {
       scrollToObject();
     }
-  }, [searchParams, isDataLoaded]);
+  }, [searchParams, isDataLoaded, streets]);
 
   useEffect(() => {
     // Загрузка данных о известных людях
