@@ -329,13 +329,34 @@
   transition: all 0.3s ease;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 4;
+  stroke-width: 3;
   fill: none;
+  pointer-events: auto;
+  cursor: pointer;
   
   &:hover {
-    opacity: 1;
-    stroke-width: 6;
-    fill-opacity: 0.3;
+    opacity: 0.8;
+    stroke-width: 4;
+    fill-opacity: 0.2;
+  }
+}
+
+.streetPopup {
+  padding: 15px;
+  min-width: 250px;
+  
+  h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  p {
+    margin: 0 0 15px 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
   }
 }
 
