@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { IconMapPinFilled, IconUserCircle } from '@tabler/icons-react';
-import styles from '../pages/Map/style.module.scss';
-import { IRoutingControlProps } from './types';
+import { IRoutingControlProps } from '@utils';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import styles from '../../pages/Map/style.module.scss';
 
 declare module 'leaflet' {
   namespace Routing {
@@ -23,7 +23,7 @@ declare module 'leaflet' {
   }
 }
 
-const createCustomIcon = (isUser: boolean = false) => {
+export const createCustomIcon = (isUser: boolean = false) => {
   return L.divIcon({
     html: `<div class="${styles.customIcon}" style="background-color: ${isUser ? '#007bff' : '#dc3545'}">
             ${isUser ? IconUserCircle : IconMapPinFilled}
