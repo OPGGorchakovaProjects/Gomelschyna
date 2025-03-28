@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
-import L from 'leaflet';
+import * as L from 'leaflet';
 import { IconMapPinFilled, IconUserCircle } from '@tabler/icons-react';
-import { IRoutingControlProps } from '@utils';
+import { IRoutingControlProps, MapCoordinates } from '@utils';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import styles from '../../pages/Map/style.module.scss';
@@ -37,13 +37,12 @@ export const createCustomIcon = (isUser: boolean = false) => {
 
 export const createRoute = (
   map: L.Map,
-  from: [number, number],
-  to: [number, number],
-  routingControl: L.Routing.Control | null,
-  setRoutingControl: (control: L.Routing.Control | null) => void,
+  from: MapCoordinates,
+  to: MapCoordinates,
+  existingControl?: L.Routing.Control,
 ) => {
-  if (routingControl) {
-    map.removeControl(routingControl);
+  if (existingControl) {
+    map.removeControl(existingControl);
   }
 
   const control = L.Routing.control({
@@ -51,20 +50,33 @@ export const createRoute = (
     routeWhileDragging: false,
     lineOptions: {
       styles: [{ color: '#007bff', weight: 4 }],
+      extendToWaypoints: true,
+      missingRouteTolerance: 0,
     },
     show: false,
     addWaypoints: false,
     draggableWaypoints: false,
     fitSelectedRoutes: true,
+    showAlternatives: false,
+    createMarker: function (i: number, waypoint: any, n: number) {
+      const marker = L.marker(waypoint.latLng, {
+        icon: L.divIcon({
+          className:
+            i === 0 ? 'leaflet-routing-icon-start' : 'leaflet-routing-icon-end',
+          iconSize: [20, 20],
+        }),
+      });
+      return marker;
+    },
   }).addTo(map);
 
-  setRoutingControl(control);
+  return control;
 };
 
 export const getUserLocation = (
-  destinationCoords: [number, number],
-  setUserLocation: (location: [number, number]) => void,
-  createRouteCallback: (from: [number, number], to: [number, number]) => void,
+  destinationCoords: MapCoordinates,
+  setUserLocation: (location: MapCoordinates) => void,
+  createRouteCallback: (from: MapCoordinates, to: MapCoordinates) => void,
 ) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -87,7 +99,7 @@ export const clearRoute = (
   map: L.Map,
   routingControl: L.Routing.Control | null,
   setRoutingControl: (control: L.Routing.Control | null) => void,
-  setUserLocation: (location: [number, number] | null) => void,
+  setUserLocation: (location: MapCoordinates | null) => void,
 ) => {
   if (routingControl) {
     map.removeControl(routingControl);
