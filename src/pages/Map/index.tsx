@@ -12,21 +12,30 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 import * as L from 'leaflet';
 import { Typography } from '@components';
 import { Header } from '@modules';
-import * as utils from '@utils';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import streetsData from '../../../public/streets.json';
 import styles from './style.module.scss';
-
-declare module 'leaflet' {
-  namespace Routing {
-    function control(options: any): any;
-  }
-}
+import {
+  categoryColors,
+  createClusterCustomIcon,
+  parseCoordinates,
+  getIcon,
+} from '@features';
+import {
+  MapCoordinates,
+  Data,
+  CategoryKey,
+  Street,
+  Item,
+  StreetsData,
+  MapBounds,
+  IMapProps,
+} from '@utils';
 
 const calculateStreetCenter = (
-  coordinates: utils.MapCoordinates[],
-): utils.MapCoordinates => {
+  coordinates: MapCoordinates[],
+): MapCoordinates => {
   if (coordinates.length === 0) return [52.4242, 31.014];
 
   const sum = coordinates.reduce(
@@ -37,22 +46,20 @@ const calculateStreetCenter = (
   return [
     sum[0] / coordinates.length,
     sum[1] / coordinates.length,
-  ] as utils.MapCoordinates;
+  ] as MapCoordinates;
 };
 
 export const Map = () => {
-  const [data, setData] = useState<utils.Data | null>(null);
-  const [activeCategories, setActiveCategories] = useState<utils.CategoryKey[]>(
-    [],
-  );
+  const [data, setData] = useState<Data | null>(null);
+  const [activeCategories, setActiveCategories] = useState<CategoryKey[]>([]);
   const [searchParams] = useSearchParams();
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
   const mapRef = useRef<L.Map>(null);
   const [routingControl, setRoutingControl] = useState<any>(null);
-  const [, setUserLocation] = useState<utils.MapCoordinates | null>(null);
-  const [streets, setStreets] = useState<utils.Street[]>([]);
+  const [, setUserLocation] = useState<MapCoordinates | null>(null);
+  const [streets, setStreets] = useState<Street[]>([]);
 
-  const getUserLocation = (destinationCoords: utils.MapCoordinates) => {
+  const getUserLocation = (destinationCoords: MapCoordinates) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
@@ -70,10 +77,7 @@ export const Map = () => {
     }
   };
 
-  const createRoute = (
-    from: utils.MapCoordinates,
-    to: utils.MapCoordinates,
-  ) => {
+  const createRoute = (from: MapCoordinates, to: MapCoordinates) => {
     if (mapRef.current) {
       if (routingControl) {
         mapRef.current.removeControl(routingControl);
@@ -119,16 +123,16 @@ export const Map = () => {
 
         if (selected) {
           for (const [category, items] of Object.entries(
-            jsonData.categories as Record<string, utils.Item[]>,
+            jsonData.categories as Record<string, Item[]>,
           )) {
             if (items.some(item => item.map_marker === selected)) {
-              setActiveCategories([category as utils.CategoryKey]);
+              setActiveCategories([category as CategoryKey]);
 
               const item = items.find(i => i.map_marker === selected);
               if (item?.coordinates && mapRef.current) {
                 const coordinates = Array.isArray(item.coordinates)
-                  ? (item.coordinates[0] as utils.MapCoordinates)
-                  : ([52.4242, 31.014] as utils.MapCoordinates);
+                  ? (item.coordinates[0] as MapCoordinates)
+                  : ([52.4242, 31.014] as MapCoordinates);
                 mapRef.current.setView(coordinates, 13);
               }
               break;
@@ -142,10 +146,10 @@ export const Map = () => {
   useEffect(() => {
     if (streetsData?.categories?.streets) {
       const formattedStreets = (
-        streetsData as utils.StreetsData
+        streetsData as StreetsData
       ).categories.streets.map(street => {
         const formattedCoordinates = street.coordinates.map(
-          coord => [coord[1], coord[0]] as utils.MapCoordinates,
+          coord => [coord[1], coord[0]] as MapCoordinates,
         );
         return {
           ...street,
@@ -157,7 +161,7 @@ export const Map = () => {
     }
   }, []);
 
-  const renderPopup = (item: utils.Item | utils.Street) => (
+  const renderPopup = (item: Item | Street) => (
     <Popup>
       <h3 className={styles.title}>{item.name}</h3>
       <Typography
@@ -181,7 +185,7 @@ export const Map = () => {
                 ? item.center
                 : Array.isArray(item.coordinates)
                   ? item.coordinates[0]
-                  : utils.parseCoordinates(item.coordinates as string);
+                  : parseCoordinates(item.coordinates as string);
             getUserLocation(coords);
           }}
         >
@@ -198,7 +202,7 @@ export const Map = () => {
     </Popup>
   );
 
-  const renderMarkers = (category: utils.CategoryKey): JSX.Element[] | null => {
+  const renderMarkers = (category: CategoryKey): JSX.Element[] | null => {
     if (category === 'streets') {
       if (!activeCategories.includes('streets') || streets.length === 0) {
         return null;
@@ -214,10 +218,7 @@ export const Map = () => {
 
         return (
           <React.Fragment key={street.map_marker}>
-            <Marker
-              position={markerPosition}
-              icon={utils.createCustomIcon('streets')}
-            >
+            <Marker position={markerPosition} icon={getIcon('streets')}>
               {renderPopup(street)}
             </Marker>
             <Polyline
@@ -244,21 +245,21 @@ export const Map = () => {
 
     if (
       !data?.categories[category] ||
-      !activeCategories.includes(category as utils.CategoryKey)
+      !activeCategories.includes(category as CategoryKey)
     ) {
       return null;
     }
 
     return data.categories[category]
-      .filter((item: utils.Item) =>
+      .filter((item: Item) =>
         selectedMarker ? item.map_marker === selectedMarker : true,
       )
-      .map((item: utils.Item, index: number) => {
+      .map((item: Item, index: number) => {
         const coordinates = item.coordinates
           ? typeof item.coordinates === 'string'
-            ? utils.parseCoordinates(item.coordinates)
+            ? parseCoordinates(item.coordinates)
             : Array.isArray(item.coordinates) && item.coordinates.length > 0
-              ? utils.parseCoordinates(item.coordinates[0])
+              ? parseCoordinates(item.coordinates[0])
               : [52.4242, 31.014]
           : [52.4242, 31.014];
 
@@ -266,7 +267,7 @@ export const Map = () => {
           <Marker
             key={index}
             position={coordinates as [number, number]}
-            icon={utils.getIcon(category)}
+            icon={getIcon(category)}
           >
             {renderPopup(item)}
           </Marker>
@@ -274,9 +275,9 @@ export const Map = () => {
       });
   };
 
-  const mapProps: utils.IMapProps = {
+  const mapProps: IMapProps = {
     ref: mapRef as React.RefObject<L.Map>,
-    center: [52.4242, 31.014] as utils.MapCoordinates,
+    center: [52.4242, 31.014] as MapCoordinates,
     zoom: 8,
     className: styles.mapContainer,
     attributionControl: false,
@@ -284,7 +285,7 @@ export const Map = () => {
     maxBounds: [
       [50.5, 26.5],
       [54.0, 32.0],
-    ] as utils.MapBounds,
+    ] as MapBounds,
     minZoom: 5,
   };
 
@@ -301,7 +302,7 @@ export const Map = () => {
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <MarkerClusterGroup
             chunkedLoading
-            iconCreateFunction={utils.createClusterCustomIcon}
+            iconCreateFunction={createClusterCustomIcon}
             showCoverageOnHover={false}
             maxClusterRadius={100}
             animate={true}
@@ -312,9 +313,9 @@ export const Map = () => {
             zoomToBoundsOnClick={true}
           >
             {data &&
-              Object.keys(utils.categoryColors)
+              Object.keys(categoryColors)
                 .filter(category => category !== 'streets')
-                .map(category => renderMarkers(category as utils.CategoryKey))}
+                .map(category => renderMarkers(category as CategoryKey))}
           </MarkerClusterGroup>
           {activeCategories.includes('streets') && streets.length > 0 && (
             <>
@@ -327,7 +328,7 @@ export const Map = () => {
                     {markerPosition && (
                       <Marker
                         position={markerPosition}
-                        icon={utils.createCustomIcon('streets')}
+                        icon={getIcon('streets')}
                       >
                         {renderPopup(street)}
                       </Marker>

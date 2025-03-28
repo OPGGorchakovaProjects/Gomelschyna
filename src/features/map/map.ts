@@ -25,16 +25,16 @@ export const getIcon = (category: string) => {
   });
 };
 
-export const createCustomIcon = (category: string) => {
-  return L.divIcon({
-    html: `<div class="${styles.markerIcon}" style="background-color: ${categoryColors[category]};"></div>`,
-    className: '',
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
-    popupAnchor: [0, -10],
-    tooltipAnchor: [10, -10],
-  });
-};
+// export const createCustomIcon = (category: string) => {
+//   return L.divIcon({
+//     html: `<div class="${styles.markerIcon}" style="background-color: ${categoryColors[category]};"></div>`,
+//     className: '',
+//     iconSize: [20, 20],
+//     iconAnchor: [10, 10],
+//     popupAnchor: [0, -10],
+//     tooltipAnchor: [10, -10],
+//   });
+// };
 
 export const createClusterCustomIcon = (cluster: any) => {
   const count = cluster.getChildCount();
