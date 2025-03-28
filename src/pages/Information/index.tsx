@@ -301,7 +301,11 @@ const ContentBlock: FC<ContentBlockProps> = ({
     <h2 className={style.gorod}>{location}</h2>
     <div className={style.divider}></div>
     <div className={style.content}>
-      <p className={style.textContent}>{description}</p>
+      <div className={style.textContent}>
+        {description.split('\n').map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
+      </div>
       <img
         src={image || './img/default.jpg'}
         alt={name}
