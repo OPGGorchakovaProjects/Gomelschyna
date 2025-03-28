@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import style from './style.module.scss';
 import { Link } from 'react-router-dom';
-import { IBurgerMenuProps } from '@utils';
 import { Button } from '@components';
 import {
   IconMapPin,
@@ -18,12 +17,30 @@ import {
   IconUsers,
   IconBookmark,
   IconX,
+  IconRoad,
 } from '@tabler/icons-react';
+import {
+  Item,
+  Data,
+  ContentBlockProps,
+  CategoryNames,
+  IBurgerMenuProps,
+} from '@utils';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [, setSearchParams] = useSearchParams();
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    // Сбрасываем параметр object из URL
+    setSearchParams({});
+  };
 
   return (
     <header>
@@ -37,7 +54,9 @@ const Header = () => {
               <div key={i} className={style.line}></div>
             ))}
           </button>
-          <h1 className={style.headerTitle}>Гомельщина</h1>
+          <button className={style.headerTitle} onClick={scrollToTop}>
+            Гомельщина
+          </button>
         </div>
       </nav>
       <BurgerMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
@@ -115,13 +134,6 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
         </button>
         <button
           className={style.button}
-          onClick={() => handleScroll('known_people')}
-        >
-          <IconUsers className={style.icon} />
-          Известные люди
-        </button>
-        <button
-          className={style.button}
           onClick={() => handleScroll('ancient_cities')}
         >
           <IconMapPin className={style.icon} />
@@ -141,6 +153,20 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ isOpen, toggleMenu }) => {
         <button className={style.button} onClick={() => handleScroll('rivers')}>
           <IconRipple className={style.icon} />
           Реки
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('famous_people')}
+        >
+          <IconUsers className={style.icon} />
+          Известные люди
+        </button>
+        <button
+          className={style.button}
+          onClick={() => handleScroll('streets')}
+        >
+          <IconRoad className={style.icon} />
+          Улицы
         </button>
         <Link to="/">
           <button className={`${style.button} ${style.back}`}>
@@ -261,23 +287,7 @@ const Modal = () => {
   );
 };
 
-interface Item {
-  name: string;
-  location: string;
-  description: string;
-  image?: string;
-  links?: {
-    read_more?: string;
-    map?: string;
-  };
-  map_marker?: string;
-}
-
-interface Data {
-  categories: Record<string, Item[]>;
-}
-
-const ContentBlock: FC<Item & { id?: string }> = ({
+const ContentBlock: FC<ContentBlockProps> = ({
   id,
   name,
   location,
@@ -286,15 +296,19 @@ const ContentBlock: FC<Item & { id?: string }> = ({
   links,
   map_marker,
 }) => (
-  <div id={id} className={style.blockDost}>
+  <div id={id} data-object-id={map_marker} className={style.blockDost}>
     <p className={style.textDost}>{name}</p>
     <h2 className={style.gorod}>{location}</h2>
     <div className={style.divider}></div>
     <div className={style.content}>
-      <p className={style.textContent}>{description}</p>
+      <div className={style.textContent}>
+        {description.split('\n').map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
+      </div>
       <img
         src={image || './img/default.jpg'}
-        alt="city"
+        alt={name}
         className={style.imgCity}
       />
     </div>
@@ -304,24 +318,29 @@ const ContentBlock: FC<Item & { id?: string }> = ({
           Читать ещё
         </Button>
       )}
-      <Button to={`/map?selected=${map_marker}`} variant="secondary">
-        Показать на карте
-      </Button>
+      {map_marker && (
+        <Button to={`/map?selected=${map_marker}`} variant="secondary">
+          Показать на карте
+        </Button>
+      )}
     </div>
   </div>
 );
 
 export const Information: FC = () => {
-  const [data, setData] = useState<Data | null>(null);
   const [searchParams] = useSearchParams();
-  const category = searchParams.get('category');
-  const itemId = searchParams.get('item');
+  const [data, setData] = useState<Data | null>(null);
+  const [famousPeople, setFamousPeople] = useState<Item[]>([]);
+  const [streets, setStreets] = useState<Item[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(),
   );
+  const [isFamousPeopleExpanded, setIsFamousPeopleExpanded] = useState(false);
+  const [isStreetsExpanded, setIsStreetsExpanded] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   // Словарь названий категорий
-  const categoryNames: { [key: string]: string } = {
+  const categoryNames: CategoryNames = {
     museums: 'Музеи',
     monuments: 'Монументы',
     cultural_values: 'Культурные ценности',
@@ -330,6 +349,8 @@ export const Information: FC = () => {
     reserve: 'Заповедники',
     lakes: 'Озёра',
     rivers: 'Реки',
+    famous_people: 'Известные люди',
+    streets: 'Улицы',
   };
 
   // Функция для переключения категории
@@ -346,42 +367,106 @@ export const Information: FC = () => {
   };
 
   useEffect(() => {
-    fetch('/data.json')
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-        if (category && itemId && data.categories[category]) {
-          const item = data.categories[category].find(
-            (item: Item) => item.map_marker === itemId,
-          );
-          if (item) {
-            // Сначала раскрываем категорию
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/data.json');
+        const jsonData = await response.json();
+        setData(jsonData);
+        setIsDataLoaded(true);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const scrollToObject = () => {
+      const objectId = searchParams.get('object');
+      if (!objectId || !isDataLoaded) return;
+
+      // Сначала проверяем, есть ли объект в основных категориях
+      const element = document.querySelector(`[data-object-id="${objectId}"]`);
+      if (element) {
+        const headerOffset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        // Находим категорию объекта
+        const categorySection = element.closest('[data-category]');
+        if (categorySection) {
+          const category = categorySection.getAttribute('data-category');
+          if (category) {
+            // Разворачиваем категорию
             setExpandedCategories(prev => new Set([...prev, category]));
 
-            // Увеличиваем задержку для гарантии, что DOM обновился
-            setTimeout(() => {
-              const element = document.getElementById(itemId);
-              if (element) {
-                // Добавляем отступ сверху для учета фиксированного хедера
-                const headerHeight = 80; // Примерная высота хедера
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition =
-                  elementPosition + window.pageYOffset - headerHeight;
+            // Для известных людей и улиц используем специальные состояния
+            if (category === 'famous_people') {
+              setIsFamousPeopleExpanded(true);
+            } else if (category === 'streets') {
+              setIsStreetsExpanded(true);
+            }
 
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth',
-                });
-              }
-            }, 300);
+            // Увеличиваем задержку для гарантии, что все объекты отрендерены
+            setTimeout(() => {
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+              });
+            }, 500);
           }
         }
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  }, [category, itemId]);
+      } else {
+        // Если объект не найден в основных категориях, проверяем улицы
+        const streetElement = streets.find(
+          street => street.map_marker === objectId,
+        );
+        if (streetElement) {
+          setIsStreetsExpanded(true);
+          // Даем время на отрисовку улиц
+          setTimeout(() => {
+            const newElement = document.querySelector(
+              `[data-object-id="${objectId}"]`,
+            );
+            if (newElement) {
+              const headerOffset = 100;
+              const elementPosition = newElement.getBoundingClientRect().top;
+              const offsetPosition =
+                elementPosition + window.pageYOffset - headerOffset;
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+              });
+            }
+          }, 500);
+        }
+      }
+    };
 
-  // Удаляем наблюдатель IntersectionObserver, так как он автоматически раскрывает категории
-  // и мешает правильной работе сворачивания/разворачивания
+    if (isDataLoaded) {
+      scrollToObject();
+    }
+  }, [searchParams, isDataLoaded, streets]);
+
+  useEffect(() => {
+    // Загрузка данных о известных людях
+    fetch('/famousPeople.json')
+      .then(response => response.json())
+      .then(data => {
+        setFamousPeople(data.famous_people || []);
+      })
+      .catch(error => console.error('Error fetching famous people:', error));
+
+    // Загрузка данных об улицах
+    fetch('/streets.json')
+      .then(response => response.json())
+      .then(data => {
+        setStreets(data.categories.streets || []);
+      })
+      .catch(error => console.error('Error fetching streets:', error));
+  }, []);
 
   return (
     <>
@@ -389,34 +474,87 @@ export const Information: FC = () => {
       <Banner />
       <div className={style.main}>
         {data?.categories &&
-          Object.entries(data.categories).map(([categoryKey, items]) => {
-            const isExpanded = expandedCategories.has(categoryKey);
-            // Отображаем все элементы, если категория развернута, или только первые 5, если свернута
-            const displayedItems = isExpanded ? items : items.slice(0, 5);
+          Object.entries(data.categories).map(
+            ([categoryKey, items]: [string, Item[]]) => {
+              const isExpanded = expandedCategories.has(categoryKey);
+              const displayedItems = isExpanded ? items : items.slice(0, 5);
 
-            return (
-              <div
-                key={categoryKey}
-                className={style.categorySection}
-                data-category={categoryKey}
+              return (
+                <div
+                  key={categoryKey}
+                  className={style.categorySection}
+                  data-category={categoryKey}
+                >
+                  <h2 className={style.categoryTitle}>
+                    {categoryNames[categoryKey] || categoryKey}
+                  </h2>
+                  {displayedItems.map((item: Item, index: number) => (
+                    <ContentBlock key={index} {...item} id={item.map_marker} />
+                  ))}
+                  {items.length > 5 && (
+                    <button
+                      className={style.showMoreButton}
+                      onClick={() => toggleCategory(categoryKey)}
+                    >
+                      {isExpanded ? 'Показать меньше' : 'Показать больше'}
+                    </button>
+                  )}
+                </div>
+              );
+            },
+          )}
+
+        {/* Секция известных людей */}
+        {famousPeople.length > 0 && (
+          <div
+            className={style.categorySection}
+            data-category="famous_people"
+            id="famous_people"
+          >
+            <h2 className={style.categoryTitle}>
+              {categoryNames.famous_people}
+            </h2>
+            {(isFamousPeopleExpanded
+              ? famousPeople
+              : famousPeople.slice(0, 5)
+            ).map((person: Item, index: number) => (
+              <ContentBlock key={index} {...person} id={person.map_marker} />
+            ))}
+            {famousPeople.length > 5 && (
+              <button
+                className={style.showMoreButton}
+                onClick={() => setIsFamousPeopleExpanded(prev => !prev)}
               >
-                <h2 className={style.categoryTitle}>
-                  {categoryNames[categoryKey] || categoryKey}
-                </h2>
-                {displayedItems.map((item, index) => (
-                  <ContentBlock key={index} {...item} id={item.map_marker} />
-                ))}
-                {items.length > 5 && (
-                  <button
-                    className={style.showMoreButton}
-                    onClick={() => toggleCategory(categoryKey)}
-                  >
-                    {isExpanded ? 'Показать меньше' : 'Показать больше'}
-                  </button>
-                )}
-              </div>
-            );
-          })}
+                {isFamousPeopleExpanded ? 'Показать меньше' : 'Показать больше'}
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Секция улиц */}
+        {streets.length > 0 && (
+          <div
+            className={style.categorySection}
+            data-category="streets"
+            id="streets"
+          >
+            <h2 className={style.categoryTitle}>{categoryNames.streets}</h2>
+            {(isStreetsExpanded ? streets : streets.slice(0, 5)).map(
+              (street: Item, index: number) => (
+                <ContentBlock key={index} {...street} id={street.map_marker} />
+              ),
+            )}
+            {streets.length > 5 && (
+              <button
+                className={style.showMoreButton}
+                onClick={() => setIsStreetsExpanded(prev => !prev)}
+              >
+                {isStreetsExpanded ? 'Показать меньше' : 'Показать больше'}
+              </button>
+            )}
+          </div>
+        )}
+
         <Modal />
       </div>
     </>

@@ -1,7 +1,7 @@
 import { ReactNode, JSX, CSSProperties } from 'react';
-import { ButtonSize, ButtonColor, ButtonType } from '@utils';
 import * as L from 'leaflet';
-import { CategoryKey } from './types';
+import { CategoryKey, MapCoordinates, StringCoordinates } from '@utils';
+import { ButtonSize, ButtonColor, ButtonType } from '@utils';
 
 export interface IButtonProps {
   onClick: () => void;
@@ -40,20 +40,30 @@ export interface CategoryInfo {
 
 export interface Item {
   name: string;
+  location: string;
   description: string;
-  coordinates?: string;
   image?: string;
   links?: {
     read_more?: string;
+    map?: string;
   };
-  map_marker: string;
+  map_marker?: string;
+  coordinates?: MapCoordinates[] | StringCoordinates;
 }
 
 export interface Data {
-  categories: {
-    [key: string]: Item[];
-  };
-} 
+  categories: Record<string, Item[]>;
+  famous_people?: Item[];
+  streets?: Item[];
+}
+
+export interface ContentBlockProps extends Item {
+  id?: string;
+}
+
+export interface CategoryNames {
+  [key: string]: string;
+}
 
 export interface IBurgerMenuProps {
   isOpen: boolean;
@@ -71,22 +81,32 @@ export interface IMapEventsProps {
 }
 
 export interface Street {
-  map_marker: string;
   name: string;
-  location: string;
   description: string;
-  image: string;
-  links: {
-    read_more: string;
-    map: string;
+  map_marker: string;
+  coordinates: MapCoordinates[];
+  center?: MapCoordinates;
+  image?: string;
+  links?: {
+    read_more?: string;
   };
-  coordinates: number[][];
 }
 
 export interface StreetsData {
   regions: string;
   categories: {
-    streets: Street[];
+    streets: {
+      name: string;
+      location: string;
+      description: string;
+      image: string;
+      links: {
+        read_more: string;
+        map: string;
+      };
+      coordinates: number[][];
+      map_marker: string;
+    }[];
   };
 }
 
@@ -126,4 +146,10 @@ export interface IClusterIconProps {
   options: {
     iconSize: [number, number];
   };
+}
+
+export interface IMapControllerProps {
+  selected: string | null;
+  data: Data | null;
+  streets: Street[];
 }
