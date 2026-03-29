@@ -1,0 +1,7 @@
+export { Home } from './home'
+export { Information } from './Information'
+export { Map } from './Map'
+export { AuthPage } from './auth'
+export { Profile } from './profile'
+export { AdminPage } from './admin'
+export { AboutPage } from './about'

@@ -1,0 +1,67 @@
+.reviewModal {
+  :global {
+    .MuiBackdrop-root {
+      backdrop-filter: blur(4px);
+    }
+  }
+}
+
+.reviewModalPaper {
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.reviewModalTitle {
+  padding: 24px 24px 16px !important;
+  font-weight: 600 !important;
+  font-size: 1.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+
+  .titleIcon {
+    color: #ffc107;
+    font-size: 28px;
+  }
+}
+
+.reviewModalContent {
+  padding: 0 24px 24px !important;
+
+  :global {
+    .MuiRating-root {
+      font-size: 2.5rem;
+      color: #ffc107;
+    }
+
+    .MuiTextField-root {
+      margin-top: 0;
+    }
+
+    .MuiInputBase-root {
+      border-radius: 8px;
+    }
+  }
+}
+
+.reviewModalActions {
+  padding: 16px 24px 24px !important;
+  gap: 12px !important;
+
+  :global {
+    .MuiButton-root {
+      border-radius: 8px;
+      text-transform: none;
+      font-weight: 500;
+      padding: 8px 24px;
+    }
+
+    .MuiButton-contained {
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.24);
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(25, 118, 210, 0.32);
+      }
+    }
+  }
+}

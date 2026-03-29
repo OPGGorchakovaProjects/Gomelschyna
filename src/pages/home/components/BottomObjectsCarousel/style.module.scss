@@ -1,0 +1,22 @@
+.bottomCarouselSection {
+  width: 100%;
+  padding: 2rem 0;
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .carouselHeader,
+  .carouselTitle,
+  .carouselDescription,
+  .carouselText,
+  .slideTitle,
+  .slideDescription {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+  }
+} 
